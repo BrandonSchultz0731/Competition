@@ -5,16 +5,25 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javax.xml.soap.Text;
 
 public class Controller {
+
+
+
+  ObservableList<String> teamStatus = FXCollections.observableArrayList("Team 1",
+      "Team 2","Team 3");
 
   @FXML
   private TextField nameInput;
@@ -24,6 +33,12 @@ public class Controller {
   private TextField usernameCreate;
   @FXML
   private TextField passCreate;
+  @FXML
+  private ChoiceBox teamChoiceBox;
+  @FXML
+  private Label welcomeLabel;
+
+
 
 
 
@@ -57,6 +72,7 @@ public class Controller {
             + " Try Again or Create Account");
       }
       br.close();
+
     }catch (IOException er){
       System.out.println("error");
     }
@@ -92,6 +108,7 @@ public class Controller {
       pw.close();
 
 
+
     }catch (IOException er){
       System.out.println("ERROR");
     }
@@ -114,5 +131,28 @@ public class Controller {
     stage.setScene(new Scene(root,600,400));
     stage.show();
   }
+  @FXML
+  private void setTeamChoiceBox(){
+    teamChoiceBox.setItems(teamStatus);
+  }
+  @FXML
+  private void welcomeSelected(){
+    welcomeLabel.setText("Welcome");
+  }
+  @FXML
+  private void signOutSelected(){
+    System.out.println("The sign out tab is selected");
+  }
+  @FXML
+  private void statsSelected(){
+    System.out.println("The Stats tab is selected");
+  }
+  @FXML
+  private void calSelected(){
+    System.out.println("The Calendar tab is selected");
+  }
+
+
+
 
 }

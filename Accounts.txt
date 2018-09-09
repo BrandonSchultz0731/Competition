@@ -5,3 +5,5 @@ mytest mytest
 myaccount account
 testing test123
 account password
+testuser test
+anothertest test
