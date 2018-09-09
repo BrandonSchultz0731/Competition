@@ -15,7 +15,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="welcomeLabel" layoutX="84.0" layoutY="21.0" prefHeight="62.0" prefWidth="415.0" text="Label">
+                        <Label fx:id="welcomeLabel" layoutX="32.0" layoutY="21.0" prefHeight="61.0" prefWidth="542.0" text="Label">
                            <font>
                               <Font size="31.0" />
                            </font>

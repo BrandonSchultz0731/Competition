@@ -20,7 +20,8 @@ import javax.xml.soap.Text;
 
 public class Controller {
 
-
+static String name;
+static String team;
 
   ObservableList<String> teamStatus = FXCollections.observableArrayList("Team 1",
       "Team 2","Team 3");
@@ -41,12 +42,13 @@ public class Controller {
 
 
 
-
   @FXML
   void logInPressed(ActionEvent event) throws IOException {
     //System.out.println("YOOOOO");
     String user = nameInput.getText();
     String pass = passInput.getText();
+    name = user;
+
 
     //Read from file
     try{
@@ -58,6 +60,7 @@ public class Controller {
         if((user.toLowerCase() + " " + pass).equals(str)){
 //          System.out.println("Logged In!!");
           found = true;
+          team = br.readLine();
 
           Stage stage = Main.getPrimaryStage();
 
@@ -103,8 +106,9 @@ public class Controller {
       String pass = passCreate.getText();
 
       pw.println(user.toLowerCase() + " " + pass.toLowerCase());
+      pw.println(teamChoiceBox.getValue());
 
-
+      //test = " " + (String)(teamChoiceBox.getValue());
       pw.close();
 
 
@@ -137,7 +141,8 @@ public class Controller {
   }
   @FXML
   private void welcomeSelected(){
-    welcomeLabel.setText("Welcome");
+    welcomeLabel.setText("Welcome, " + Controller.name + ", to " + Controller.team);
+
   }
   @FXML
   private void signOutSelected(){
