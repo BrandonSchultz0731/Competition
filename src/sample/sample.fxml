@@ -18,7 +18,7 @@
             <TextField id="nameInput" fx:id="nameInput" layoutX="24.0" layoutY="95.0" prefHeight="27.0" prefWidth="235.0" promptText="username" />
             <PasswordField id="passInput" fx:id="passInput" layoutX="28.0" layoutY="171.0" prefHeight="27.0" prefWidth="228.0" promptText="password" />
             <Button id="signIn" layoutX="35.0" layoutY="233.0" mnemonicParsing="false" onAction="#logInPressed" stylesheets="@button.css" text="Sign in" />
-            <Button layoutX="155.0" layoutY="233.0" mnemonicParsing="false" onAction="#createActClicked" stylesheets="@button1.css" text="Create Account" />
+            <Button id="createAct" layoutX="155.0" layoutY="233.0" mnemonicParsing="false" onAction="#createActClicked" styleClass="createClassBtn" stylesheets="@button.css" text="Create Account" />
             <Label layoutX="95.0" layoutY="33.0" prefHeight="48.0" prefWidth="124.0" text="Sign in" textFill="WHITE">
                <font>
                   <Font size="26.0" />
