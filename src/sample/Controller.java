@@ -20,8 +20,8 @@ import javax.xml.soap.Text;
 
 public class Controller {
 
-static String name;
-static String team;
+private static String name;
+private static String team;
 
   ObservableList<String> teamStatus = FXCollections.observableArrayList("Team 1",
       "Team 2","Team 3");
@@ -47,7 +47,7 @@ static String team;
     //System.out.println("YOOOOO");
     String user = nameInput.getText();
     String pass = passInput.getText();
-    name = user;
+    this.name = user;
 
 
     //Read from file
@@ -60,7 +60,7 @@ static String team;
         if((user.toLowerCase() + " " + pass).equals(str)){
 //          System.out.println("Logged In!!");
           found = true;
-          team = br.readLine();
+          this.team = br.readLine();
 
           Stage stage = Main.getPrimaryStage();
 
@@ -73,6 +73,7 @@ static String team;
       if(!found){
         AlertBox.display("No Account","Could Not Find Account. Please"
             + " Try Again or Create Account");
+        passInput.clear();
       }
       br.close();
 
@@ -156,6 +157,7 @@ static String team;
   private void calSelected(){
     System.out.println("The Calendar tab is selected");
   }
+
 
 
 
