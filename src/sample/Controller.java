@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -95,7 +96,7 @@ private static String team;
 
     Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-    stage.setScene(new Scene(root,744,506));
+    stage.setScene(new Scene(root,287,372));
     stage.show();
 
   }
@@ -125,17 +126,18 @@ private static String team;
 
     Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-    stage.setScene(new Scene(root,744,506));
+    stage.setScene(new Scene(root,287,372));
     stage.show();
 
   }
+
   @FXML
   void createActClicked(ActionEvent event) throws  IOException{
     Stage stage = Main.getPrimaryStage();
 
     Parent root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
 
-    stage.setScene(new Scene(root,600,400));
+    stage.setScene(new Scene(root,287,372));
     stage.show();
   }
 
@@ -163,8 +165,21 @@ private static String team;
     System.out.println("The Calendar tab is selected");
   }
 
+  @FXML
+  void closeProgram(){
+    Platform.exit();
+  }
 
+  @FXML
+  void minimizeProg(){
+    Stage stage = Main.getPrimaryStage();
+    stage.setIconified(true);
+  }
 
-
+  @FXML
+  void maxProgWindow(){
+    Stage stage = Main.getPrimaryStage();
+    stage.setMaximized(true);
+  }
 
 }

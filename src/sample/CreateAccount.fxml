@@ -5,33 +5,39 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="372.0" prefWidth="287.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane layoutX="24.0" layoutY="32.0" prefHeight="343.0" prefWidth="285.0" style="-fx-background-color: #9C2827;">
+      <AnchorPane prefHeight="372.0" prefWidth="287.0" style="-fx-background-color: #9C2827;">
          <children>
-            <Label layoutX="36.0" layoutY="7.0" prefHeight="79.0" prefWidth="202.0" text="Create Account" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="36.0" layoutY="12.0" prefHeight="79.0" prefWidth="202.0" text="Create Account" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
             <TextField id="usernameCreate" fx:id="usernameCreate" layoutX="11.0" layoutY="69.0" prefHeight="34.0" prefWidth="252.0" promptText="Enter Username" />
             <PasswordField id="passCreate" fx:id="passCreate" layoutX="11.0" layoutY="130.0" prefHeight="34.0" prefWidth="252.0" promptText="Enter Password" />
-            <Button id="createBtn" layoutX="16.0" layoutY="273.0" mnemonicParsing="false" onAction="#createClicked" prefHeight="34.0" prefWidth="105.0" styleClass="createClassBtn" stylesheets="@button.css" text="Create!" />
+            <Button id="createBtn" layoutX="18.0" layoutY="272.0" mnemonicParsing="false" onAction="#createClicked" prefHeight="34.0" prefWidth="105.0" styleClass="createClassBtn" stylesheets="@button.css" text="Create!" />
             <Label layoutX="11.0" layoutY="181.0" prefHeight="34.0" prefWidth="114.0" text="Select Team">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="teamChoiceBox" layoutX="14.0" layoutY="215.0" onMouseEntered="#setTeamChoiceBox" prefHeight="27.0" prefWidth="163.0" />
-            <Button layoutX="177.0" layoutY="279.0" mnemonicParsing="false" onAction="#logOutPressed" text="Go back" />
+            <Button id="backBtn" layoutX="162.0" layoutY="277.0" mnemonicParsing="false" onAction="#logOutPressed" style="-fx-background-color: black; -fx-background-radius: 15px;" stylesheets="@button.css" text="&lt;&lt; Back" textFill="#b9b9b9" />
+            <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#logOutPressed" text="&lt;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="34.0" layoutY="-1.0" mnemonicParsing="false" style="-fx-text-fill: #999;" text="&gt;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
          </children>
-         <effect>
-            <DropShadow color="WHITE" height="63.5" offsetX="-5.0" radius="26.695" width="45.28" />
-         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>
