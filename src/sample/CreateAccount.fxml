@@ -20,13 +20,14 @@
             </Label>
             <TextField id="usernameCreate" fx:id="usernameCreate" layoutX="11.0" layoutY="69.0" prefHeight="34.0" prefWidth="252.0" promptText="Enter Username" />
             <PasswordField id="passCreate" fx:id="passCreate" layoutX="11.0" layoutY="130.0" prefHeight="34.0" prefWidth="252.0" promptText="Enter Password" />
-            <Button id="createBtn" layoutX="101.0" layoutY="271.0" mnemonicParsing="false" onAction="#createClicked" prefHeight="34.0" prefWidth="105.0" styleClass="createClassBtn" stylesheets="@button.css" text="Create!" />
+            <Button id="createBtn" layoutX="16.0" layoutY="273.0" mnemonicParsing="false" onAction="#createClicked" prefHeight="34.0" prefWidth="105.0" styleClass="createClassBtn" stylesheets="@button.css" text="Create!" />
             <Label layoutX="11.0" layoutY="181.0" prefHeight="34.0" prefWidth="114.0" text="Select Team">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="teamChoiceBox" layoutX="14.0" layoutY="215.0" onMouseEntered="#setTeamChoiceBox" prefHeight="27.0" prefWidth="163.0" />
+            <Button layoutX="177.0" layoutY="279.0" mnemonicParsing="false" onAction="#logOutPressed" text="Go back" />
          </children>
          <effect>
             <DropShadow color="WHITE" height="63.5" offsetX="-5.0" radius="26.695" width="45.28" />

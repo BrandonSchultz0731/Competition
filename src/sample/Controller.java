@@ -138,6 +138,9 @@ private static String team;
     stage.setScene(new Scene(root,600,400));
     stage.show();
   }
+
+
+
   @FXML
   private void setTeamChoiceBox(){
     teamChoiceBox.setItems(teamStatus);
