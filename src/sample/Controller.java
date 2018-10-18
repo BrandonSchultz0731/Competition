@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 public class Controller {
   private static String name;
   private static String userType;
+  private static String currentUserType;
 
   ObservableList<String> accountTypeList = FXCollections.observableArrayList("Fan","Player","Manager");
 
@@ -32,16 +34,16 @@ public class Controller {
   private PasswordField createPassword;
 
   @FXML
-  private Button backButton;
-
-  @FXML
-  private Button createButton;
-  @FXML
   private TextField usernameEntered;
   @FXML
   private TextField passwordEntered;
   @FXML
   private ChoiceBox accountTypeChoice;
+  @FXML
+  private Label userNameLabel;
+  @FXML
+  private Label userTypeLabel;
+
 
 
 
@@ -65,7 +67,7 @@ public void logInButtonPressed(){
 //          System.out.println("Logged In!!");
         found = true;
 
-
+        currentUserType = br.readLine();//gets the current user type from the next line
         Stage stage = Main.getPrimaryStage();
 
         Parent root = FXMLLoader.load(getClass().getResource("LoggedIn.fxml"));
@@ -84,6 +86,7 @@ public void logInButtonPressed(){
   }catch (IOException er){
     System.out.println("error");
   }
+
 
 }
 
@@ -111,12 +114,14 @@ public void createButtonClicked() throws IOException{
 
     String user = createUsername.getText();
     String pass = createPassword.getText();
+    userType = accountTypeChoice.getValue().toString();
 
     pw.println(user.toLowerCase() + " " + pass.toLowerCase());
+    pw.println(userType);
 
     pw.close();
 
-    userType = accountTypeChoice.getValue().toString();
+
 
     System.out.println(userType);
 
@@ -138,6 +143,22 @@ public void createButtonClicked() throws IOException{
   public void setAccountTypeChoice(){
   accountTypeChoice.setItems(accountTypeList);
 }
+
+@FXML
+  public void signOutButtonPressed() throws IOException{
+  Stage stage = Main.getPrimaryStage();
+
+  Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
+  stage.setScene(new Scene(root,600,450));
+  stage.show();
+}
+@FXML
+  public void setNameTab(){
+  userNameLabel.setText(name);
+  userTypeLabel.setText(currentUserType);
+}
+
 
 
 }
