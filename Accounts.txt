@@ -1,10 +1,8 @@
 brandon test
-Team 1
-john test
-Team 2
-jack test
-Team 3
-kamp asdf
-Team 3
-1 1
-Team 2
+Fan
+another test
+Player
+test test
+Player
+player01 test
+Player
