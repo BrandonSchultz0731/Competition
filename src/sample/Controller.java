@@ -107,14 +107,33 @@ public void backButtonPressed() throws IOException{
   stage.setScene(new Scene(root,600,450));
   stage.show();
 }
-public void createButtonClicked() throws IOException{
+public int createButtonClicked() throws IOException{
   try{
     FileWriter fw = new FileWriter("Accounts.txt",true);
     PrintWriter pw = new PrintWriter(fw);
 
     String user = createUsername.getText();
     String pass = createPassword.getText();
+    if(accountTypeChoice.getSelectionModel().isEmpty()){
+      AlertBox.display("User Type Error","Please select a user type...");
+      return 0;
+    }
     userType = accountTypeChoice.getValue().toString();
+
+    User account;
+
+    if(userType.equals("Fan")){
+      account = new Fan(name,user,pass);
+    }
+    else if(userType.equals("Player")){
+      account = new Athlete(name,user,pass,new Team("Miami Heat"));
+    }
+    else if(userType.equals("Manager")){
+      account = new Manager(name,user,pass,new Team("Miami Heat"));
+    }
+    else{
+      System.out.println("No user type found");
+    }
 
     pw.println(user.toLowerCase() + " " + pass.toLowerCase());
     pw.println(userType);
@@ -137,6 +156,7 @@ public void createButtonClicked() throws IOException{
 
   stage.setScene(new Scene(root,600,450));
   stage.show();
+  return 0;
 
 }
 @FXML
@@ -157,6 +177,15 @@ public void createButtonClicked() throws IOException{
   public void setNameTab(){
   userNameLabel.setText(name);
   userTypeLabel.setText(currentUserType);
+}
+public void GoToCreateAccount()throws IOException{
+  Stage stage = Main.getPrimaryStage();
+
+  Parent root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
+
+  stage.setScene(new Scene(root,600,450));
+  stage.show();
+
 }
 
 
