@@ -5,14 +5,26 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #201201;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane layoutX="149.0" layoutY="81.0" opacity="0.92" prefHeight="329.0" prefWidth="302.0" style="-fx-background-color: #46a3ea;">
+      <ImageView fitHeight="450.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@1000845470-170667a.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="130.0" fitWidth="424.0" layoutX="88.0" layoutY="-7.0" pickOnBounds="true">
+         <image>
+            <Image url="@competition-1024x332.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="149.0" layoutY="114.0" opacity="0.92" prefHeight="329.0" prefWidth="302.0" style="-fx-background-color: #46a3ea;">
          <effect>
-            <DropShadow color="#7296e4" height="94.94" radius="63.942499999999995" width="162.83" />
+            <DropShadow color="#4a4a4a" height="113.71" radius="77.74249999999999" spread="0.52" width="199.26" />
          </effect>
          <children>
             <TextField fx:id="usernameEntered" layoutX="121.0" layoutY="74.0" promptText="Enter Username" />
@@ -28,10 +40,5 @@
             <Button fx:id="createAccountButton" layoutX="159.0" layoutY="264.0" mnemonicParsing="false" onAction="#createAccountButtonPressed" prefHeight="36.0" prefWidth="118.0" text="Create Account" />
          </children>
       </AnchorPane>
-      <Label alignment="TOP_CENTER" layoutX="152.0" layoutY="14.0" prefHeight="34.0" prefWidth="275.0" text="Competition" textFill="WHITE">
-         <font>
-            <Font size="41.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
