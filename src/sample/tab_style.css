@@ -37,3 +37,17 @@
   /* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
   -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; /* overridden as 5 2 0 0 */
 }
+#today{
+  -fx-border-color: red;
+  -fx-font-weight: bold;
+  -fx-border-width: 3px;
+}
+.dayOfWeek{
+  -fx-text-fill: white;
+  -fx-background-color: #4e84ff;
+  -fx-padding: 0 10px;
+}
+.eventOnCalendar{
+  -fx-font-weight: bold;
+  -fx-text-fill: #4e84ff;
+}
