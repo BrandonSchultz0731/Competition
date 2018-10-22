@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@tab_style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@tab_style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <tabs>
     <Tab text="Home">
       <content>
@@ -29,35 +31,72 @@
           </children></AnchorPane>
       </content>
     </Tab>
-    <Tab onSelectionChanged="#setNameTab" text="Name">
+    <Tab onSelectionChanged="#setNameTab" text="Profile">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
-            <ImageView fitHeight="229.0" fitWidth="180.0" layoutX="32.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="229.0" fitWidth="180.0" layoutX="32.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@Empty_Profile_Pic.jpg" />
               </image>
             </ImageView>
-            <Label layoutX="259.0" layoutY="62.0" prefHeight="33.0" prefWidth="85.0" text="Name:">
+            <Label layoutX="244.0" layoutY="31.0" prefHeight="33.0" prefWidth="85.0" text="Name:">
               <font>
                 <Font size="27.0" />
               </font>
             </Label>
-            <Label fx:id="userNameLabel" layoutX="380.0" layoutY="62.0" prefHeight="33.0" prefWidth="140.0">
+            <Label fx:id="userNameLabel" layoutX="348.0" layoutY="31.0" prefHeight="34.0" prefWidth="193.0" text="Account Name">
               <font>
                 <Font size="23.0" />
               </font>
             </Label>
-            <Label layoutX="259.0" layoutY="112.0" prefHeight="40.0" prefWidth="114.0" text="User Type:">
-              <font>
-                <Font size="20.0" />
-              </font>
-            </Label>
-            <Label fx:id="userTypeLabel" layoutX="396.0" layoutY="116.0" prefHeight="42.0" prefWidth="108.0" text="Label">
+            <Label fx:id="userTypeLabel" disable="true" layoutX="8.0" layoutY="282.0" prefHeight="42.0" prefWidth="108.0" text="userTypeLabel" visible="false">
               <font>
                 <Font size="24.0" />
               </font>
             </Label>
+                  <Label layoutX="244.0" layoutY="70.0" prefHeight="33.0" prefWidth="85.0" text="Team:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="244.0" layoutY="109.0" prefHeight="33.0" prefWidth="85.0" text="Wins:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="242.0" layoutY="147.0" prefHeight="33.0" prefWidth="85.0" text="Losses:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="348.0" layoutY="72.0" prefHeight="34.0" prefWidth="193.0" text="Team Name">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="352.0" layoutY="112.0" prefHeight="34.0" prefWidth="193.0" text="4">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="351.0" layoutY="151.0" prefHeight="34.0" prefWidth="193.0" text="3">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="33.0" layoutY="214.0" prefHeight="136.0" prefWidth="257.0">
+                    <columns>
+                      <TableColumn prefWidth="174.5" text="Teams Followed" />
+                        <TableColumn prefWidth="81.0" text="Standing" />
+                    </columns>
+                  </TableView>
+                  <TableView layoutX="312.0" layoutY="214.0" prefHeight="136.0" prefWidth="253.0">
+                     <columns>
+                        <TableColumn prefWidth="170.5" text="Players Followed" />
+                        <TableColumn prefWidth="81.5" text="Standing" />
+                     </columns>
+                  </TableView>
           </children></AnchorPane>
       </content>
     </Tab>
@@ -246,16 +285,46 @@
                   <GridPane.margin>
                     <Insets right="5.0" />
                   </GridPane.margin></Label>
-                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Robots vs Wrestlers" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Eagles vs Rockets" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" />
-                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Warriors vs Raptors" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Heat vs Timberwolves" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Cavaliers vs Lakers" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Wombats vs Narwhals" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Marvel vs DC" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Morgan vs Morgan" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" />
-                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Jobs vs Gates" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Laplace vs Lagrange" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Robots vs Wrestlers" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Eagles vs Rockets" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Warriors vs Raptors" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Heat vs Timberwolves" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Cavaliers vs Lakers" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Wombats vs Narwhals" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Marvel vs DC" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Morgan vs Morgan" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Jobs vs Gates" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                <Label alignment="CENTER" prefHeight="37.0" prefWidth="84.0" styleClass="eventOnCalendar" stylesheets="@tab_style.css" text="Laplace vs Lagrange" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
               </children>
             </GridPane>
             <Label alignment="CENTER" layoutX="245.0" layoutY="-5.0" text="October 2018" textAlignment="CENTER">
@@ -268,19 +337,59 @@
     </Tab>
     <Tab text="Team">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="338.0" prefWidth="300.0">
+                    <columns>
+                      <TableColumn prefWidth="129.0" text="Team Name" />
+                      <TableColumn prefWidth="68.5" text="Wins" />
+                        <TableColumn minWidth="0.0" prefWidth="101.0" text="Standing" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="334.0" layoutY="17.0" text="Team Name" />
+                  <Label layoutX="335.0" layoutY="58.0" text="Wins" />
+                  <Label layoutX="336.0" layoutY="102.0" text="Losses" />
+                  <Label layoutX="464.0" layoutY="60.0" text="Standing" />
+                  <Label layoutX="463.0" layoutY="16.0" text="Manager" />
+                  <TableView layoutX="336.0" layoutY="160.0" prefHeight="191.0" prefWidth="241.0">
+                    <columns>
+                      <TableColumn prefWidth="240.0" text="Roster" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="463.0" layoutY="109.0" mnemonicParsing="false" text="Join/Follow" />
+               </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="People">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="338.0" prefWidth="300.0">
+                     <columns>
+                        <TableColumn prefWidth="129.0" text="Athlete Name" />
+                        <TableColumn prefWidth="66.0" text="Team" />
+                        <TableColumn minWidth="0.0" prefWidth="104.0" text="Standing" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="334.0" layoutY="17.0" text="Athlete Name" />
+                  <Label layoutX="335.0" layoutY="58.0" text="Wins" />
+                  <Label layoutX="336.0" layoutY="102.0" text="Losses" />
+                  <Label layoutX="464.0" layoutY="60.0" text="Standing" />
+                  <Label layoutX="463.0" layoutY="16.0" text="Team" />
+                  <Button layoutX="463.0" layoutY="109.0" mnemonicParsing="false" text="Invite/Follow" />
+                  <ImageView fitHeight="229.0" fitWidth="180.0" layoutX="369.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Empty_Profile_Pic.jpg" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="Sign Out">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
-            <Button layoutX="206.0" layoutY="169.0" mnemonicParsing="false" onAction="#signOutButtonPressed" prefHeight="57.0" prefWidth="149.0" text="Sign Out!" />
+            <Button layoutX="225.0" layoutY="147.0" mnemonicParsing="false" onAction="#signOutButtonPressed" prefHeight="57.0" prefWidth="149.0" text="Sign Out!" />
           </children>
         </AnchorPane>
       </content>

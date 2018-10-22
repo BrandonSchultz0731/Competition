@@ -48,6 +48,5 @@
   -fx-padding: 0 10px;
 }
 .eventOnCalendar{
-  -fx-font-weight: bold;
   -fx-text-fill: #4e84ff;
 }
