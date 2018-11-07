@@ -1,6 +1,5 @@
 # Sports Ball Master
-This is the first prototype model of Competition project. 
-  
+## Description    
 Sports Ball Master is a software to assist in organizing 
 and managing intramural basketball programs.
 
@@ -31,9 +30,12 @@ and managing intramural basketball programs.
   player and team. Their home page will display the record of who 
   they follow.
 
-## Contributors
+## Credits
 * Nicolas Caceda: *Lead back-end*
 * Kamp Duong: *Web Designer and Back-End*
 * Trevor Evans: *Lead Documentation*
 * Luis Mendez: *UML/SQA Design and Documentation*
 * Brandon Schultz: *Front-End GUI Designer*
+
+## License
+© 2018, @officialTeamName0
