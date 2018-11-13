@@ -6,3 +6,5 @@ test test
 Player
 player01 test
 Player
+yaboi 
+Manager
