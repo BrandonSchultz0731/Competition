@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #201201;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateNewAccount">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #201201;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateNewAccount">
   <children>
     <AnchorPane layoutX="151.0" layoutY="58.0" prefHeight="305.0" prefWidth="298.0" style="-fx-background-color: #46a3ea;">
       <effect>
@@ -28,7 +28,7 @@
                </children>
             </AnchorPane>
         <Label layoutX="22.0" layoutY="29.0" text="Account Type:" />
-        <ChoiceBox fx:id="accountTypeChoice" layoutX="126.0" layoutY="24.0" onMousePressed="#setAccountTypeChoice" prefWidth="150.0" />
+        <ChoiceBox fx:id="accountTypeChoice" layoutX="126.0" layoutY="24.0" onMouseEntered="#setAccountTypeChoice" prefWidth="150.0" />
         <Button fx:id="backButton" layoutX="29.0" layoutY="248.0" mnemonicParsing="false" onAction="#backButtonPressed" text="Back" />
       </children>
     </AnchorPane>

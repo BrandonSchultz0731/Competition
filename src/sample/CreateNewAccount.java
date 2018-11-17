@@ -1,14 +1,18 @@
 package sample;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -18,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class CreateNewAccount {
+public class CreateNewAccount implements Initializable {
 
   private static String name;
   private static String userType;
@@ -40,19 +44,35 @@ public class CreateNewAccount {
 
   @FXML
   public void setAccountTypeChoice() {
-    accountTypeChoice.setItems(accountTypeList);
+
+
     if (!choiceClicked) {
       accountTypeChoice.getSelectionModel().selectedIndexProperty()
           .addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue,
                 Number newValue) {
-              if (accountTypeChoice.getValue().toString().equals("Manager")) {
+              //newValue holds the index number of the currently selected choice
+              //oldValue holds the index number of the previous choice
+//              if ((accountTypeChoice.getValue().toString()).equals("Manager")) {
+//                createTeam.setDisable(false);
+//                createTeam.setVisible(true);
+//                createTeamLabel.setDisable(false);
+//                createTeamLabel.setVisible(true);
+//              } else {
+//                createTeam.setDisable(true);
+//                createTeam.setVisible(false);
+//                createTeamLabel.setDisable(true);
+//                createTeamLabel.setVisible(false);
+//              }
+              if(newValue.equals(2)){
+                //Manager selected
                 createTeam.setDisable(false);
                 createTeam.setVisible(true);
                 createTeamLabel.setDisable(false);
                 createTeamLabel.setVisible(true);
-              } else {
+              }
+              else{
                 createTeam.setDisable(true);
                 createTeam.setVisible(false);
                 createTeamLabel.setDisable(true);
@@ -121,5 +141,11 @@ public class CreateNewAccount {
     stage.show();
     return 0;
 
+  }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    accountTypeChoice.setItems(accountTypeList);
+    accountTypeChoice.setValue("Fan");
   }
 }
