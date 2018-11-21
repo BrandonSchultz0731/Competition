@@ -1,10 +1,20 @@
-brandon test
-Fan
-another test
-Player
-test test
-Player
-player01 test
-Player
-yaboi 
-Manager
+admin admin
+kampd duong
+Kamp Duong
+Player NoTeam
+luism mendez
+Luis Mendez
+Player NoTeam
+
+nickc caceda
+Nick Caceda
+Player NoTeam
+trevore evans
+Trevor Evans
+Player NoTeam
+brandons schultz
+Brandon Schultz
+Player NoTeam
+kampFan duong
+Kamp Duong
+Fan NoTeam

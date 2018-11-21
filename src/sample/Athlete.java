@@ -2,10 +2,8 @@ package sample;
 
 public class Athlete extends User {
 
-  private Team team;
-
-  public Athlete(String name, String accountName, String password, Team team) {
-    super(name, accountName, password);
-    this.team = team;
+  public Athlete(String userName, String password,
+      String firstName, String lastName, String accountType) {
+    super(userName, password, firstName, lastName, accountType, "NoTeam");
   }
 }
