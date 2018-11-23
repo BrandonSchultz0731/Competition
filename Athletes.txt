@@ -25,4 +25,4 @@ DC-Comics 0 1
 Kara Danvers
 DC-Comics 5 4
 Clint Guy
-Marvel-Comics 3 6
+Marvel-Comics 3 7
