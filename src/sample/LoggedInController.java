@@ -41,7 +41,7 @@ public class LoggedInController implements Initializable {
   private TableColumn athleteTableName, athleteTableTeam, teamTableName, teamTableWins,
       teamTableStandings, teamRosterTableRoster, profileRosterTableRoster;
   @FXML
-  private TableView teamRosterTable, profileRosterTable;
+  private TableView<RosterRecord> teamRosterTable, profileRosterTable;
   @FXML
   private TableView<TeamRecord> teamTeamTable;
   @FXML
@@ -103,6 +103,13 @@ public class LoggedInController implements Initializable {
       } catch (IOException ex) {
         ex.printStackTrace();
       }
+      if (!thisUserTeam.equals("NoTeam")) {
+        profileButton.setText("Leave Team");
+      } else {
+        profileButton.setDisable(true);
+        profileButton.setVisible(false);
+        profileRosterTable.setVisible(false);
+      }
       athleteButton.setDisable(true);
       athleteButton.setVisible(false);
     } else if (thisAccount.equals("Manager")) {
@@ -147,6 +154,10 @@ public class LoggedInController implements Initializable {
         profileRosterTable.setVisible(false);
       }
     }
+
+    // Fill Roster Table if belongs to a team.
+    profileRosterTableRoster.setCellValueFactory(new PropertyValueFactory<>("name"));
+    profileRosterTable.setItems(getTeamRoster(thisUserTeam));
   }
 
   private void populateTeamTab() {
@@ -173,9 +184,9 @@ public class LoggedInController implements Initializable {
                 BufferedReader br = new BufferedReader(fr);
                 String checkString;
                 while (true) {
-                  if ((checkString = br.readLine()) != null ) {
+                  if ((checkString = br.readLine()) != null) {
                     String[] splitTeamWinLoss = checkString.split("\\s+");
-                    if (teamName.equals(splitTeamWinLoss[0])){
+                    if (teamName.equals(splitTeamWinLoss[0])) {
                       // Set respective labels to values of Team
                       String manager = br.readLine();
                       teamTeamName.setText(teamName);
@@ -195,6 +206,9 @@ public class LoggedInController implements Initializable {
                       paneTeamPieChart.getChildren().add(pieChart);
 
                       // Set roster table to roster of selected team
+                      // Setup roster table name column <RosterRecord>
+                      teamRosterTableRoster.setCellValueFactory(new PropertyValueFactory<>("name"));
+                      teamRosterTable.setItems(getTeamRoster(teamName));
                       break;
                     }
                   } else {
@@ -337,6 +351,27 @@ public class LoggedInController implements Initializable {
     return records;
   }
 
+  private ObservableList getTeamRoster(String teamName) {
+    String athlete;
+    ObservableList<RosterRecord> records = FXCollections.observableArrayList();
+    try {
+      FileReader teamFR = new FileReader(teamName + ".txt");
+      BufferedReader teamBR = new BufferedReader(teamFR);
+      while (true) {
+        athlete = teamBR.readLine();
+        if (athlete == null) {
+          break;
+        }
+        RosterRecord newRecord = new RosterRecord(athlete);
+        records.add(newRecord);
+      }
+      teamBR.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    return records;
+  }
+
   public class TeamRecord {
 
     private SimpleStringProperty name, standings;
@@ -401,6 +436,22 @@ public class LoggedInController implements Initializable {
     }
   }
 
+  public class RosterRecord {
+
+    private SimpleStringProperty name;
+
+    public RosterRecord(String name) {
+      this.name = new SimpleStringProperty(name);
+    }
+
+    public String getName() {
+      return name.get();
+    }
+
+    public void setName(String name) {
+      this.name.set(name);
+    }
+  }
   /*public void onEdit(){
     if(athleteTable.getSelectionModel().getSelectedCells() != null){
       athleteRecord selectedAthlete = athleteTable.getSelectionModel().getSelectedItem();

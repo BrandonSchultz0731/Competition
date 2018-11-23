@@ -94,7 +94,7 @@
                   <Button fx:id="profileButton" layoutX="481.0" layoutY="38.0" mnemonicParsing="false" text="Unfollow Team, Leave Team, Kick Athlete" />
                   <TableView fx:id="profileRosterTable" layoutX="476.0" layoutY="81.0" prefHeight="460.0" prefWidth="301.0">
                     <columns>
-                      <TableColumn fx:id="profileRosterTableRoster" prefWidth="300.0" text="Team Roster" />
+                      <TableColumn fx:id="profileRosterTableRoster" editable="false" prefWidth="300.0" resizable="false" text="Team Roster" />
                     </columns>
                   </TableView>
           </children></AnchorPane>
@@ -111,9 +111,9 @@
                <children>
                   <TableView fx:id="teamTeamTable" layoutX="14.0" layoutY="14.0" prefHeight="312.0" prefWidth="300.0">
                     <columns>
-                      <TableColumn fx:id="teamTableName" prefWidth="129.0" text="Team Name" />
-                      <TableColumn fx:id="teamTableWins" prefWidth="68.5" text="Wins" />
-                        <TableColumn fx:id="teamTableStandings" minWidth="0.0" prefWidth="99.0" text="Standing" />
+                      <TableColumn fx:id="teamTableName" editable="false" prefWidth="129.0" resizable="false" text="Team Name" />
+                      <TableColumn fx:id="teamTableWins" editable="false" prefWidth="68.5" resizable="false" text="Wins" />
+                        <TableColumn fx:id="teamTableStandings" editable="false" maxWidth="100.0" minWidth="0.0" prefWidth="101.0" resizable="false" text="Standing" />
                     </columns>
                   </TableView>
                   <Label layoutX="334.0" layoutY="17.0" styleClass="labelLabels" text="Team Name" />
@@ -122,7 +122,7 @@
                   <Label layoutX="507.0" layoutY="17.0" styleClass="labelLabels" text="Manager" />
                   <TableView fx:id="teamRosterTable" layoutX="15.0" layoutY="332.0" prefHeight="215.0" prefWidth="298.0">
                     <columns>
-                      <TableColumn fx:id="teamRosterTableRoster" prefWidth="297.0" text="Roster" />
+                      <TableColumn fx:id="teamRosterTableRoster" editable="false" maxWidth="298.0" prefWidth="298.0" resizable="false" text="Roster" />
                     </columns>
                   </TableView>
                   <Button fx:id="teamButton" layoutX="623.0" layoutY="12.0" mnemonicParsing="false" text="Request to Join Team" />
@@ -140,8 +140,8 @@
                <children>
                   <TableView fx:id="athleteTable" layoutX="14.0" layoutY="14.0" prefHeight="532.0" prefWidth="300.0">
                      <columns>
-                        <TableColumn fx:id="athleteTableName" prefWidth="179.0" text="Athlete Name" />
-                        <TableColumn fx:id="athleteTableTeam" prefWidth="119.0" text="Team" />
+                        <TableColumn fx:id="athleteTableName" editable="false" prefWidth="179.0" resizable="false" text="Athlete Name" />
+                        <TableColumn fx:id="athleteTableTeam" editable="false" prefWidth="119.0" resizable="false" text="Team" />
                      </columns>
                   </TableView>
                   <Label layoutX="334.0" layoutY="17.0" styleClass="labelLabels" text="Athlete Name" />
