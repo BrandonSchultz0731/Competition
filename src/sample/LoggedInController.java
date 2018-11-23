@@ -37,25 +37,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringTokenizer;
-import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.TextAlignment;
-
 public class LoggedInController implements Initializable {
 
   @FXML
@@ -211,12 +192,7 @@ public class LoggedInController implements Initializable {
           }
         });
 
-    today = LocalDate.now();
-    date = LocalDate.now();
-    setYearMonthAndDay();
-    gamesToHashMap();
-    populateGridPane();
-
+    initializeCalendar();
   }
 
   public ObservableList getRecord() {
@@ -281,6 +257,14 @@ public class LoggedInController implements Initializable {
     }
   }*/
 
+  //ALL CALENDAR STUFF FROM HERE ON OUT
+  private void initializeCalendar(){
+    today = LocalDate.now();
+    date = LocalDate.now();
+    setYearMonthAndDay();
+    gamesToHashMap();
+    populateGridPane();
+  }
 
   public void goToNextMonth(MouseEvent mouseEvent) {
     date = date.plusMonths(1);
