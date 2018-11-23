@@ -1,0 +1,6 @@
+Banner, Bruce
+Guy, Clint
+Odinson, Thor
+Parker, Peter
+Rogers, Steve
+Stark, Tony

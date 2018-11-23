@@ -1,10 +1,58 @@
-brandon test
-Fan
-another test
-Player
-test test
-Player
-player01 test
-Player
-yaboi 
-Manager
+admin admin
+man0 pass
+Mana Ger
+Manager Team0
+Man1 pass
+Mona Jer
+Manager Team1
+Man2 pass
+Manuel Jur
+Manager Team2
+Thor pass
+Thor Odinson
+Athlete Marvel-Comics
+Spiderman pass
+Peter Parker
+Athlete Marvel-Comics
+IronMan pass
+Tony Stark
+Athlete Marvel-Comics
+CaptainAmerica pass
+Steve Rogers
+Athlete Marvel-Comics
+Hulk pass
+Bruce Banner
+Athlete Marvel-Comics
+Superman pass
+Clark Kent
+Athlete DC-Comics
+Flash pass
+Barry Allen
+Athlete DC-Comics
+KidFlash pass
+Wally West
+Athlete DC-Comics
+Arrow pass
+Oliver Queen
+Athlete DC-Comics
+BlackCanary pass
+Laurel Lance
+Athlete DC-Comics
+WhiteCanary pass
+Sara Lance
+Athlete DC-Comics
+Director pass
+Ava Sharp
+Athlete DC-Comics
+SuperGirl pass
+Kara Danvers
+Athlete DC-Comics
+Hawkeye pass
+Clint Guy
+Athlete Marvel-Comics
+dcmanager pass
+Malcolm Wheeler-Nicholson
+Manager DC-Comics
+marvelmanager pass
+Martin Goodman
+Manager Marvel-Comics

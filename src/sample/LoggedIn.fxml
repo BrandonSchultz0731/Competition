@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@tab_style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@tab_style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoggedInController">
   <tabs>
     <Tab text="Home">
       <content>
@@ -27,76 +28,73 @@
                 <Image url="@News_Logo.png" />
               </image>
             </ImageView>
-            <TextArea layoutX="28.0" layoutY="105.0" prefHeight="241.0" prefWidth="546.0" />
+            <TextArea fx:id="newsTextArea" editable="false" layoutX="28.0" layoutY="105.0" prefHeight="241.0" prefWidth="546.0" />
           </children></AnchorPane>
       </content>
     </Tab>
-    <Tab onSelectionChanged="#setNameTab" text="Profile">
+    <Tab text="Profile">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
-            <ImageView fitHeight="229.0" fitWidth="180.0" layoutX="32.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@Empty_Profile_Pic.jpg" />
-              </image>
-            </ImageView>
-            <Label layoutX="244.0" layoutY="31.0" prefHeight="33.0" prefWidth="85.0" text="Name:">
+                  <AnchorPane fx:id="hiddenFromFans" layoutX="251.0" layoutY="197.0" prefHeight="224.0" prefWidth="393.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="150.0" prefHeight="33.0" prefWidth="85.0" text="Wins:">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="profileWinsLabel" alignment="TOP_RIGHT" layoutX="84.0" layoutY="152.0" prefHeight="34.0" prefWidth="60.0" text="0">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="189.0" layoutY="150.0" prefHeight="33.0" prefWidth="85.0" text="Losses:">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="profileLossesLabel" alignment="CENTER_RIGHT" layoutX="283.0" layoutY="152.0" prefHeight="34.0" prefWidth="61.0" text="0">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            <Label alignment="CENTER_RIGHT" layoutX="316.0" layoutY="218.0" prefHeight="33.0" prefWidth="85.0" text="Name:">
               <font>
                 <Font size="27.0" />
               </font>
             </Label>
-            <Label fx:id="userNameLabel" layoutX="348.0" layoutY="31.0" prefHeight="34.0" prefWidth="193.0" text="Account Name">
+            <Label fx:id="profileNameLabel" layoutX="441.0" layoutY="220.0" prefHeight="34.0" prefWidth="301.0" text="nameOfPerson">
               <font>
                 <Font size="23.0" />
               </font>
             </Label>
-            <Label fx:id="userTypeLabel" disable="true" layoutX="8.0" layoutY="282.0" prefHeight="42.0" prefWidth="108.0" text="userTypeLabel" visible="false">
+                  <Label alignment="CENTER_RIGHT" layoutX="226.0" layoutY="261.0" prefHeight="39.0" prefWidth="174.0" text="Account Type:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+            <Label fx:id="profileAccountTypeLabel" layoutX="441.0" layoutY="260.0" prefHeight="42.0" prefWidth="307.0" text="userTypeLabel">
               <font>
                 <Font size="24.0" />
               </font>
             </Label>
-                  <Label layoutX="244.0" layoutY="70.0" prefHeight="33.0" prefWidth="85.0" text="Team:">
+                  <Label alignment="TOP_RIGHT" layoutX="314.0" layoutY="307.0" prefHeight="33.0" prefWidth="85.0" text="Team:" textAlignment="RIGHT">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Label layoutX="244.0" layoutY="109.0" prefHeight="33.0" prefWidth="85.0" text="Wins:">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="242.0" layoutY="147.0" prefHeight="33.0" prefWidth="85.0" text="Losses:">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="348.0" layoutY="72.0" prefHeight="34.0" prefWidth="193.0" text="Team Name">
+                  <Label fx:id="profileTeamLabel" layoutX="441.0" layoutY="309.0" prefHeight="34.0" prefWidth="307.0" text="nameOfTeam">
                      <font>
                         <Font size="23.0" />
                      </font>
                   </Label>
-                  <Label layoutX="352.0" layoutY="112.0" prefHeight="34.0" prefWidth="193.0" text="4">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="351.0" layoutY="151.0" prefHeight="34.0" prefWidth="193.0" text="3">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <TableView layoutX="33.0" layoutY="214.0" prefHeight="136.0" prefWidth="257.0">
-                    <columns>
-                      <TableColumn prefWidth="174.5" text="Teams Followed" />
-                        <TableColumn prefWidth="81.0" text="Standing" />
-                    </columns>
-                  </TableView>
-                  <TableView layoutX="312.0" layoutY="214.0" prefHeight="136.0" prefWidth="253.0">
-                     <columns>
-                        <TableColumn prefWidth="170.5" text="Players Followed" />
-                        <TableColumn prefWidth="81.5" text="Standing" />
-                     </columns>
-                  </TableView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="332.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Empty_Profile_Pic.jpg" />
+                     </image>
+                  </ImageView>
           </children></AnchorPane>
       </content>
     </Tab>
@@ -339,49 +337,51 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="338.0" prefWidth="300.0">
+                  <TableView fx:id="teamTeamTable" layoutX="14.0" layoutY="14.0" prefHeight="312.0" prefWidth="300.0">
                     <columns>
-                      <TableColumn prefWidth="129.0" text="Team Name" />
-                      <TableColumn prefWidth="68.5" text="Wins" />
-                        <TableColumn minWidth="0.0" prefWidth="101.0" text="Standing" />
+                      <TableColumn fx:id="teamTableName" prefWidth="129.0" text="Team Name" />
+                      <TableColumn fx:id="teamTableWins" prefWidth="68.5" text="Wins" />
+                        <TableColumn fx:id="teamTableStandings" minWidth="0.0" prefWidth="101.0" text="Standing" />
                     </columns>
                   </TableView>
                   <Label layoutX="334.0" layoutY="17.0" text="Team Name" />
-                  <Label layoutX="335.0" layoutY="58.0" text="Wins" />
-                  <Label layoutX="336.0" layoutY="102.0" text="Losses" />
-                  <Label layoutX="464.0" layoutY="60.0" text="Standing" />
-                  <Label layoutX="463.0" layoutY="16.0" text="Manager" />
-                  <TableView layoutX="336.0" layoutY="160.0" prefHeight="191.0" prefWidth="241.0">
+                  <Label layoutX="334.0" layoutY="149.0" text="Wins" />
+                  <Label layoutX="503.0" layoutY="149.0" text="Losses" />
+                  <Label layoutX="507.0" layoutY="17.0" text="Manager" />
+                  <TableView fx:id="teamRosterTable" layoutX="15.0" layoutY="332.0" prefHeight="215.0" prefWidth="298.0">
                     <columns>
-                      <TableColumn prefWidth="240.0" text="Roster" />
+                      <TableColumn fx:id="rosterTableRoster" prefWidth="297.0" text="Roster" />
                     </columns>
                   </TableView>
-                  <Button layoutX="463.0" layoutY="109.0" mnemonicParsing="false" text="Join/Follow" />
+                  <Button layoutX="676.0" layoutY="12.0" mnemonicParsing="false" text="Join/Follow" />
+                  <PieChart layoutX="408.0" layoutY="343.0" prefHeight="194.0" prefWidth="257.0" title="Win/Loss Ratio" />
+                  <Label fx:id="teamTeamName" layoutX="333.0" layoutY="64.0" text="Label" />
+                  <Label fx:id="teamTeamManager" layoutX="507.0" layoutY="64.0" text="Label" />
+                  <Label fx:id="teamWins" layoutX="333.0" layoutY="205.0" text="Label" />
+                  <Label fx:id="teamLosses" layoutX="503.0" layoutY="205.0" text="Label" />
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="People">
+    <Tab text="Athletes">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="338.0" prefWidth="300.0">
+                  <TableView fx:id="athleteTable" layoutX="14.0" layoutY="14.0" prefHeight="532.0" prefWidth="300.0">
                      <columns>
-                        <TableColumn prefWidth="129.0" text="Athlete Name" />
-                        <TableColumn prefWidth="66.0" text="Team" />
-                        <TableColumn minWidth="0.0" prefWidth="104.0" text="Standing" />
+                        <TableColumn fx:id="athleteTableName" prefWidth="179.0" text="Athlete Name" />
+                        <TableColumn fx:id="athleteTableTeam" prefWidth="119.0" text="Team" />
                      </columns>
                   </TableView>
                   <Label layoutX="334.0" layoutY="17.0" text="Athlete Name" />
-                  <Label layoutX="335.0" layoutY="58.0" text="Wins" />
-                  <Label layoutX="336.0" layoutY="102.0" text="Losses" />
-                  <Label layoutX="464.0" layoutY="60.0" text="Standing" />
-                  <Label layoutX="463.0" layoutY="16.0" text="Team" />
-                  <Button layoutX="463.0" layoutY="109.0" mnemonicParsing="false" text="Invite/Follow" />
-                  <ImageView fitHeight="229.0" fitWidth="180.0" layoutX="369.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Empty_Profile_Pic.jpg" />
-                     </image>
-                  </ImageView>
+                  <Label layoutX="334.0" layoutY="149.0" text="Wins" />
+                  <Label layoutX="503.0" layoutY="149.0" text="Losses" />
+                  <Label layoutX="506.0" layoutY="17.0" text="Team" />
+                  <Button layoutX="666.0" layoutY="12.0" mnemonicParsing="false" text="Invite/Follow" />
+                  <PieChart layoutX="400.0" layoutY="343.0" prefHeight="194.0" prefWidth="257.0" title="Win/Loss Ratio" />
+                  <Label fx:id="athleteAthleteName" layoutX="333.0" layoutY="64.0" text="---" />
+                  <Label fx:id="athleteTeamName" layoutX="503.0" layoutY="64.0" text="---" />
+                  <Label fx:id="athleteWins" layoutX="333.0" layoutY="205.0" text="---" />
+                  <Label fx:id="athleteLosses" layoutX="503.0" layoutY="205.0" text="---" />
                </children></AnchorPane>
       </content>
     </Tab>
