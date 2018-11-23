@@ -326,7 +326,6 @@ public class LoggedInController implements Initializable {
 
             Label gameLabel = new Label(st.nextToken());
             calendarView.add(gameLabel, col, row);
-            gameLabel.getTooltip();
             GridPane.setValignment(gameLabel, VPos.CENTER);
             GridPane.setHalignment(gameLabel, HPos.CENTER);
 
