@@ -50,3 +50,13 @@
 .eventOnCalendar{
   -fx-text-fill: #4e84ff;
 }
+.default-color0.chart-pie {
+-fx-pie-color: #d1812a;
+}
+.default-color1.chart-pie {
+-fx-pie-color: #282726;
+}
+.chart-pie-label {
+  -fx-fill: #8b4513;
+  -fx-font-size: 1em;
+}

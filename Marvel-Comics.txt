@@ -1,5 +1,5 @@
 Banner, Bruce
-Guy, Clint
+Barton, Clint
 Odinson, Thor
 Parker, Peter
 Rogers, Steve
