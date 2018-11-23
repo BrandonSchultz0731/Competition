@@ -1,10 +1,28 @@
-Kamp Duong
-NoTeam 0 0
-Luis Mendez
-NoTeam 0 0
-Nick Caceda
-NoTeam 0 0
-Trevor Evans
-NoTeam 0 0
-Brandon Schultz
-NoTeam 0 0
+Thor Odinson
+Marvel-Comics 4 6
+Peter Parker
+Marvel-Comics 3 5
+Tony Stark
+Marvel-Comics 7 2
+Steve Rogers
+Marvel-Comics 6 1
+Bruce Banner
+Marvel-Comics 9 0
+Clark Kent
+DC-Comics 9 2
+Barry Allen
+DC-Comics 6 6
+Wally West
+DC-Comics 5 7
+Oliver Queen
+DC-Comics 2 7
+Laurel Lance
+DC-Comics 0 8
+Sara Lance
+DC-Comics 2 4
+Ava Sharp
+DC-Comics 0 1
+Kara Danvers
+DC-Comics 5 4
+Clint Guy
+Marvel-Comics 3 6

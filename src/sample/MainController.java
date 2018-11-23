@@ -21,7 +21,7 @@ public class MainController {
   public static String currentUserName, currentUserAccountType, currentUserTeam;
   public static int currentUserWins, currentUserLosses;
 
-
+  // Method to check login credentials.
   public void logInButtonPressed() {
     String user = usernameEntered.getText();
     String pass = passwordEntered.getText();
@@ -34,7 +34,6 @@ public class MainController {
       boolean found = false;
       while ((str = br.readLine()) != null && !found) {
         if ((user + " " + pass).equals(str)) {
-//          System.out.println("Logged In!!");
           found = true;
           str = br.readLine();
           this.currentUserName = str;
@@ -61,24 +60,12 @@ public class MainController {
     }
   }
 
+  // Method for switching to create account scene.
   @FXML
   public void createAccountButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-
     Parent root = FXMLLoader.load(getClass().getResource("CreateNewAccount.fxml"));
-
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }
-  /*public void GoToCreateAccount() throws IOException {
-    Stage stage = Main.getPrimaryStage();
-
-    Parent root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
-
-    stage.setScene(new Scene(root, 600, 450));
-    stage.show();
-
-  }*/
-
-
 }

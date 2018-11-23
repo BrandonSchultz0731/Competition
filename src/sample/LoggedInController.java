@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,8 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -28,27 +30,26 @@ public class LoggedInController implements Initializable {
       profileLossesLabel, teamTeamName, teamTeamManager, teamWins, teamLosses, athleteAthleteName,
       athleteTeamName, athleteWins, athleteLosses;
   @FXML
-  private TableColumn<athRecord, String> athleteTableName, athleteTableTeam;
+  private TableColumn athleteTableName, athleteTableTeam;
   @FXML
   private TableColumn teamTableName, teamTableWins,
       teamTableStandings, rosterTableRoster;
   @FXML
   private TableView teamTeamTable, teamRosterTable;
   @FXML
-  private TableView<athRecord> athleteTable;
+  private TableView<athleteRecord> athleteTable;
   @FXML
   private AnchorPane hiddenFromFans;
 
   @FXML
   public void signOutButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-
     Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }
 
+  // Initialize Method used to populate all tables and labels depending on login credentials.
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
@@ -59,6 +60,7 @@ public class LoggedInController implements Initializable {
     profileAccountTypeLabel.setText(thisAccount);
     String thisUserTeam = MainController.currentUserTeam;
     profileTeamLabel.setText(thisUserTeam);
+    // Account type dependent labels
     if (thisAccount.equals("Athlete")) {
       try {
         FileReader fr = new FileReader("Athletes.txt");
@@ -67,6 +69,7 @@ public class LoggedInController implements Initializable {
         while (true) {
           str = br.readLine();
           if (str == null) {
+            br.close();
             break;
           } else if (thisUser.equals(str)) {
             str = br.readLine();
@@ -75,6 +78,7 @@ public class LoggedInController implements Initializable {
               profileWinsLabel.setText(splitString[1]);
               profileLossesLabel.setText(splitString[2]);
             }
+            br.close();
             break;
           }
         }
@@ -84,31 +88,78 @@ public class LoggedInController implements Initializable {
     } else if (thisAccount.equals("Manager")) {
 
     } else if (thisAccount.equals("Fan")) {
-        hiddenFromFans.setVisible(false);
-        hiddenFromFans.setDisable(true);
+      // Hide Wins and Losses labels in profile tab if Fan account signed in.
+      hiddenFromFans.setVisible(false);
+      hiddenFromFans.setDisable(true);
     }
 
     //
 
     // Setup Columns of Athlete Table in Athlete Tab
     athleteTableName
-        .setCellValueFactory(new PropertyValueFactory<athRecord, String>("name"));
+        .setCellValueFactory(new PropertyValueFactory<>("name"));
     athleteTableTeam
-        .setCellValueFactory(new PropertyValueFactory<athRecord, String>("team"));
-    athleteTable.getSelectionModel().
-
-        setSelectionMode(SelectionMode.MULTIPLE);
+        .setCellValueFactory(new PropertyValueFactory<>("team"));
+    //athleteTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     // Populate Athlete Table
-    athleteTable.setItems(
+    athleteTable.setItems(getRecord());
 
-        getRecord());
+    // Sets an event listener on Athlete Table
+    athleteTable.getFocusModel().focusedCellProperty().addListener(
+        new ChangeListener<TablePosition>() {
+          @Override
+          public void changed(ObservableValue<? extends TablePosition> observable,
+              TablePosition oldValue, TablePosition newValue) {
+            if (athleteTable.getSelectionModel().getSelectedCells() != null) {
+              // Get selected row's name and team values
+              athleteRecord selectedAthlete = athleteTable.getSelectionModel().getSelectedItem();
+              String strName = selectedAthlete.getName();
+              //System.out.println(strName);
+              String[] splitStrName = strName.split(",\\s+");
+              String selectedName = splitStrName[1] + " "
+                  + splitStrName[0];
+              //System.out.println(selectedName);
+              String selectedTeam = selectedAthlete.getTeam();
+              System.out.println(selectedTeam);
+
+              // Search Athletes.txt for matching name and team and set
+              // respective labels in athlete tab with name, team, wins, and losses.
+              try {
+                FileReader fr = new FileReader("Athletes.txt");
+                BufferedReader br = new BufferedReader(fr);
+                String checkString;
+                while (true) {
+                  if ((checkString = br.readLine()) != null) {
+                    if ((splitStrName[1] + " " + splitStrName[0]).equals(checkString)) {
+                      String readTeamWinLoss = br.readLine();
+                      String[] splitThat = readTeamWinLoss.split("\\s+");
+                      if (splitThat[0].equals(selectedTeam)) {
+                        athleteAthleteName.setText(selectedName);
+                        athleteTeamName.setText(splitThat[0]);
+                        athleteWins.setText(splitThat[1]);
+                        athleteLosses.setText(splitThat[2]);
+                      }
+                      break;
+                    }
+                  } else {
+                    System.out.println("Error.");
+                    break;
+                  }
+                }
+              } catch (IOException ex) {
+                ex.printStackTrace();
+                System.out.println("Unable to load file.");
+              }
+            }
+          }
+        });
   }
 
-  public ObservableList<athRecord> getRecord() {
+  public ObservableList getRecord() {
 
     String temp1;
     String temp2;
-    ObservableList<athRecord> record = FXCollections.observableArrayList();
+    ObservableList<athleteRecord> record = FXCollections.observableArrayList();
     try {
       FileReader fr = new FileReader("Athletes.txt");
       BufferedReader br = new BufferedReader(fr);
@@ -118,29 +169,25 @@ public class LoggedInController implements Initializable {
           break;
         }
         String[] tempSplit1 = temp1.split("\\s+");
-        System.out.println(tempSplit1[0] + "\\" + tempSplit1[1]);
         temp2 = br.readLine();
         String[] tempSplit2 = temp2.split("\\s+");
-        System.out.println(tempSplit2[0]);
-        athRecord newRecord = new athRecord(tempSplit1[0], tempSplit1[1],
+        athleteRecord newRecord = new athleteRecord(tempSplit1[0], tempSplit1[1],
             tempSplit2[0]);
         record.add(newRecord);
       }
     } catch (IOException ex) {
-      System.out.println("Blah");
+      System.out.println("Error reading Athletes.txt.");
+      ex.printStackTrace();
     }
-    record.add(new athRecord("Luis", "Mendez", "teamName"));
-    record.add(new athRecord("Kamp", "Duong", "teamName"));
-    record.add(new athRecord("Kamp", "Duong", "teamName"));
     return record;
   }
 
-  public class athRecord {
+  public class athleteRecord {
 
-    public SimpleStringProperty name;
-    public SimpleStringProperty team;
+    private SimpleStringProperty name;
+    private SimpleStringProperty team;
 
-    public athRecord(String firstName, String lastName, String team) {
+    public athleteRecord(String firstName, String lastName, String team) {
       this.name = new SimpleStringProperty(lastName + ", " + firstName);
       this.team = new SimpleStringProperty(team);
     }
@@ -161,4 +208,12 @@ public class LoggedInController implements Initializable {
       this.team.set(teamX);
     }
   }
+
+  /*public void onEdit(){
+    if(athleteTable.getSelectionModel().getSelectedCells() != null){
+      athleteRecord selectedAthlete = athleteTable.getSelectionModel().getSelectedItem();
+      nameTextField.setText(selectedAthlete.getName());
+      addressTextField.setText(selectedAthlete.getAddress());
+    }
+  }*/
 }

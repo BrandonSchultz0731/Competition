@@ -20,13 +20,31 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+ /* Format of text files created or appended to when account created.
+ *
+ * ---Accounts.txt---
+ * [userName] [passWord]
+ * [firstName] [lastName]
+ * [accountType] [teamName]
+ *
+ * ---Athletes.txt---
+ * [firstName] [lastName]
+ * [teamName] [wins] [losses]
+ *
+ * ---Teams.txt---
+ * [teamName] [wins] [losses]
+ * [managerFirstName] [managerLastName]
+ *
+ * ---[teamName].txt---
+ * [athleteLastName] [athleteFirstName]
+ */
 
+// Controller class for creating a new account.
 public class CreateNewAccountController implements Initializable {
 
   private static String name;
-  private static String userType;
-  ObservableList<String> accountTypeList = FXCollections
-      .observableArrayList("Fan", "Player", "Manager");
+  private ObservableList<String> accountTypeList = FXCollections
+      .observableArrayList("Fan", "Athlete", "Manager");
   @FXML
   private ChoiceBox accountTypeChoice;
   @FXML
@@ -53,19 +71,6 @@ public class CreateNewAccountController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue,
                 Number newValue) {
-              //newValue holds the index number of the currently selected choice
-              //oldValue holds the index number of the previous choice
-//              if ((accountTypeChoice.getValue().toString()).equals("Manager")) {
-//                createTeam.setDisable(false);
-//                createTeam.setVisible(true);
-//                createTeamLabel.setDisable(false);
-//                createTeamLabel.setVisible(true);
-//              } else {
-//                createTeam.setDisable(true);
-//                createTeam.setVisible(false);
-//                createTeamLabel.setDisable(true);
-//                createTeamLabel.setVisible(false);
-//              }
               if (newValue.equals(2)) {
                 //Manager selected
                 createTeam.setDisable(false);
@@ -78,8 +83,6 @@ public class CreateNewAccountController implements Initializable {
                 createTeamLabel.setDisable(true);
                 createTeamLabel.setVisible(false);
               }
-              //pane0.setDisable(false);
-              //pane0.setVisible(true);
             }
           });
     }
@@ -88,14 +91,13 @@ public class CreateNewAccountController implements Initializable {
 
   public void backButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-
     Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }
 
   public int createButtonClicked() throws IOException {
+    String userType;
     try {
 
       FileWriter accountFW = new FileWriter("Accounts.txt", true);
@@ -107,13 +109,6 @@ public class CreateNewAccountController implements Initializable {
       String last = createLastName.getText();
       String team = createTeam.getText();
 
-      /* REMOVE BECAUSE NEVER EMPTY ANYMORE
-
-      if (accountTypeChoice.getSelectionModel().isEmpty()) {
-        AlertBox.display("User Type Error", "Please select a user type...");
-        return 0;
-      }*/
-
       userType = accountTypeChoice.getValue().toString();
       User account;
 
@@ -121,7 +116,7 @@ public class CreateNewAccountController implements Initializable {
         case "Fan":
           account = new Fan(user, pass, first, last, userType);
           break;
-        case "Player":
+        case "Athlete":
           account = new Athlete(user, pass, first, last, userType);
           // Adds new athlete to Athletes.txt file
           FileWriter athleteFW = new FileWriter("Athletes.txt", true);
@@ -153,10 +148,6 @@ public class CreateNewAccountController implements Initializable {
       accountPW.println(account.getAccountType() + " " + account.getTeam());
 
       accountPW.close();
-
-      System.out.println(userType);
-
-
     } catch (IOException er) {
       System.out.println("ERROR");
     }
@@ -176,6 +167,5 @@ public class CreateNewAccountController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     accountTypeChoice.setItems(accountTypeList);
     accountTypeChoice.setValue("Fan");
-
   }
 }
