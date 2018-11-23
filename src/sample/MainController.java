@@ -19,7 +19,6 @@ public class MainController {
   @FXML
   private TextField passwordEntered;
   public static String currentUserName, currentUserAccountType, currentUserTeam;
-  public static int currentUserWins, currentUserLosses;
 
   // Method to check login credentials.
   public void logInButtonPressed() {

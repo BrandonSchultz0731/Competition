@@ -1,10 +1,10 @@
-Team0 0 0
+Team0 10 21
 Mana Ger
-Team1 0 0
+Team1 5 19
 Mona Jer
-Team2 0 0
+Team2 1 11
 Manuel Jur
-DC-Comics 0 0
+DC-Comics 37 73
 Malcolm Wheeler-Nicholson
-Marvel-Comics 0 0
+Marvel-Comics 50 23
 Martin Goodman

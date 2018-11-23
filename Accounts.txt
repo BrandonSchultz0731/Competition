@@ -48,7 +48,7 @@ SuperGirl pass
 Kara Danvers
 Athlete DC-Comics
 Hawkeye pass
-Clint Guy
+Clint Barton
 Athlete Marvel-Comics
 dcmanager pass
 Malcolm Wheeler-Nicholson
@@ -56,3 +56,6 @@ Manager DC-Comics
 marvelmanager pass
 Martin Goodman
 Manager Marvel-Comics
+rainkd pass
+Kamp Duong
+Fan NoTeam
