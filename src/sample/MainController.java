@@ -32,7 +32,8 @@ public class MainController {
       String str;
       boolean found = false;
       while ((str = br.readLine()) != null && !found) {
-        if ((user + " " + pass).equals(str)) {
+        String[] checkForUserName = str.split("\\s+");
+        if (checkForUserName[0].equals("ecun0000") && (user + " " + pass).equals(checkForUserName[1] + " " + checkForUserName[2])) {
           found = true;
           str = br.readLine();
           this.currentUserName = str;

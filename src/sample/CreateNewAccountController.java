@@ -142,8 +142,9 @@ public class CreateNewAccountController implements Initializable {
           System.out.println("No user type found");
       }
 
-      // This prints to Accounts.txt
-      accountPW.println(account.getAccountName() + " " + account.getPassword());
+      // This prints to Accounts.txt, ecun0000 = Error Checking User Name, used to check this line
+      // for matching user names.
+      accountPW.println("ecun0000 " + account.getAccountName() + " " + account.getPassword());
       accountPW.println(account.getFirstName() + " " + account.getLastName());
       accountPW.println(account.getAccountType() + " " + account.getTeam());
 
