@@ -1,0 +1,193 @@
+/* background styling */
+.root {
+  -fx-background-color: #FFFFFF;
+}
+
+#tabAnchorPane {
+  -fx-background-color: #D1D3D6;
+}
+
+#infoAnchorPane {
+  -fx-background-color:#FFFFFF;
+}
+
+#profileInformation {
+  -fx-background-color:#FFFFFF;
+}
+
+#bottomAnchorPane {
+  -fx-background-color: #2E3033;
+}
+
+/* button styling */
+.button {
+  -fx-background-color: #000000,
+  linear-gradient(#7ebcea, #17408B),
+  linear-gradient(#426AB7, #263E75),
+  linear-gradient(#395CAB, #223768);
+  -fx-background-insets: 0, 1, 2, 3;
+  -fx-background-radius: 3, 2, 2, 2;
+  -fx-padding: 12 30 12 30;
+  -fx-text-fill: white;
+  -fx-font-size: 12px;
+}
+
+.button Text {
+  -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.8), 0, 0.0, 0, 1);
+}
+
+/* label styling */
+.label {
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+  -fx-font-family: "Times New Roman", Times, serif;;
+}
+
+#signOutLabel {
+  -fx-font-size: 10px;
+  -fx-font-weight: bold;
+  -fx-font-family: "Times New Roman", Times, serif;;
+}
+
+/* label of calendar month styling */
+#monthLabel {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-font-family: "Times New Roman", Times, serif;;
+}
+
+/* label of calendar year styling */
+#yearLabel {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-font-family: "Times New Roman", Times, serif;;
+}
+
+/* text-field styling */
+.text-field {
+  -fx-background-color: #D1D3D6;
+  -fx-padding: 10 25 10 25;
+}
+
+/* choice box styling */
+.choice-box {
+  -fx-background-color: #D1D3D6;
+  -fx-padding: 7 20 7 20;
+}
+
+/* tab pane styling */
+.tab-pane:top *.tab-header-area {
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-padding: 0.0em 0.0em 0.0em 0.0em;
+}
+
+.tab-pane {
+  -fx-tab-min-width: 90px;
+}
+
+.tab {
+  -fx-background-insets: 0 1 0 1, 0, 0;
+  -fx-pref-width: 92;
+  -fx-pref-height: 60;
+}
+
+.tab-header-background {
+  -fx-background-color: #000000,
+  linear-gradient(#395CAB, #223768)
+
+}
+
+.tab-pane .tab {
+  -fx-background-color: #000000,
+  linear-gradient(#395CAB, #223768)
+
+}
+
+.tab-pane .tab:selected {
+  -fx-background-color: #426AB7;
+}
+
+.tab .tab-label {
+  -fx-alignment: CENTER;
+  -fx-text-fill: #D1D3D6;
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+  -fx-rotate: 90;
+}
+
+.tab:selected .tab-label {
+  -fx-alignment: CENTER;
+  -fx-text-fill: #7ebcea;
+}
+
+/* text area style*/
+.text-area {
+  -fx-background-color: #395CAB;
+  -fx-padding: 10 10 10 10;
+}
+
+/* table view style*/
+
+.table-view {
+  -fx-background-color: transparent;
+}
+
+.table-view:focused {
+  -fx-background-color: transparent;
+}
+
+/* Spaltenköpfe
+    Struktur column-header-background -> column-header */
+
+.table-view .column-header-background {
+  -fx-background-color: #395CAB;
+}
+
+.table-view .column-header-background .label {
+  -fx-background-color: #395CAB;
+  -fx-text-fill: white;
+}
+
+.table-view .column-header {
+  -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+  -fx-text-fill: white;
+}
+
+.table-row-cell {
+  -fx-background-color: -fx-table-cell-border-color, #223768;
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd {
+  -fx-background-color: -fx-table-cell-border-color, #395CAB;
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-padding: 0.0em; /* 0 */
+}
+
+.table-view .filler {
+  -fx-background-color: -fx-table-cell-border-color, #395CAB;
+}
+
+.table-row-cell:selected {
+  -fx-background-color: #7ebcea;
+  -fx-background-insets: 0;
+  -fx-background-radius: 1;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+  -fx-background-color: #395CAB;
+}
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button,
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+  -fx-background-color: #395CAB;
+}

@@ -19,11 +19,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
- /* Format of text files created or appended to when account created.
+/* Format of text files created or appended to when account created.
  *
  * ---Accounts.txt---
- * [userName] [passWord]
+ * ecun0000 [userName] [passWord]
  * [firstName] [lastName]
  * [accountType] [teamName]
  *
@@ -58,7 +59,18 @@ public class CreateNewAccountController implements Initializable {
   @FXML
   private TextField createTeam;
   @FXML
-  private Label createTeamLabel;
+  private Label createTeamLabel;/*
+  @FXML
+  private AnchorPane createAccountAnchorPane;
+  @FXML
+  private AnchorPane topAnchorPane;
+  @FXML
+  private AnchorPane mainAnchorPane;
+  @FXML
+  private AnchorPane bottomAnchorPane;
+  @FXML
+  private Label createAccountLabel;*/
+
 
   boolean choiceClicked = false;
 

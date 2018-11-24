@@ -26,3 +26,5 @@ Kara Danvers
 DC-Comics 5 4
 Clint Barton
 Marvel-Comics 3 7
+Ash Ketchum
+NoTeam 0 0
