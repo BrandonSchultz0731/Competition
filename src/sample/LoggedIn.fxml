@@ -10,217 +10,318 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.RowConstraints?>
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@tab_style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoggedInController">
-  <tabs>
-    <Tab text="Home">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-          <children>
-            <ImageView fitHeight="83.0" fitWidth="413.0" layoutX="235.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@News_Logo.png" />
-              </image>
-            </ImageView>
-            <TextArea fx:id="newsTextArea" editable="false" layoutX="28.0" layoutY="105.0" prefHeight="442.0" prefWidth="744.0" />
-          </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Profile">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-          <children>
-                  <AnchorPane fx:id="hiddenFromFans" layoutX="63.0" layoutY="242.0" prefHeight="224.0" prefWidth="393.0">
+<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@LoggedInStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoggedInController">
+   <children>
+      <TabPane maxHeight="600.0" maxWidth="800.0" minHeight="557.0" minWidth="771.0" prefHeight="573.0" prefWidth="800.0" side="LEFT" stylesheets="@LoggedInStyle.css" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab>
+               <content>
+                  <AnchorPane fx:id="tabAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="577.0" prefWidth="715.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="150.0" prefHeight="33.0" prefWidth="85.0" text="Wins:">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="profileWinsLabel" alignment="TOP_RIGHT" layoutX="84.0" layoutY="152.0" prefHeight="34.0" prefWidth="60.0" text="0">
-                           <font>
-                              <Font size="23.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="189.0" layoutY="150.0" prefHeight="33.0" prefWidth="85.0" text="Losses:">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="profileLossesLabel" alignment="CENTER_RIGHT" layoutX="283.0" layoutY="152.0" prefHeight="34.0" prefWidth="61.0" text="0">
-                           <font>
-                              <Font size="23.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="83.0" fitWidth="413.0" layoutX="203.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@News_Logo.png" />
+                           </image>
+                        </ImageView>
+                        <TextArea fx:id="newsTextArea" editable="false" layoutX="65.0" layoutY="126.0" prefHeight="398.0" prefWidth="605.0" />
                      </children>
                   </AnchorPane>
-            <Label alignment="CENTER_RIGHT" layoutX="128.0" layoutY="263.0" prefHeight="33.0" prefWidth="85.0" text="Name:">
-              <font>
-                <Font size="27.0" />
-              </font>
-            </Label>
-            <Label fx:id="profileNameLabel" layoutX="253.0" layoutY="265.0" prefHeight="34.0" prefWidth="218.0" text="nameOfPerson">
-              <font>
-                <Font size="23.0" />
-              </font>
-            </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="306.0" prefHeight="39.0" prefWidth="174.0" text="Account Type:">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-            <Label fx:id="profileAccountTypeLabel" layoutX="253.0" layoutY="305.0" prefHeight="42.0" prefWidth="218.0" text="userTypeLabel">
-              <font>
-                <Font size="24.0" />
-              </font>
-            </Label>
-                  <Label alignment="TOP_RIGHT" layoutX="126.0" layoutY="352.0" prefHeight="33.0" prefWidth="85.0" text="Team:" textAlignment="RIGHT">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="profileTeamLabel" layoutX="253.0" layoutY="354.0" prefHeight="34.0" prefWidth="218.0" text="nameOfTeam">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="160.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+               </content>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Empty_Profile_Pic.jpg" />
+                        <Image url="@house.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="profileButton" layoutX="481.0" layoutY="38.0" mnemonicParsing="false" text="Unfollow Team, Leave Team, Kick Athlete" />
-                  <TableView fx:id="profileRosterTable" layoutX="476.0" layoutY="81.0" prefHeight="460.0" prefWidth="301.0">
-                    <columns>
-                      <TableColumn fx:id="profileRosterTableRoster" editable="false" prefWidth="300.0" resizable="false" text="Team Roster" />
-                    </columns>
-                  </TableView>
-          </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Calendar">
-      <content>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-          minWidth="-Infinity"
-          prefHeight="490.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
-          xmlns:fx="http://javafx.com/fxml/1">
-          <GridPane fx:id="daysOfTheWeek" layoutX="6.0" layoutY="81.0" prefHeight="25.0"
-            prefWidth="588.0">
-            <columnConstraints>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <Label text="Sunday" GridPane.halignment="CENTER"/>
-            <Label text="Monday" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
-            <Label text="Tuesday" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
-            <Label text="Wednesday" GridPane.columnIndex="3" GridPane.halignment="CENTER"/>
-            <Label text="Thursday" GridPane.columnIndex="4" GridPane.halignment="CENTER"/>
-            <Label text="Friday" GridPane.columnIndex="5" GridPane.halignment="CENTER"/>
-            <Label text="Saturday" GridPane.columnIndex="6" GridPane.halignment="CENTER"/>
-          </GridPane>
-          <Label fx:id="yearLabel" layoutX="86.0" layoutY="27.0" text="YEAR"/>
-          <Label fx:id="monthLabel" layoutX="278.0" layoutY="27.0" text="MONTH"/>
-          <Button layoutX="545.0" layoutY="32.0" mnemonicParsing="false"
-            onMouseClicked="#goToNextMonth" text="Next"/>
-          <Button layoutX="14.0" layoutY="32.0" mnemonicParsing="false"
-            onMouseClicked="#goToPrevMonth" text="Prev"/>
-
-          <GridPane fx:id="calendarView" layoutX="6.0" layoutY="103.0" prefHeight="380.0"
-            prefWidth="588.0">
-            <columnConstraints>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-          </GridPane>
-        </AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Team">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="teamTeamTable" layoutX="14.0" layoutY="14.0" prefHeight="312.0" prefWidth="300.0">
-                    <columns>
-                      <TableColumn fx:id="teamTableName" editable="false" prefWidth="129.0" resizable="false" text="Team Name" />
-                      <TableColumn fx:id="teamTableWins" editable="false" prefWidth="68.5" resizable="false" text="Wins" />
-                        <TableColumn fx:id="teamTableStandings" editable="false" maxWidth="100.0" minWidth="0.0" prefWidth="101.0" resizable="false" text="Standing" />
-                    </columns>
-                  </TableView>
-                  <Label layoutX="334.0" layoutY="17.0" styleClass="labelLabels" text="Team Name" />
-                  <Label layoutX="334.0" layoutY="103.0" styleClass="labelLabels" text="Wins" />
-                  <Label layoutX="503.0" layoutY="103.0" styleClass="labelLabels" text="Losses" />
-                  <Label layoutX="507.0" layoutY="17.0" styleClass="labelLabels" text="Manager" />
-                  <TableView fx:id="teamRosterTable" layoutX="15.0" layoutY="332.0" prefHeight="215.0" prefWidth="298.0">
-                    <columns>
-                      <TableColumn fx:id="teamRosterTableRoster" editable="false" maxWidth="298.0" prefWidth="298.0" resizable="false" text="Roster" />
-                    </columns>
-                  </TableView>
-                  <Button fx:id="teamButton" layoutX="623.0" layoutY="12.0" mnemonicParsing="false" text="Request to Join Team" />
-                  <Label fx:id="teamTeamName" layoutX="333.0" layoutY="53.0" styleClass="labelValues" text="---" />
-                  <Label fx:id="teamTeamManager" layoutX="507.0" layoutY="53.0" styleClass="labelValues" text="---" />
-                  <Label fx:id="teamWins" layoutX="333.0" layoutY="148.0" styleClass="labelValues" text="---" />
-                  <Label fx:id="teamLosses" layoutX="503.0" layoutY="148.0" styleClass="labelValues" text="---" />
-                  <Pane fx:id="paneTeamPieChart" layoutX="314.0" layoutY="175.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" />
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Athletes">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="athleteTable" layoutX="14.0" layoutY="14.0" prefHeight="532.0" prefWidth="300.0">
-                     <columns>
-                        <TableColumn fx:id="athleteTableName" editable="false" prefWidth="179.0" resizable="false" text="Athlete Name" />
-                        <TableColumn fx:id="athleteTableTeam" editable="false" prefWidth="119.0" resizable="false" text="Team" />
-                     </columns>
-                  </TableView>
-                  <Label layoutX="334.0" layoutY="17.0" styleClass="labelLabels" text="Athlete Name" />
-                  <Label layoutX="334.0" layoutY="103.0" styleClass="labelLabels" text="Wins" />
-                  <Label layoutX="503.0" layoutY="103.0" styleClass="labelLabels" text="Losses" />
-                  <Label layoutX="506.0" layoutY="17.0" styleClass="labelLabels" text="Team" />
-                  <Button fx:id="athleteButton" layoutX="619.0" layoutY="12.0" mnemonicParsing="false" text="Invite Athlete to Team" />
-                  <Label fx:id="athleteAthleteName" layoutX="333.0" layoutY="53.0" styleClass="labelValues" text="---" />
-                  <Label fx:id="athleteTeamName" layoutX="503.0" layoutY="53.0" styleClass="labelValues" text="---" />
-                  <Label fx:id="athleteWins" layoutX="333.0" layoutY="148.0" styleClass="labelValues" text="---" />
-                  <Label fx:id="athleteLosses" layoutX="503.0" layoutY="148.0" styleClass="labelValues" text="---" />
-                  <Pane fx:id="paneAthletePieChart" layoutX="314.0" layoutY="175.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" />
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="Sign Out">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-          <children>
-            <Button layoutX="326.0" layoutY="252.0" mnemonicParsing="false" onAction="#signOutButtonPressed" prefHeight="57.0" prefWidth="149.0" text="Sign Out!" />
-          </children>
-        </AnchorPane>
-      </content>
-    </Tab>
-  </tabs>
-</TabPane>
+               </graphic>
+            </Tab>
+            <Tab>
+               <content>
+                  <AnchorPane fx:id="tabAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="profileInformation" layoutX="15.0" layoutY="31.0" prefHeight="516.0" prefWidth="406.0">
+                           <children>
+                              <AnchorPane fx:id="hiddenFromFans" layoutX="103.0" layoutY="187.0" prefHeight="79.0" prefWidth="227.0">
+                                 <children>
+                                    <Label layoutX="-5.0" prefHeight="33.0" prefWidth="85.0" text="Wins:">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="profileWinsLabel" layoutX="166.0" prefHeight="34.0" prefWidth="60.0" text="0">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="-2.0" layoutY="39.0" prefHeight="33.0" prefWidth="85.0" text="Losses:">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="profileLossesLabel" layoutX="166.0" layoutY="39.0" prefHeight="34.0" prefWidth="61.0" text="0">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="98.0" layoutY="143.0" prefHeight="33.0" prefWidth="41.0" text="Team:" textAlignment="RIGHT">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="98.0" layoutY="100.0" prefHeight="39.0" prefWidth="79.0" text="Account Type:">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="99.0" layoutY="64.0" prefHeight="33.0" prefWidth="63.0" text="Name:">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="profileNameLabel" layoutX="205.0" layoutY="64.0" prefHeight="34.0" prefWidth="141.0" text="nameOfPerson">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="profileAccountTypeLabel" layoutX="205.0" layoutY="99.0" prefHeight="42.0" prefWidth="126.0" text="userTypeLabel">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="profileTeamLabel" layoutX="205.0" layoutY="142.0" prefHeight="34.0" prefWidth="112.0" text="nameOfTeam">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="createAccountLabel" layoutX="136.0" layoutY="15.0" prefHeight="19.0" prefWidth="160.0" text="REGISTERED USER">
+                                 <font>
+                                    <Font size="31.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="-56.0" endY="-148.0" layoutX="102.0" layoutY="201.0" startX="261.0" startY="-148.0" />
+                              <ImageView fitHeight="194.0" fitWidth="185.0" layoutX="93.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Empty_Profile_Pic.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="profileButton" layoutX="439.0" layoutY="21.0" mnemonicParsing="false" text="Unfollow Team, Leave Team, Kick Athlete" />
+                        <TableView fx:id="profileRosterTable" layoutX="437.0" layoutY="81.0" prefHeight="464.0" prefWidth="287.0">
+                           <columns>
+                              <TableColumn fx:id="profileRosterTableRoster" editable="false" minWidth="4.0" prefWidth="284.0" resizable="false" text="Team Roster" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@users.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+            <Tab>
+               <content>
+                  <AnchorPane fx:id="tabAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="735.0">
+                     <children>
+                        <AnchorPane fx:id="infoAnchorPane" layoutX="43.0" layoutY="24.0" prefHeight="525.0" prefWidth="650.0">
+                           <children>
+                              <GridPane fx:id="daysOfTheWeek" layoutX="31.0" layoutY="91.0" prefHeight="25.0" prefWidth="588.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Sunday" GridPane.halignment="CENTER" />
+                                    <Label text="Monday" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                    <Label text="Tuesday" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                                    <Label text="Wednesday" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                                    <Label text="Thursday" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+                                    <Label text="Friday" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+                                    <Label text="Saturday" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
+                                 </children>
+                              </GridPane>
+                              <Label fx:id="yearLabel" layoutX="191.0" layoutY="44.0" text="YEAR" />
+                              <Label fx:id="monthLabel" layoutX="346.0" layoutY="44.0" text="MONTH" />
+                              <Button layoutX="534.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#goToNextMonth" text="Next" />
+                              <Button layoutX="31.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#goToPrevMonth" text="Prev" />
+                              <GridPane fx:id="calendarView" layoutX="31.0" layoutY="113.0" prefHeight="380.0" prefWidth="588.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@calendar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+            <Tab>
+               <content>
+                  <AnchorPane fx:id="tabAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="teamTeamTable" layoutX="14.0" layoutY="14.0" prefHeight="312.0" prefWidth="300.0">
+                           <columns>
+                              <TableColumn fx:id="teamTableName" editable="false" prefWidth="129.0" resizable="false" text="Team Name" />
+                              <TableColumn fx:id="teamTableWins" editable="false" prefWidth="68.5" resizable="false" text="Wins" />
+                              <TableColumn fx:id="teamTableStandings" editable="false" maxWidth="101.0" minWidth="0.0" prefWidth="101.0" resizable="false" text="Standing" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="teamRosterTable" layoutX="15.0" layoutY="332.0" prefHeight="215.0" prefWidth="298.0">
+                           <columns>
+                              <TableColumn fx:id="teamRosterTableRoster" editable="false" maxWidth="298.0" prefWidth="298.0" resizable="false" text="Roster" />
+                           </columns>
+                        </TableView>
+                        <Pane fx:id="paneTeamPieChart" layoutX="421.0" layoutY="359.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane fx:id="infoAnchorPane" layoutX="366.0" layoutY="14.0" prefHeight="333.0" prefWidth="322.0">
+                           <children>
+                              <Label fx:id="createAccountLabel1" layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
+                                 <font>
+                                    <Font size="31.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="-95.0" endY="-148.0" layoutX="119.0" layoutY="221.0" startX="180.0" startY="-148.0" />
+                              <Button fx:id="teamButton" layoutX="58.0" layoutY="273.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="197.0" text="Request to Join Team" />
+                              <Label layoutX="59.0" layoutY="108.0" styleClass="labelLabels" text="Team Name" />
+                              <Label layoutX="59.0" layoutY="194.0" styleClass="labelLabels" text="Wins" />
+                              <Label layoutX="202.0" layoutY="194.0" styleClass="labelLabels" text="Losses" />
+                              <Label layoutX="202.0" layoutY="108.0" styleClass="labelLabels" text="Manager" />
+                              <Label fx:id="teamTeamName" layoutX="58.0" layoutY="144.0" styleClass="labelValues" text="---" />
+                              <Label fx:id="teamTeamManager" layoutX="202.0" layoutY="144.0" styleClass="labelValues" text="---" />
+                              <Label fx:id="teamWins" layoutX="58.0" layoutY="239.0" styleClass="labelValues" text="---" />
+                              <Label fx:id="teamLosses" layoutX="202.0" layoutY="239.0" styleClass="labelValues" text="---" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+               <graphic>
+                  <ImageView fx:id="athleteTabAnchorPane" fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@coach.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+            <Tab>
+               <content>
+                  <AnchorPane fx:id="tabAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="athleteTable" layoutX="14.0" layoutY="14.0" prefHeight="532.0" prefWidth="300.0">
+                           <columns>
+                              <TableColumn fx:id="athleteTableName" editable="false" prefWidth="179.0" resizable="false" text="Athlete Name" />
+                              <TableColumn fx:id="athleteTableTeam" editable="false" prefWidth="119.0" resizable="false" text="Team" />
+                           </columns>
+                        </TableView>
+                        <Pane fx:id="paneAthletePieChart" layoutX="395.0" layoutY="362.0" maxHeight="302.0" maxWidth="352.0" minHeight="195.0" minWidth="200.0" prefHeight="195.0" prefWidth="265.0" />
+                        <AnchorPane fx:id="infoAnchorPane" layoutX="366.0" layoutY="14.0" prefHeight="333.0" prefWidth="322.0">
+                           <children>
+                              <Label layoutX="58.0" layoutY="108.0" styleClass="labelLabels" text="Athlete Name" />
+                              <Label layoutX="58.0" layoutY="194.0" styleClass="labelLabels" text="Wins" />
+                              <Label layoutX="202.0" layoutY="194.0" styleClass="labelLabels" text="Losses" />
+                              <Label layoutX="202.0" layoutY="108.0" styleClass="labelLabels" text="Team" />
+                              <Button fx:id="athleteButton" layoutX="58.0" layoutY="273.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="208.0" text="Invite Athlete to Team" />
+                              <Label fx:id="athleteAthleteName" layoutX="57.0" layoutY="144.0" styleClass="labelValues" text="---" />
+                              <Label fx:id="athleteTeamName" layoutX="202.0" layoutY="144.0" styleClass="labelValues" text="---" />
+                              <Label fx:id="athleteWins" layoutX="57.0" layoutY="239.0" styleClass="labelValues" text="---" />
+                              <Label fx:id="athleteLosses" layoutX="202.0" layoutY="239.0" styleClass="labelValues" text="---" />
+                              <Label fx:id="createAccountLabel" layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
+                                 <font>
+                                    <Font size="31.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="-95.0" endY="-148.0" layoutX="119.0" layoutY="221.0" startX="180.0" startY="-148.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@basketball-player.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+            <Tab>
+               <content>
+                  <AnchorPane fx:id="tabAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="infoAnchorPane" layoutX="197.0" layoutY="112.0" prefHeight="235.0" prefWidth="342.0">
+                           <children>
+                              <Button layoutX="97.0" layoutY="89.0" mnemonicParsing="false" onAction="#signOutButtonPressed" prefHeight="57.0" prefWidth="149.0" text="Sign Out!" />
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="signOutLabel" layoutX="447.0" layoutY="427.0" prefHeight="19.0" prefWidth="160.0" text="CREDITS:">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Label>
+                        <Line endX="-95.0" endY="-148.0" layoutX="542.0" layoutY="601.0" startX="180.0" startY="-148.0" />
+                        <Label fx:id="signOutLabel" layoutX="447.0" layoutY="455.0" prefHeight="26.0" prefWidth="287.0" text="Nicolas Caceda: Lead back-end" textFill="#6f6b6b" />
+                        <Label fx:id="signOutLabel" layoutX="447.0" layoutY="478.0" prefHeight="26.0" prefWidth="287.0" text="Kamp Duong: Web Designer and Back-End" textFill="#6f6b6b" />
+                        <Label fx:id="signOutLabel" layoutX="448.0" layoutY="501.0" prefHeight="26.0" prefWidth="287.0" text="Trevor Evans: Lead Documentation" textFill="#6f6b6b" />
+                        <Label fx:id="signOutLabel" layoutX="448.0" layoutY="524.0" prefHeight="26.0" prefWidth="287.0" text="Luis Mendez: UML/SQA Design and Documentation" textFill="#6f6b6b" />
+                        <Label fx:id="signOutLabel" layoutX="448.0" layoutY="547.0" prefHeight="26.0" prefWidth="287.0" text="Brandon Schultz: Front-End GUI Designer" textFill="#6f6b6b" />
+                     </children>
+                  </AnchorPane>
+               </content>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <AnchorPane fx:id="bottomAnchorPane" layoutY="573.0" prefHeight="19.0" prefWidth="800.0">
+         <children>
+            <Label layoutX="10.0" layoutY="1.0" prefHeight="26.0" prefWidth="287.0" text="Copyright © 2018 Official Team 0, All rights reserved." textFill="#6f6b6b" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
