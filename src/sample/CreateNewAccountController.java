@@ -19,11 +19,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
- /* Format of text files created or appended to when account created.
+/* Format of text files created or appended to when account created.
  *
  * ---Accounts.txt---
- * [userName] [passWord]
+ * ecun0000 [userName] [passWord]
  * [firstName] [lastName]
  * [accountType] [teamName]
  *
@@ -58,7 +59,18 @@ public class CreateNewAccountController implements Initializable {
   @FXML
   private TextField createTeam;
   @FXML
-  private Label createTeamLabel;
+  private Label createTeamLabel;/*
+  @FXML
+  private AnchorPane createAccountAnchorPane;
+  @FXML
+  private AnchorPane topAnchorPane;
+  @FXML
+  private AnchorPane mainAnchorPane;
+  @FXML
+  private AnchorPane bottomAnchorPane;
+  @FXML
+  private Label createAccountLabel;*/
+
 
   boolean choiceClicked = false;
 
@@ -142,8 +154,9 @@ public class CreateNewAccountController implements Initializable {
           System.out.println("No user type found");
       }
 
-      // This prints to Accounts.txt
-      accountPW.println(account.getAccountName() + " " + account.getPassword());
+      // This prints to Accounts.txt, ecun0000 = Error Checking User Name, used to check this line
+      // for matching user names.
+      accountPW.println("ecun0000 " + account.getAccountName() + " " + account.getPassword());
       accountPW.println(account.getFirstName() + " " + account.getLastName());
       accountPW.println(account.getAccountType() + " " + account.getTeam());
 

@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainController {
@@ -19,6 +20,17 @@ public class MainController {
   @FXML
   private TextField passwordEntered;
   public static String currentUserName, currentUserAccountType, currentUserTeam;
+
+  @FXML
+  private AnchorPane mainAnchorPane;
+  @FXML
+  private AnchorPane topAnchorPane;
+  @FXML
+  private AnchorPane bottomAnchorPane;
+  @FXML
+  private AnchorPane midAnchorpane;
+  @FXML
+  private Label accountDetailLabel;
 
   // Method to check login credentials.
   public void logInButtonPressed() {
@@ -32,7 +44,8 @@ public class MainController {
       String str;
       boolean found = false;
       while ((str = br.readLine()) != null && !found) {
-        if ((user + " " + pass).equals(str)) {
+        String[] checkForUserName = str.split("\\s+");
+        if (checkForUserName[0].equals("ecun0000") && (user + " " + pass).equals(checkForUserName[1] + " " + checkForUserName[2])) {
           found = true;
           str = br.readLine();
           this.currentUserName = str;
@@ -58,6 +71,7 @@ public class MainController {
       er.printStackTrace();
     }
   }
+
 
   // Method for switching to create account scene.
   @FXML

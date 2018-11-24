@@ -1,61 +1,63 @@
-admin admin
-man0 pass
+ecun0000 man0 pass
 Mana Ger
 Manager Team0
-Man1 pass
+ecun0000 Man1 pass
 Mona Jer
 Manager Team1
-Man2 pass
+ecun0000 Man2 pass
 Manuel Jur
 Manager Team2
-Thor pass
+ecun0000 Thor pass
 Thor Odinson
 Athlete Marvel-Comics
-Spiderman pass
+ecun0000 Spiderman pass
 Peter Parker
 Athlete Marvel-Comics
-IronMan pass
+ecun0000 IronMan pass
 Tony Stark
 Athlete Marvel-Comics
-CaptainAmerica pass
+ecun0000 CaptainAmerica pass
 Steve Rogers
 Athlete Marvel-Comics
-Hulk pass
+ecun0000 Hulk pass
 Bruce Banner
 Athlete Marvel-Comics
-Superman pass
+ecun0000 Superman pass
 Clark Kent
 Athlete DC-Comics
-Flash pass
+ecun0000 Flash pass
 Barry Allen
 Athlete DC-Comics
-KidFlash pass
+ecun0000 KidFlash pass
 Wally West
 Athlete DC-Comics
-Arrow pass
+ecun0000 Arrow pass
 Oliver Queen
 Athlete DC-Comics
-BlackCanary pass
+ecun0000 BlackCanary pass
 Laurel Lance
 Athlete DC-Comics
-WhiteCanary pass
+ecun0000 WhiteCanary pass
 Sara Lance
 Athlete DC-Comics
-Director pass
+ecun0000 Director pass
 Ava Sharp
 Athlete DC-Comics
-SuperGirl pass
+ecun0000 SuperGirl pass
 Kara Danvers
 Athlete DC-Comics
-Hawkeye pass
+ecun0000 Hawkeye pass
 Clint Barton
 Athlete Marvel-Comics
-dcmanager pass
+ecun0000 dcmanager pass
 Malcolm Wheeler-Nicholson
 Manager DC-Comics
-marvelmanager pass
+ecun0000 marvelmanager pass
 Martin Goodman
 Manager Marvel-Comics
-rainkd pass
+ecun0000 rainkd pass
 Kamp Duong
 Fan NoTeam
+ecun0000 ashboi1000 Pikachu
+Ash Ketchum
+Athlete NoTeam
