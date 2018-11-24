@@ -87,6 +87,7 @@ public class LoggedInController implements Initializable {
   @FXML
   private Label monthLabel;
 
+  //Logs out current user and returns them to main log-in scene.
   @FXML
   public void signOutButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
@@ -105,7 +106,13 @@ public class LoggedInController implements Initializable {
     populateAthleteTab();
   }
 
-  // Populate Profile Tab
+  /**
+   * Updates information on the profile tab based on the user who is currently logged in. Scene labels are modified
+   * based on which account type is being viewed. For Athletes, the wins and losses, as well as the team they are on,
+   * are read from file as strings using a BufferedReader.
+   *
+   * @exception IOException - handled by try/catch for reading from the account type files.
+   */
   private void populateProfileTab() {
     String thisUser = MainController.currentUserName;
     profileNameLabel.setText(thisUser);
@@ -195,6 +202,14 @@ public class LoggedInController implements Initializable {
     profileRosterTable.setItems(getTeamRoster(thisUserTeam));
   }
 
+  /**
+   * Void method used to populate the list of teams on the Teams tab. Information is taken in through a BufferedReader
+   * and stored intro String variables. When a team is selected, these variables are displayed to the right of the list
+   * detailing the team's statistics including a pie chart for win/loss. A roster is set up with a TableView allowing
+   * the current user to see the members of the selected team.
+   *
+   * @exception IOException - try/catch handling for exception on reading .txt file "Teams".
+   */
   private void populateTeamTab() {
     // Setup Columns of Team Table and Roster Table
     teamTableName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -260,6 +275,14 @@ public class LoggedInController implements Initializable {
     );
   }
 
+  /**
+   * Void method to display all current athletes stored in the program on the Athletes tab. Information is read from a
+   * BufferedReader and stored into String variables. When an athlete is selected from a TableView, their data (name,
+   * wins, losses, and team) is displayed on the screen. A pie chart is used to graphically display their win/loss
+   * record.
+   *
+   * @exception IOException - try/catch handling for exception on reading .txt file "Athletes".
+   */
   private void populateAthleteTab() {
     // Setup Columns of Athlete Table in Athlete Tab
     athleteTableName
@@ -331,6 +354,13 @@ public class LoggedInController implements Initializable {
         });
   }
 
+  /**
+   * Method accesses the "Teams" .txt file to read the manager name and score ratio of a specific team. This data
+   * is passed to the populateTeamTab method to be displayed on screen.
+   *
+   * @return - variable type ObservableList with the win/loss statistics of a team and team manager name.
+   * @exception IOException - try/catch handling for exception on reading .txt file "Teams".
+   */
   private ObservableList getTeamRecord() {
 
     String string1, string2;
@@ -359,6 +389,13 @@ public class LoggedInController implements Initializable {
     return records;
   }
 
+  /**
+   * Method accesses the "Athletes" .txt file to read the athlete name and their respective win/loss ratio. This data
+   * is passed to the populateAthleteTab method to be displayed on screen.
+   *
+   * @return - variable type ObservableList with the win/loss statistics of an athlete and their name.
+   * @exception IOException - try/catch handling for exception on reading .txt file "Athletes".
+   */
   private ObservableList getAthleteRecord() {
     String temp1;
     String temp2;
@@ -386,6 +423,13 @@ public class LoggedInController implements Initializable {
     return records;
   }
 
+  /**
+   * Method used to store the roster of athletes of a team to be displayed when said team is selected on the Teams tab.
+   * Data is parsed into method populateTeamTab.
+   *
+   * @param teamName - Name of team to parse file for.
+   * @return - Observable list of type RosterRecord containing the names of each athlete assigned to that team.
+   */
   private ObservableList getTeamRoster(String teamName) {
     String athlete;
     ObservableList<RosterRecord> records = FXCollections.observableArrayList();
