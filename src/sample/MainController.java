@@ -45,45 +45,50 @@ public class MainController {
     String user = usernameEntered.getText();
     String pass = passwordEntered.getText();
 
-    //Read from file
-    try {
-      FileReader fr = new FileReader("Accounts.txt");
-      BufferedReader br = new BufferedReader(fr);
-      String str;
-
-      //Boolean used in file reading loop.
-      boolean found = false;
-
-      //While loops which compares contents of file to String variables above try/catch.
-      while ((str = br.readLine()) != null && !found) {
-        String[] checkForUserName = str.split("\\s+");
-        if (checkForUserName[0].equals("ecun0000") && (user + " " + pass).equals(checkForUserName[1] + " "
-                + checkForUserName[2])) {
-          found = true;
-          str = br.readLine();
-          this.currentUserName = str;
-          str = br.readLine();
-          String[] splitString = str.split("\\s+");
-          this.currentUserAccountType = splitString[0];
-          this.currentUserTeam = splitString[1];
-          Stage stage = Main.getPrimaryStage();
-          Parent root = FXMLLoader.load(getClass().getResource("LoggedIn.fxml"));
-          stage.setScene(new Scene(root, 800, 600));
-          stage.show();
+    if (user.equals("admin") && pass.equals("admin")) {
+      Stage stage = Main.getPrimaryStage();
+      try {
+        Parent root = FXMLLoader.load(getClass().getResource("AdminScene.fxml"));
+        stage.setScene(new Scene(root, 800, 600));
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
+      stage.show();
+    } else {
+      //Read from file
+      try {
+        FileReader fr = new FileReader("Accounts.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String str;
+        boolean found = false;
+        while ((str = br.readLine()) != null && !found) {
+          String[] checkForUserName = str.split("\\s+");
+          if (checkForUserName[0].equals("ecun0000") && (user + " " + pass)
+              .equals(checkForUserName[1] + " " + checkForUserName[2])) {
+            found = true;
+            str = br.readLine();
+            this.currentUserName = str;
+            str = br.readLine();
+            String[] splitString = str.split("\\s+");
+            this.currentUserAccountType = splitString[0];
+            this.currentUserTeam = splitString[1];
+            Stage stage = Main.getPrimaryStage();
+            Parent root = FXMLLoader.load(getClass().getResource("LoggedIn.fxml"));
+            stage.setScene(new Scene(root, 800, 600));
+            stage.show();
+          }
         }
-      }
+        if (!found) {
+          AlertBox.display("No Account", "Could Not Find Account. Please"
+              + " Try Again or Create Account");
+          passwordEntered.clear();
+        }
+        br.close();
 
-      //No match found, pop-up alert box.
-      if (!found) {
-        AlertBox.display("No Account", "Could Not Find Account. Please"
-            + " Try Again or Create Account");
-        passwordEntered.clear();
+      } catch (IOException er) {
+        System.out.println("error");
+        er.printStackTrace();
       }
-      br.close();
-
-    } catch (IOException er) {
-      System.out.println("error");
-      er.printStackTrace();
     }
   }
 

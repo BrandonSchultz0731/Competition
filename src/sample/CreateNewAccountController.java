@@ -62,17 +62,7 @@ public class CreateNewAccountController implements Initializable {
   @FXML
   private TextField createTeam;
   @FXML
-  private Label createTeamLabel;/*
-  @FXML
-  private AnchorPane createAccountAnchorPane;
-  @FXML
-  private AnchorPane topAnchorPane;
-  @FXML
-  private AnchorPane mainAnchorPane;
-  @FXML
-  private AnchorPane bottomAnchorPane;
-  @FXML
-  private Label createAccountLabel;*/
+  private Label createTeamLabel;
 
 
   boolean choiceClicked = false;

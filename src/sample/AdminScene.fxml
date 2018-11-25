@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="mainAnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@AdminSceneStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminSceneController">
+  <children>
+      <AnchorPane id="topAnchorPane" prefHeight="27.0" prefWidth="800.0">
+         <children>
+            <Label alignment="CENTER" layoutX="325.0" layoutY="1.0" prefHeight="26.0" prefWidth="151.0" text="Administration Menu" textFill="WHITE">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="25.0" layoutY="77.0" maxHeight="446.0" maxWidth="370.0" minWidth="370.0" prefHeight="446.0" prefWidth="370.0" style="-fx-background-radius: 5;" styleClass="innerPanes">
+         <children>
+            <DatePicker fx:id="datePicker" layoutX="97.0" layoutY="77.0" prefHeight="41.0" prefWidth="177.0" promptText="select a date" />
+            <Label layoutX="66.0" layoutY="41.0" styleClass="innerLabels" text="Select a date to edit/create game data" />
+            <Line endX="258.0" layoutX="86.0" layoutY="151.0" startX="-60.0" />
+            <AnchorPane fx:id="createGameAnchorPane" disable="true" layoutY="152.0" prefHeight="228.0" prefWidth="370.0" visible="false">
+               <children>
+                  <TextField fx:id="team1TextField" layoutX="51.0" layoutY="14.0" prefHeight="41.0" prefWidth="271.0" promptText="Enter Team 1" />
+                  <TextField fx:id="team2TextField" layoutX="51.0" layoutY="75.0" prefHeight="41.0" prefWidth="271.0" promptText="Enter Team 2" />
+                  <Button layoutX="51.0" layoutY="134.0" mnemonicParsing="false" onMouseClicked="#createGameButtonPressed" prefHeight="41.0" prefWidth="135.0" text="Create Game" />
+                  <Button layoutX="51.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#resetFields" prefHeight="41.0" prefWidth="135.0" text="Reset Fields" />
+                  <Line endX="62.0" endY="57.0" layoutX="133.0" layoutY="170.0" startX="62.0" startY="-34.0" />
+                  <Label fx:id="createSuccessLabel" layoutX="210.0" layoutY="148.0" text="Game Creation Successful" textFill="RED" visible="false" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="editScoreAnchorPane" disable="true" layoutY="152.0" prefHeight="228.0" prefWidth="370.0" visible="false">
+               <children>
+                  <TextField fx:id="scoreField1" layoutX="187.0" layoutY="14.0" prefHeight="41.0" prefWidth="135.0" promptText="Score" />
+                  <TextField fx:id="scoreField2" layoutX="187.0" layoutY="75.0" prefHeight="41.0" prefWidth="135.0" promptText="Score" />
+                  <Button fx:id="submitButton" layoutX="51.0" layoutY="134.0" mnemonicParsing="false" onMouseClicked="#submitButtonPressed" prefHeight="41.0" prefWidth="151.0" text="Submit Change" />
+                  <Button layoutX="51.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#resetFields" prefHeight="41.0" prefWidth="151.0" text="Reset Fields" />
+                  <Line endX="62.0" endY="57.0" layoutX="150.0" layoutY="170.0" startX="62.0" startY="-34.0" />
+                  <Label fx:id="editSuccessLabel" layoutX="217.0" layoutY="148.0" text="Score Submitted Successfully" textFill="RED" visible="false" />
+                  <Label fx:id="team1Label" layoutX="51.0" layoutY="26.0" prefHeight="18.0" prefWidth="150.0" styleClass="innerLabels" text="Team 1" />
+                  <Label fx:id="team2Label" layoutX="51.0" layoutY="87.0" prefHeight="18.0" prefWidth="150.0" styleClass="innerLabels" text="Team 2" />
+               </children>
+            </AnchorPane>
+            <Button layoutX="50.0" layoutY="391.0" mnemonicParsing="false" onMouseClicked="#backButtonPressed" prefHeight="41.0" prefWidth="271.0" text="Back to Main" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="createAccountAnchorPane1" layoutX="405.0" layoutY="77.0" maxHeight="446.0" maxWidth="370.0" minWidth="370.0" prefHeight="446.0" prefWidth="370.0" style="-fx-background-radius: 5;" styleClass="innerPanes">
+         <children>
+            <Label layoutX="87.0" layoutY="41.0" styleClass="innerLabels" text="Select a row to edit game score" />
+            <ListView fx:id="createdGamesList" layoutX="12.0" layoutY="92.0" prefHeight="345.0" prefWidth="346.0" />
+            <Label fx:id="rowSelectionWarning" layoutX="95.0" layoutY="59.0" text="Selected row is not an editable row." textFill="RED" visible="false" />
+         </children>
+      </AnchorPane>
+    <AnchorPane id="bottomAnchorPane" layoutY="573.0" prefHeight="19.0" prefWidth="800.0">
+      <children>
+        <Label layoutX="10.0" layoutY="1.0" prefHeight="26.0" prefWidth="287.0" text="Copyright © 2018 Official Team 0, All rights reserved." textFill="#6f6b6b" />
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>
