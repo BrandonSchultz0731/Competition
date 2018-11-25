@@ -87,6 +87,7 @@ public class LoggedInController implements Initializable {
   @FXML
   private Label monthLabel;
 
+  //Logs out current user and returns them to main log-in scene.
   @FXML
   public void signOutButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
@@ -95,7 +96,7 @@ public class LoggedInController implements Initializable {
     stage.show();
   }
 
-  // Initialize Method used to populate all tables and labels depending on login credentials.
+  // Initialize Method used to populate all tables and labels depending on login credentials and general data.
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
@@ -105,7 +106,13 @@ public class LoggedInController implements Initializable {
     populateAthleteTab();
   }
 
-  // Populate Profile Tab
+  /**
+   * Updates information on the profile tab based on the user who is currently logged in. Scene labels are modified
+   * based on which account type is being viewed. For Athletes, the wins and losses, as well as the team they are on,
+   * are read from file as strings using a BufferedReader.
+   *
+   * @exception IOException - handled by try/catch for reading from the account type files.
+   */
   private void populateProfileTab() {
     String thisUser = MainController.currentUserName;
     profileNameLabel.setText(thisUser);
@@ -195,6 +202,14 @@ public class LoggedInController implements Initializable {
     profileRosterTable.setItems(getTeamRoster(thisUserTeam));
   }
 
+  /**
+   * Void method used to populate the list of teams on the Teams tab. Information is taken in through a BufferedReader
+   * and stored intro String variables. When a team is selected, these variables are displayed to the right of the list
+   * detailing the team's statistics including a pie chart for win/loss. A roster is set up with a TableView allowing
+   * the current user to see the members of the selected team.
+   *
+   * @exception IOException - try/catch handling for exception on reading .txt file "Teams".
+   */
   private void populateTeamTab() {
     // Setup Columns of Team Table and Roster Table
     teamTableName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -260,6 +275,14 @@ public class LoggedInController implements Initializable {
     );
   }
 
+  /**
+   * Void method to display all current athletes stored in the program on the Athletes tab. Information is read from a
+   * BufferedReader and stored into String variables. When an athlete is selected from a TableView, their data (name,
+   * wins, losses, and team) is displayed on the screen. A pie chart is used to graphically display their win/loss
+   * record.
+   *
+   * @exception IOException - try/catch handling for exception on reading .txt file "Athletes".
+   */
   private void populateAthleteTab() {
     // Setup Columns of Athlete Table in Athlete Tab
     athleteTableName
@@ -331,6 +354,13 @@ public class LoggedInController implements Initializable {
         });
   }
 
+  /**
+   * Method accesses the "Teams" .txt file to read the manager name and score ratio of a specific team. This data
+   * is passed to the populateTeamTab method to be displayed on screen.
+   *
+   * @return - variable type ObservableList with the win/loss statistics of a team and team manager name.
+   * @exception IOException - try/catch handling for exception on reading .txt file "Teams".
+   */
   private ObservableList getTeamRecord() {
 
     String string1, string2;
@@ -359,6 +389,13 @@ public class LoggedInController implements Initializable {
     return records;
   }
 
+  /**
+   * Method accesses the "Athletes" .txt file to read the athlete name and their respective win/loss ratio. This data
+   * is passed to the populateAthleteTab method to be displayed on screen.
+   *
+   * @return - variable type ObservableList with the win/loss statistics of an athlete and their name.
+   * @exception IOException - try/catch handling for exception on reading .txt file "Athletes".
+   */
   private ObservableList getAthleteRecord() {
     String temp1;
     String temp2;
@@ -386,6 +423,13 @@ public class LoggedInController implements Initializable {
     return records;
   }
 
+  /**
+   * Method used to store the roster of athletes of a team to be displayed when said team is selected on the Teams tab.
+   * Data is parsed into method populateTeamTab.
+   *
+   * @param teamName - Name of team to parse file for.
+   * @return - Observable list of type RosterRecord containing the names of each athlete assigned to that team.
+   */
   private ObservableList getTeamRoster(String teamName) {
     String athlete;
     ObservableList<RosterRecord> records = FXCollections.observableArrayList();
@@ -412,32 +456,41 @@ public class LoggedInController implements Initializable {
     private SimpleStringProperty name, standings;
     private int wins;
 
+    //TeamRecord constructor
+    // When a new TeamRecord is created, it takes in a name, string number for wins, and a double for their win/loss
+    // ratio.
     public TeamRecord(String teamName, String wins, Double standings) {
       this.name = new SimpleStringProperty(teamName);
       this.wins = new Integer(wins);
       this.standings = new SimpleStringProperty(standings.toString());
     }
 
+    //returns String name of TeamRecord object
     public String getName() {
       return name.get();
     }
 
+    //sets String name of TeamRecord object with passed in String parameter.
     public void setName(String name) {
       this.name.set(name);
     }
 
+    //returns int variable wins of TeamRecord object.
     public int getWins() {
       return wins;
     }
 
+    //sets int variable wins of TeamRecord object with passed in int parameter.
     public void setWins(int wins) {
       this.wins = wins;
     }
 
+    //returns double variable standings of TeamRecord object.
     public String getStandings() {
       return standings.get();
     }
 
+    //sets String variable standings of TeamRecord object with passed in String parameter.
     public void setStandings(String standings) {
       this.standings.set(standings);
     }
@@ -449,23 +502,29 @@ public class LoggedInController implements Initializable {
     private SimpleStringProperty name;
     private SimpleStringProperty team;
 
+    //athleteRecord constructor
+    // Takes in String parameters firstName, lastName, and team to produce a fresh record of a new athlete.
     public athleteRecord(String firstName, String lastName, String team) {
       this.name = new SimpleStringProperty(lastName + ", " + firstName);
       this.team = new SimpleStringProperty(team);
     }
 
+    //returns String variable name of athleteRecord object.
     public String getName() {
       return name.get();
     }
 
+    //sets String variable name of athleteRecord object with passed in String type parameter.
     public void setName(String nameX) {
       this.name.set(nameX);
     }
 
+    //returns String variable team of athleteRecord object.
     public String getTeam() {
       return team.get();
     }
 
+    //sets String variable team of athleteRecord object with passed in String type parameter.
     public void setTeam(String teamX) {
       this.team.set(teamX);
     }
@@ -475,20 +534,26 @@ public class LoggedInController implements Initializable {
 
     private SimpleStringProperty name;
 
+    //RosterRecord constructor
+    // A new RosterRecord object is created with a passed in String parameter.
     public RosterRecord(String name) {
       this.name = new SimpleStringProperty(name);
     }
 
+    //returns String variable name of RosterRecord object.
     public String getName() {
       return name.get();
     }
 
+    //sets String variable name of RosterRecord object with passed in String type parameter.
     public void setName(String name) {
       this.name.set(name);
     }
   }
 
   //ALL CALENDAR STUFF FROM HERE ON OUT
+
+  //Creates calendar upon initialization by FXML Loader. Sets current day by local computer time.
   private void initializeCalendar(){
     today = LocalDate.now();
     date = LocalDate.now();
@@ -497,18 +562,32 @@ public class LoggedInController implements Initializable {
     populateGridPane();
   }
 
+  /**
+   * Method to advance month in calendar display. Utilized in button on calendar tab of program.
+   *
+   * @param mouseEvent - unused.
+   */
   public void goToNextMonth(MouseEvent mouseEvent) {
     date = date.plusMonths(1);
     setYearMonthAndDay();
     populateGridPane();
   }
 
+  /**
+   * Method to move to previous month in calendar display. Utilized in button on calendar tab of program.
+   *
+   * @param mouseEvent - unused.
+   */
   public void goToPrevMonth(MouseEvent mouseEvent) {
     date = date.minusMonths(1);
     setYearMonthAndDay();
     populateGridPane();
   }
 
+  /**
+   * Generates labels for calendar display in tandem with which month is currently "selected" on the calendar tab.
+   * Labels for month and year are set above the calendar display.
+   */
   private void setYearMonthAndDay() {
     currentYear = date.getYear();
     currentMonth = date.getMonth();
@@ -519,6 +598,12 @@ public class LoggedInController implements Initializable {
     monthLabel.setText(currentMonth.toString());
   }
 
+  /**
+   * Void method clears all children of the calendar display upon calendar initialization. It iterates through the days
+   * and months of a year while adding labels of games based on date to the appropriate day. These labels are stored in
+   * a hashmap in the gamesToHashMap method. Method finishes executing once the entire "Games" .txt file has been read
+   * and stored into the calendar display.
+   */
   private void populateGridPane() {
     boolean executed = false;
     int col;
@@ -582,6 +667,12 @@ public class LoggedInController implements Initializable {
     }
   }
 
+  /**
+   * Enters every game read in the "Games" .txt file and stores them into a hashmap. This hashmap is then used to
+   * populate the calendar display in the method populateGridPane.
+   *
+   * @exception IOException - file handling for reading games info.
+   */
   private void gamesToHashMap() {
     try {
       FileReader fReader = new FileReader("Games.txt");

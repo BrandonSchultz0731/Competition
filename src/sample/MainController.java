@@ -32,7 +32,15 @@ public class MainController {
   @FXML
   private Label accountDetailLabel;
 
-  // Method to check login credentials.
+  /**
+   * Method to check login credentials. Stores textfield entries for Username and Password into String variables. A
+   * text file is then read through using a BufferedReader. Each separate entry is compared to the String variables
+   * until a match is found. Once a match is found, it updates the scene to the post log-in home scene. If no match is
+   * found, a pop-up alert box is triggered passing this message to the user currently accessing the program and clears
+   * the password textfield.
+   *
+   * @exception IOException - handled by try/catch code block should the file not be found/inaccessible.
+   */
   public void logInButtonPressed() {
     String user = usernameEntered.getText();
     String pass = passwordEntered.getText();
@@ -84,8 +92,11 @@ public class MainController {
     }
   }
 
-
-  // Method for switching to create account scene.
+  /**
+   * Generates the scene to create a new account.
+   *
+   * @throws IOException - Exception for FXML file to be found.
+   */
   @FXML
   public void createAccountButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();

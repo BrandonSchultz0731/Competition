@@ -10,6 +10,12 @@ import javafx.stage.Stage;
 
 public class AlertBox {
 
+  /**
+   * Pop-up box to handle multiple separate messages/scenes.
+   *
+   * @param title - String to act as overview of message type.
+   * @param message - String displayed in pop-up box.
+   */
   public static void display(String title, String message) {
     Stage window = new Stage();
 
