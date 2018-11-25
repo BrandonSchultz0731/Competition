@@ -87,7 +87,6 @@ public class MainController {
     }
   }
 
-
   /**
    * Generates the scene to create a new account.
    *
