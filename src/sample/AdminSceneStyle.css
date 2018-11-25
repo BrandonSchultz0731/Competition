@@ -1,0 +1,67 @@
+/* background styling */
+.root {
+  -fx-background-color: #FFFFFF;
+}
+
+#topAnchorPane {
+  -fx-background-color: #17408B;
+}
+
+#mainAnchorPane {
+  -fx-background-color: #D1D3D6;
+}
+
+.innerPanes {
+  -fx-background-color: #FFFFFF;
+}
+
+#bottomAnchorPane {
+  -fx-background-color: #2E3033;
+}
+
+/* button styling */
+.button {
+  -fx-background-color: #000000,
+  linear-gradient(#7ebcea, #17408B),
+  linear-gradient(#426ab7, #263e75),
+  linear-gradient(#395cab, #223768);
+  -fx-background-insets: 0, 1, 2, 3;
+  -fx-background-radius: 3, 2, 2, 2;
+  -fx-padding: 12 30 12 30;
+  -fx-text-fill: white;
+  -fx-font-size: 12px;
+}
+
+.button Text {
+  -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.8), 0, 0.0, 0, 1);
+}
+
+/* label styling */
+.label {
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+  -fx-font-family: "Times New Roman", Times, serif;
+}
+.innerLabels{
+  -fx-text-fill: #000;
+  -fx-font-size: 15px;
+}
+/* label of account detail styling */
+#createAccountLabel {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-font-family: "Times New Roman", Times, serif;;
+}
+
+/* text-field styling */
+.text-field {
+  -fx-background-color: #D1D3D6;
+  -fx-padding: 10 25 10 25;
+}
+
+/* choice box styling */
+.choice-box {
+  -fx-background-color: #D1D3D6;
+  -fx-padding: 7 20 7 20;
+}
+
