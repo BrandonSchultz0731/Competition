@@ -309,7 +309,9 @@ public class LoggedInController implements Initializable {
           cell.setPrefSize(calendarView.getWidth(), calendarView.getPrefHeight());
           cell.setStyle("-fx-border-color: black; "
               + "-fx-border-radius: .2");
-          if (dayAsNumber == currentDay && currentMonth == today.getMonth()) {
+
+          //FOR KAMP
+          if (dayAsNumber == currentDay && currentMonth == today.getMonth() && currentYear == today.getYear()) {
             cell.setStyle("-fx-border-color: red; "
                 + "-fx-border-radius: .2");
           }
