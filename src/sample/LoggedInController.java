@@ -252,8 +252,11 @@ public class LoggedInController implements Initializable {
                       list.add(new PieChart.Data(
                           "Losses", Double.parseDouble(splitTeamWinLoss[2])));
                       PieChart pieChart = new PieChart(list);
+                      pieChart.setTitle("Win/Loss Ratio");
                       pieChart.setLegendVisible(false);
                       paneTeamPieChart.getChildren().add(pieChart);
+                      pieChart.setMaxSize(250, 250);
+                      pieChart.setMinSize(250,250);
 
                       // Set roster table to roster of selected team
                       // Setup roster table name column <RosterRecord>
@@ -335,7 +338,10 @@ public class LoggedInController implements Initializable {
                             "Losses", Double.parseDouble(splitTeamWinLoss[2])));
                         PieChart pieChart = new PieChart(list);
                         pieChart.setLegendVisible(false);
+                        pieChart.setTitle("Win/Loss Ratio");
                         paneAthletePieChart.getChildren().add(pieChart);
+                        pieChart.setMaxSize(250, 250);
+                        pieChart.setMinSize(250,250);
                       }
                       break;
                     }

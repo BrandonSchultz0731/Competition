@@ -213,7 +213,7 @@
                               <TableColumn fx:id="teamRosterTableRoster" editable="false" maxWidth="298.0" prefWidth="298.0" resizable="false" text="Roster" />
                            </columns>
                         </TableView>
-                        <Pane fx:id="paneTeamPieChart" layoutX="421.0" layoutY="359.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Pane fx:id="paneTeamPieChart" layoutX="418.0" layoutY="347.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" />
                         <AnchorPane fx:id="infoAnchorPane" layoutX="366.0" layoutY="14.0" prefHeight="333.0" prefWidth="322.0">
                            <children>
                               <Label fx:id="createAccountLabel1" layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
@@ -254,7 +254,7 @@
                               <TableColumn fx:id="athleteTableTeam" editable="false" prefWidth="119.0" resizable="false" text="Team" />
                            </columns>
                         </TableView>
-                        <Pane fx:id="paneAthletePieChart" layoutX="395.0" layoutY="362.0" maxHeight="302.0" maxWidth="352.0" minHeight="195.0" minWidth="200.0" prefHeight="195.0" prefWidth="265.0" />
+                        <Pane fx:id="paneAthletePieChart" layoutX="398.0" layoutY="347.0" maxHeight="302.0" maxWidth="352.0" minHeight="195.0" minWidth="200.0" prefHeight="195.0" prefWidth="265.0" />
                         <AnchorPane fx:id="infoAnchorPane" layoutX="366.0" layoutY="14.0" prefHeight="333.0" prefWidth="322.0">
                            <children>
                               <Label layoutX="58.0" layoutY="108.0" styleClass="labelLabels" text="Athlete Name" />

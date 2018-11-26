@@ -61,20 +61,20 @@ public class AdminSceneController implements Initializable {
               String newValue) {
             hideCreateGameMenu();
             // Checks if the selected row matches format of [number]-[number]
-            if (newValue.matches("\\d+-\\d+")) {
-              rowSelectionWarning.setVisible(false);
-              // Split string at '-' and each score to respective text fields.
-              scores = newValue.split("-");
-              scoreField1.setText(scores[0]);
-              scoreField2.setText(scores[1]);
-              indexOfSelected = createdGamesList.getSelectionModel().getSelectedIndex();
-              submitButton.setDisable(false);
-            } else {
-              // If row does not match format, display warning label and disable submit button.
-              rowSelectionWarning.setVisible(true);
-              submitButton.setDisable(true);
-              resetFields();
-            }
+              if (newValue.matches("\\d+-\\d+")) {
+                rowSelectionWarning.setVisible(false);
+                // Split string at '-' and each score to respective text fields.
+                scores = newValue.split("-");
+                scoreField1.setText(scores[0]);
+                scoreField2.setText(scores[1]);
+                indexOfSelected = createdGamesList.getSelectionModel().getSelectedIndex();
+                submitButton.setDisable(false);
+              } else {
+                // If row does not match format, display warning label and disable submit button.
+                rowSelectionWarning.setVisible(true);
+                submitButton.setDisable(true);
+                resetFields();
+              }
           }
         });
     // Add an event listener for when a date is selected in the DatePicker
@@ -129,11 +129,18 @@ public class AdminSceneController implements Initializable {
     try {
       FileWriter gameFW = new FileWriter("Games.txt", true);
       PrintWriter gamePW = new PrintWriter(gameFW);
-      gamePW.println(datePicker.getValue());
-      gamePW.println(team1TextField.getText() + " vs. " + team2TextField.getText());
-      gamePW.println("0-0");
+      String date = datePicker.getValue().toString();
+      String[] dateSplit = date.split("-");
+      dateSplit[1] = String.valueOf(Integer.parseInt(dateSplit[1]));
+      dateSplit[2] = String.valueOf(Integer.parseInt(dateSplit[2]));
+      date = dateSplit[0] + "-" + dateSplit[1] + "-" + dateSplit[2];
+      String game = team1TextField.getText() + " vs. " + team2TextField.getText();
+      String score = "0-0";
+      gamePW.println(date);
+      gamePW.println(game);
+      gamePW.println(score);
       gamePW.close();
-      updateListView();
+      createdGamesList.getItems().addAll(date, game, score);
       resetFields();
       createSuccessLabel.setVisible(true);
     } catch (IOException ex) {
@@ -165,6 +172,7 @@ public class AdminSceneController implements Initializable {
     }
   }
 
+  // Method for populating ListView with data in Games.txt.
   @FXML
   private void updateListView() {
     createdGamesList.getItems().clear();
@@ -177,13 +185,13 @@ public class AdminSceneController implements Initializable {
         String score = br.readLine();
         createdGamesList.getItems().addAll(date, teams, score);
       }
-      System.out.println(createdGamesList.getItems());
     } catch (IOException ex) {
       ex.printStackTrace();
       System.out.println("Unable to load file \"Games.txt\"");
     }
   }
 
+  // Method to call when the Back button is pressed, changes scene to the main scene.
   public void backButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
     Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
