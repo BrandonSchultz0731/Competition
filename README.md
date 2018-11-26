@@ -31,8 +31,8 @@ and managing intramural basketball programs.
   they follow.
 
 ## Credits
-* Nicolas Caceda: *Lead back-end*
-* Kamp Duong: *Web Designer and Back-End*
+* Nicolas Caceda: *Back-End*
+* Kamp Duong: *Web Designer and  Lead Back-End*
 * Trevor Evans: *Lead Documentation*
 * Luis Mendez: *UML/SQA Design and Documentation*
 * Brandon Schultz: *Front-End GUI Designer*
