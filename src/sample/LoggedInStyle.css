@@ -32,6 +32,10 @@
   -fx-font-size: 12px;
 }
 
+.button:hover {
+  -fx-background-color: #7ebcea;
+}
+
 .button Text {
   -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.8), 0, 0.0, 0, 1);
 }
@@ -190,4 +194,11 @@
 .table-view > .virtual-flow > .scroll-bar > .increment-button,
 .table-view > .virtual-flow > .scroll-bar > .decrement-button {
   -fx-background-color: #395CAB;
+}
+
+#logo {
+  -fx-font-size: 30px;
+}
+#welcome {
+  -fx-font-size: 20px;
 }

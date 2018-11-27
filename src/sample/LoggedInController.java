@@ -3,9 +3,16 @@ package sample;
 import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Month;
@@ -26,8 +33,11 @@ import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -45,13 +55,17 @@ public class LoggedInController implements Initializable {
   // Format used to display only 2 decimal places for Doubles.
   DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
+  private String selectedAthleteName;
+  private String selectedAthleteTeam;
+  private int selectedAthleteUserID;
   @FXML
   private Label profileNameLabel, profileAccountTypeLabel, profileTeamLabel, profileWinsLabel,
       profileLossesLabel, teamTeamName, teamTeamManager, teamWins, teamLosses, athleteAthleteName,
       athleteTeamName, athleteWins, athleteLosses;
   @FXML
-  private TableColumn athleteTableName, athleteTableTeam, teamTableName, teamTableWins,
-      teamTableStandings, teamRosterTableRoster, profileRosterTableRoster;
+  private TableColumn athleteTableName, athleteTableTeam, athleteTableUserID,
+      teamTableName, teamTableWins, teamTableStandings, teamRosterTableRoster,
+      profileRosterTableRoster;
   @FXML
   private TableView<RosterRecord> teamRosterTable, profileRosterTable;
   @FXML
@@ -59,15 +73,21 @@ public class LoggedInController implements Initializable {
   @FXML
   private TableView<athleteRecord> athleteTable;
   @FXML
-  private AnchorPane hiddenFromFans;
+  private AnchorPane hiddenFromFans, hideLogoScreen;
   @FXML
   private Pane paneAthletePieChart, paneTeamPieChart;
   @FXML
-  private Button teamButton, athleteButton, profileButton;
+  private Button teamButton, athleteButton, profileButton, acceptInviteButton, declineInviteButton;
   @FXML
   public GridPane daysOfTheWeek;
   @FXML
   public Label yearLabel;
+  @FXML
+  private ListView<String> newsTextArea;
+  @FXML
+  private GridPane calendarView;
+  @FXML
+  private Label monthLabel;
 
   private LocalDate today;
   private LocalDate date;
@@ -75,17 +95,9 @@ public class LoggedInController implements Initializable {
   private Month currentMonth;
   private int currentYear;
   private int currentDay;
-
-
   private Map<String, String> gameDataMap = new HashMap<>();
-
   private Tooltip gameInfoToolTip;
-
-  @FXML
-  private GridPane calendarView;
-
-  @FXML
-  private Label monthLabel;
+  private String messageSelected, objectOfMessage;
 
   //Logs out current user and returns them to main log-in scene.
   @FXML
@@ -99,19 +111,65 @@ public class LoggedInController implements Initializable {
   // Initialize Method used to populate all tables and labels depending on login credentials and general data.
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
+    populateHomeTab();
     populateProfileTab();
     initializeCalendar();
     populateTeamTab();
     populateAthleteTab();
   }
 
+  private void populateHomeTab() {
+    newsTextArea.getSelectionModel().selectedItemProperty().addListener(
+        new ChangeListener<String>() {
+          @Override
+          public void changed(ObservableValue<? extends String> observable, String oldValue,
+              String newValue) {
+            declineInviteButton.setDisable(false);
+            acceptInviteButton.setDisable(false);
+            messageSelected = newValue;
+            if (!messageSelected.isEmpty() && messageSelected != null) {
+              String[] teamExtract = messageSelected.split("\"");
+              objectOfMessage = teamExtract[1];
+            }
+          }
+        });
+    if (MainController.currentUserAccountType.equals("Fan")) {
+      hideLogoScreen.setVisible(false);
+      hideLogoScreen.setDisable(true);
+    }
+    if (MainController.currentUserAccountType.equals("Manager")){
+      acceptInviteButton.setVisible(false);
+      declineInviteButton.setText("Dismiss Message");
+    }
+    try {
+      FileReader fr = new FileReader("Messages.txt");
+      BufferedReader br = new BufferedReader(fr);
+      String string;
+      while (true) {
+        string = br.readLine();
+        if (string == null) {
+          break;
+        } else if (string.contains("userID=")) {
+          String[] splitIDTeam = string.split("\\s+");
+          String[] compareID = splitIDTeam[0].split("userID=");
+          if (String.valueOf(MainController.currentUserID).equals(compareID[1])) {
+            string = br.readLine();
+            newsTextArea.getItems().add(string);
+          }
+        }
+      }
+      br.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+  }
+
   /**
-   * Updates information on the profile tab based on the user who is currently logged in. Scene labels are modified
-   * based on which account type is being viewed. For Athletes, the wins and losses, as well as the team they are on,
-   * are read from file as strings using a BufferedReader.
+   * Updates information on the profile tab based on the user who is currently logged in. Scene
+   * labels are modified based on which account type is being viewed. For Athletes, the wins and
+   * losses, as well as the team they are on, are read from file as strings using a BufferedReader.
    *
-   * @exception IOException - handled by try/catch for reading from the account type files.
+   * @throws IOException - handled by try/catch for reading from the account type files.
    */
   private void populateProfileTab() {
     String thisUser = MainController.currentUserName;
@@ -145,8 +203,11 @@ public class LoggedInController implements Initializable {
       } catch (IOException ex) {
         ex.printStackTrace();
       }
+      // If this Athlete belongs to a team:
       if (!thisUserTeam.equals("NoTeam")) {
         profileButton.setText("Leave Team");
+        teamButton.setDisable(true);
+        teamButton.setVisible(false);
       } else {
         profileButton.setDisable(true);
         profileButton.setVisible(false);
@@ -155,6 +216,8 @@ public class LoggedInController implements Initializable {
       athleteButton.setDisable(true);
       athleteButton.setVisible(false);
     } else if (thisAccount.equals("Manager")) {
+      profileButton.setDisable(true);
+      profileButton.setVisible(false);
       try {
         FileReader fr = new FileReader("Teams.txt");
         BufferedReader br = new BufferedReader(fr);
@@ -196,19 +259,19 @@ public class LoggedInController implements Initializable {
         profileRosterTable.setVisible(false);
       }
     }
-
     // Fill Roster Table if belongs to a team.
     profileRosterTableRoster.setCellValueFactory(new PropertyValueFactory<>("name"));
     profileRosterTable.setItems(getTeamRoster(thisUserTeam));
   }
 
   /**
-   * Void method used to populate the list of teams on the Teams tab. Information is taken in through a BufferedReader
-   * and stored intro String variables. When a team is selected, these variables are displayed to the right of the list
-   * detailing the team's statistics including a pie chart for win/loss. A roster is set up with a TableView allowing
-   * the current user to see the members of the selected team.
+   * Void method used to populate the list of teams on the Teams tab. Information is taken in
+   * through a BufferedReader and stored intro String variables. When a team is selected, these
+   * variables are displayed to the right of the list detailing the team's statistics including a
+   * pie chart for win/loss. A roster is set up with a TableView allowing the current user to see
+   * the members of the selected team.
    *
-   * @exception IOException - try/catch handling for exception on reading .txt file "Teams".
+   * @throws IOException - try/catch handling for exception on reading .txt file "Teams".
    */
   private void populateTeamTab() {
     // Setup Columns of Team Table and Roster Table
@@ -239,8 +302,9 @@ public class LoggedInController implements Initializable {
                     if (teamName.equals(splitTeamWinLoss[0])) {
                       // Set respective labels to values of Team
                       String manager = br.readLine();
+                      String[] splitNameID = manager.split("\\s+");
                       teamTeamName.setText(teamName);
-                      teamTeamManager.setText(manager);
+                      teamTeamManager.setText(splitNameID[0] + " " + splitNameID[1]);
                       teamWins.setText(splitTeamWinLoss[1]);
                       teamLosses.setText(splitTeamWinLoss[2]);
 
@@ -256,7 +320,7 @@ public class LoggedInController implements Initializable {
                       pieChart.setLegendVisible(false);
                       paneTeamPieChart.getChildren().add(pieChart);
                       pieChart.setMaxSize(250, 250);
-                      pieChart.setMinSize(250,250);
+                      pieChart.setMinSize(250, 250);
 
                       // Set roster table to roster of selected team
                       // Setup roster table name column <RosterRecord>
@@ -279,12 +343,12 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Void method to display all current athletes stored in the program on the Athletes tab. Information is read from a
-   * BufferedReader and stored into String variables. When an athlete is selected from a TableView, their data (name,
-   * wins, losses, and team) is displayed on the screen. A pie chart is used to graphically display their win/loss
-   * record.
+   * Void method to display all current athletes stored in the program on the Athletes tab.
+   * Information is read from a BufferedReader and stored into String variables. When an athlete is
+   * selected from a TableView, their data (name, wins, losses, and team) is displayed on the
+   * screen. A pie chart is used to graphically display their win/loss record.
    *
-   * @exception IOException - try/catch handling for exception on reading .txt file "Athletes".
+   * @throws IOException - try/catch handling for exception on reading .txt file "Athletes".
    */
   private void populateAthleteTab() {
     // Setup Columns of Athlete Table in Athlete Tab
@@ -292,6 +356,8 @@ public class LoggedInController implements Initializable {
         .setCellValueFactory(new PropertyValueFactory<>("name"));
     athleteTableTeam
         .setCellValueFactory(new PropertyValueFactory<>("team"));
+    athleteTableUserID
+        .setCellValueFactory(new PropertyValueFactory<>("userID"));
 
     // Calls a method to read the Athletes.txt file and store into an ObservableList.
     // Then populate cells in Athlete Table with data in List.
@@ -308,9 +374,11 @@ public class LoggedInController implements Initializable {
               athleteRecord selectedAthlete = athleteTable.getSelectionModel().getSelectedItem();
               String strName = selectedAthlete.getName();
               String[] splitStrName = strName.split(",\\s+");
-              String selectedName = splitStrName[1] + " "
+              selectedAthleteName = splitStrName[1] + " "
                   + splitStrName[0];
-              String selectedTeam = selectedAthlete.getTeam();
+              selectedAthleteTeam = selectedAthlete.getTeam();
+              selectedAthleteUserID = selectedAthlete.getuserID();
+              System.out.println("userID=" + selectedAthleteUserID);
               // Search Athletes.txt for matching name and team and set
               // respective labels in athlete tab with name, team, wins, and losses.
               try {
@@ -319,12 +387,12 @@ public class LoggedInController implements Initializable {
                 String checkString;
                 while (true) {
                   if ((checkString = br.readLine()) != null) {
-                    if ((splitStrName[1] + " " + splitStrName[0]).equals(checkString)) {
+                    String[] splitCheck = checkString.split("\\suserID=");
+                    if ((splitStrName[1] + " " + splitStrName[0]).equals(splitCheck[0])) {
                       String readTeamWinLoss = br.readLine();
                       String[] splitTeamWinLoss = readTeamWinLoss.split("\\s+");
-
-                      if (splitTeamWinLoss[0].equals(selectedTeam)) {
-                        athleteAthleteName.setText(selectedName);
+                      if (splitTeamWinLoss[0].equals(selectedAthleteTeam)) {
+                        athleteAthleteName.setText(selectedAthleteName);
                         athleteTeamName.setText(splitTeamWinLoss[0]);
                         athleteWins.setText(splitTeamWinLoss[1]);
                         athleteLosses.setText(splitTeamWinLoss[2]);
@@ -341,7 +409,7 @@ public class LoggedInController implements Initializable {
                         pieChart.setTitle("Win/Loss Ratio");
                         paneAthletePieChart.getChildren().add(pieChart);
                         pieChart.setMaxSize(250, 250);
-                        pieChart.setMinSize(250,250);
+                        pieChart.setMinSize(250, 250);
                       }
                       break;
                     }
@@ -361,11 +429,12 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Method accesses the "Teams" .txt file to read the manager name and score ratio of a specific team. This data
-   * is passed to the populateTeamTab method to be displayed on screen.
+   * Method accesses the "Teams" .txt file to read the manager name and score ratio of a specific
+   * team. This data is passed to the populateTeamTab method to be displayed on screen.
    *
-   * @return - variable type ObservableList with the win/loss statistics of a team and team manager name.
-   * @exception IOException - try/catch handling for exception on reading .txt file "Teams".
+   * @return - variable type ObservableList with the win/loss statistics of a team and team manager
+   * name.
+   * @throws IOException - try/catch handling for exception on reading .txt file "Teams".
    */
   private ObservableList getTeamRecord() {
 
@@ -383,8 +452,12 @@ public class LoggedInController implements Initializable {
         String[] teamWinLoss = string1.split("\\s+");
         string2 = teamBR.readLine();
         String[] managerFirstLast = string2.split("\\s+");
-        ratio = Double.parseDouble(teamWinLoss[1]) / Double.parseDouble(teamWinLoss[2]);
-        ratio = Double.parseDouble(decimalFormat.format(ratio));
+        if (!teamWinLoss[2].equals("0")) {
+          ratio = Double.parseDouble(teamWinLoss[1]) / Double.parseDouble(teamWinLoss[2]);
+          ratio = Double.parseDouble(decimalFormat.format(ratio));
+        } else {
+          ratio = Double.parseDouble(teamWinLoss[1]);
+        }
         TeamRecord newRecord = new TeamRecord(teamWinLoss[0], teamWinLoss[1], ratio);
         records.add(newRecord);
       }
@@ -396,11 +469,12 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Method accesses the "Athletes" .txt file to read the athlete name and their respective win/loss ratio. This data
-   * is passed to the populateAthleteTab method to be displayed on screen.
+   * Method accesses the "Athletes" .txt file to read the athlete name and their respective win/loss
+   * ratio. This data is passed to the populateAthleteTab method to be displayed on screen.
    *
-   * @return - variable type ObservableList with the win/loss statistics of an athlete and their name.
-   * @exception IOException - try/catch handling for exception on reading .txt file "Athletes".
+   * @return - variable type ObservableList with the win/loss statistics of an athlete and their
+   * name.
+   * @throws IOException - try/catch handling for exception on reading .txt file "Athletes".
    */
   private ObservableList getAthleteRecord() {
     String temp1;
@@ -414,11 +488,13 @@ public class LoggedInController implements Initializable {
         if (temp1 == null) {
           break;
         }
-        String[] tempSplit1 = temp1.split("\\s+");
+        String[] splitFirstLastID = temp1.split("\\s+");
+        String[] splitForID = splitFirstLastID[2].split("userID=");
         temp2 = br.readLine();
-        String[] tempSplit2 = temp2.split("\\s+");
-        athleteRecord newRecord = new athleteRecord(tempSplit1[0], tempSplit1[1],
-            tempSplit2[0]);
+        //System.out.println(Integer.parseInt(splitForID[1]));
+        String[] splitTeamWinLoss = temp2.split("\\s+");
+        athleteRecord newRecord = new athleteRecord(splitFirstLastID[0], splitFirstLastID[1],
+            splitTeamWinLoss[0], Integer.parseInt(splitForID[1]));
         records.add(newRecord);
       }
       br.close();
@@ -430,11 +506,12 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Method used to store the roster of athletes of a team to be displayed when said team is selected on the Teams tab.
-   * Data is parsed into method populateTeamTab.
+   * Method used to store the roster of athletes of a team to be displayed when said team is
+   * selected on the Teams tab. Data is parsed into method populateTeamTab.
    *
    * @param teamName - Name of team to parse file for.
-   * @return - Observable list of type RosterRecord containing the names of each athlete assigned to that team.
+   * @return - Observable list of type RosterRecord containing the names of each athlete assigned to
+   * that team.
    */
   private ObservableList getTeamRoster(String teamName) {
     String athlete;
@@ -447,7 +524,8 @@ public class LoggedInController implements Initializable {
         if (athlete == null) {
           break;
         }
-        RosterRecord newRecord = new RosterRecord(athlete);
+        String[] splitString = athlete.split(" userID=");
+        RosterRecord newRecord = new RosterRecord(splitString[0]);
         records.add(newRecord);
       }
       teamBR.close();
@@ -507,12 +585,14 @@ public class LoggedInController implements Initializable {
 
     private SimpleStringProperty name;
     private SimpleStringProperty team;
+    private int userID;
 
     //athleteRecord constructor
     // Takes in String parameters firstName, lastName, and team to produce a fresh record of a new athlete.
-    public athleteRecord(String firstName, String lastName, String team) {
+    public athleteRecord(String firstName, String lastName, String team, int userID) {
       this.name = new SimpleStringProperty(lastName + ", " + firstName);
       this.team = new SimpleStringProperty(team);
+      this.userID = userID;
     }
 
     //returns String variable name of athleteRecord object.
@@ -521,8 +601,8 @@ public class LoggedInController implements Initializable {
     }
 
     //sets String variable name of athleteRecord object with passed in String type parameter.
-    public void setName(String nameX) {
-      this.name.set(nameX);
+    public void setName(String name) {
+      this.name.set(name);
     }
 
     //returns String variable team of athleteRecord object.
@@ -531,8 +611,16 @@ public class LoggedInController implements Initializable {
     }
 
     //sets String variable team of athleteRecord object with passed in String type parameter.
-    public void setTeam(String teamX) {
-      this.team.set(teamX);
+    public void setTeam(String team) {
+      this.team.set(team);
+    }
+
+    public int getuserID() {
+      return userID;
+    }
+
+    public void setUserID(int userID) {
+      this.userID = userID;
     }
   }
 
@@ -557,10 +645,264 @@ public class LoggedInController implements Initializable {
     }
   }
 
+  public void declineInviteButtonClicked() {
+    if (MainController.currentUserAccountType.equals("Athlete")) {
+      String[] manager = messageSelected.split("\\s+");
+      respondToManager("declined", (manager[0] + " " + manager[1]), objectOfMessage);
+      removeMessage();
+    } else if (MainController.currentUserAccountType.equals("Manager")){
+      removeMessage();
+    }
+  }
+
+  // Method called when user clicks Accept button.
+  public void acceptInviteButtonClicked() {
+    String teamFile = objectOfMessage + ".txt";
+    System.out.println(teamFile);
+    switch (MainController.currentUserAccountType) {
+      case "Athlete":
+        // If Athlete was already part of a team, remove user from that team.
+        if (!MainController.currentUserTeam.equals("NoTeam")) {
+          removeAthleteFromCurrentTeam();
+        }
+        configureTeamInAccounts(MainController.currentUserTeam, objectOfMessage);
+        configureTeamInAthletes(MainController.currentUserTeam, objectOfMessage);
+        addToTeam(teamFile);
+        String[] manager = messageSelected.split("\\s+");
+        respondToManager("accepted", (manager[0] + " " + manager[1]), objectOfMessage);
+        removeMessage();
+        MainController.currentUserTeam = objectOfMessage;
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Accepted Team Invite");
+        alert.setHeaderText("Team changed!");
+        alert.setContentText("Please sign out and re-sign in to see changes.");
+        alert.showAndWait();
+        break;
+      case "Manager":
+
+        break;
+      default:
+        System.out.println("This shouldn't print.");
+    }
+  }
+
+  private void removeMessage() {
+    try {
+      FileReader fr = new FileReader("Messages.txt");
+      FileWriter fw = new FileWriter("temp.txt");
+      BufferedReader oldFile = new BufferedReader(fr);
+      PrintWriter tempFile = new PrintWriter(fw);
+      String line1 = "";
+      String line2 = "";
+      while (true) {
+        line1 = oldFile.readLine();
+        if (line1 == null) {
+          break;
+        }
+        line2 = oldFile.readLine();
+        if (line2.equals(newsTextArea.getSelectionModel().getSelectedItem())
+            && line1.equals("userID=" + MainController.currentUserID + " "
+            + MainController.currentUserTeam)) {
+          continue;
+        }
+        tempFile.println(line1);
+        tempFile.println(line2);
+      }
+      tempFile.close();
+      oldFile.close();
+
+      File file = new File("temp.txt");
+      OutputStream os = new FileOutputStream("Messages.txt");
+      Files.copy(Paths.get(file.getPath()), os);
+      os.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    int index = newsTextArea.getSelectionModel().getSelectedIndex();
+    newsTextArea.getItems().remove((index), (index + 1));
+  }
+
+  private void respondToManager(String acceptDecline, String manager, String team) {
+    String managerID = "userID=";
+    try {
+      FileWriter fw = new FileWriter("Messages.txt", true);
+      PrintWriter pw = new PrintWriter(fw);
+      FileReader fr = new FileReader("Accounts.txt");
+      BufferedReader br = new BufferedReader(fr);
+      while (true) {
+        String usernameAndId = br.readLine();
+        if (usernameAndId == null) {
+          break;
+        }
+        String name = br.readLine();
+        String accountAndTeam = br.readLine();
+        if (name.equals(manager) && ("Manager " + team).equals(accountAndTeam)) {
+          String[] splitUsernameAndId = usernameAndId.split("\\s+");
+          managerID = splitUsernameAndId[3];
+        }
+      }
+      pw.println(managerID + " " + team);
+      pw.println(MainController.currentUserName + " " + acceptDecline
+          + " your invitation to join team " + team);
+      br.close();
+      pw.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  private void addToTeam(String teamFilePath) {
+    try {
+      FileWriter fw = new FileWriter(teamFilePath, true);
+      PrintWriter pw = new PrintWriter(fw);
+      String[] nameSplit = MainController.currentUserName.split("\\s+");
+      pw.println(nameSplit[1] + ", " + nameSplit[0] + " userID=" + MainController.currentUserID);
+      pw.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  private void configureTeamInAccounts(String oldTeam, String newTeam) {
+    try {
+      FileReader fr = new FileReader("Accounts.txt");
+      FileWriter fw = new FileWriter("temp.txt");
+      BufferedReader oldFile = new BufferedReader(fr);
+      PrintWriter tempFile = new PrintWriter(fw);
+      String line;
+      String compareWith = MainController.currentUserName;
+      while (true) {
+        line = oldFile.readLine();
+        if (line == null) {
+          break;
+        }
+        if (line.contains("userID=" + MainController.currentUserID)) {
+          tempFile.println(line);
+          line = oldFile.readLine();
+          if (line.equals(compareWith)) {
+            tempFile.println(line);
+            line = oldFile.readLine();
+            line = line.replace(oldTeam, newTeam);
+          }
+        }
+        tempFile.println(line);
+      }
+      tempFile.close();
+      oldFile.close();
+
+      File file = new File("temp.txt");
+      OutputStream os = new FileOutputStream("Accounts.txt");
+      Files.copy(Paths.get(file.getPath()), os);
+      os.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  private void configureTeamInAthletes(String oldTeam, String newTeam) {
+    try {
+      FileReader fr = new FileReader("Athletes.txt");
+      FileWriter fw = new FileWriter("temp.txt");
+      BufferedReader oldFile = new BufferedReader(fr);
+      PrintWriter tempFile = new PrintWriter(fw);
+      String line;
+      String compareWith = MainController.currentUserName + " userID="
+          + MainController.currentUserID;
+      while (true) {
+        line = oldFile.readLine();
+        if (line == null) {
+          break;
+        }
+        if (line.equals(compareWith)) {
+          tempFile.println(line);
+          line = oldFile.readLine();
+          line = line.replace(oldTeam, newTeam);
+        }
+        tempFile.println(line);
+      }
+      tempFile.close();
+      oldFile.close();
+
+      File file = new File("temp.txt");
+      OutputStream os = new FileOutputStream("Athletes.txt");
+      Files.copy(Paths.get(file.getPath()), os);
+      os.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  private void removeAthleteFromCurrentTeam() {
+    String oldTeamFilePath = MainController.currentUserTeam + ".txt";
+    try {
+      FileReader fr = new FileReader(oldTeamFilePath);
+      FileWriter fw = new FileWriter("temp.txt");
+      BufferedReader oldFile = new BufferedReader(fr);
+      PrintWriter tempFile = new PrintWriter(fw);
+      String line;
+      while (true) {
+        line = oldFile.readLine();
+        if (line == null) {
+          break;
+        } else if (line.contains("userID=" + MainController.currentUserID)) {
+          continue;
+        } else {
+          tempFile.println(line);
+        }
+      }
+      tempFile.close();
+      oldFile.close();
+
+      File file = new File("temp.txt");
+      OutputStream os = new FileOutputStream(oldTeamFilePath);
+      Files.copy(Paths.get(file.getPath()), os);
+      os.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public void athleteButtonPressed() {
+    FileWriter fw;
+    PrintWriter pw = null;
+    try {
+      fw = new FileWriter("Messages.txt", true);
+      pw = new PrintWriter(fw);
+      pw.println("userID=" + selectedAthleteUserID + " " + MainController.currentUserTeam);
+      pw.println(MainController.currentUserName + " would like you to join \""
+          + MainController.currentUserTeam + "\". Please agree or decline.");
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    } finally {
+      if (pw != null) {
+        pw.close();
+      }
+    }
+  }
+
+  public void teamButtonPressed() {
+
+  }
+
+  public void profileButtonPressed() {
+    if (MainController.currentUserAccountType.equals("Athlete")){
+      if (!MainController.currentUserTeam.equals("NoTeam")) {
+        removeAthleteFromCurrentTeam();
+      }
+      configureTeamInAccounts(MainController.currentUserTeam, "NoTeam");
+      configureTeamInAthletes(MainController.currentUserTeam, "NoTeam");
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Leave Team");
+      alert.setHeaderText("You're now a free lancer!");
+      alert.setContentText("Please sign out and re-sign in to see changes.");
+      alert.showAndWait();
+    }
+  }
+
   //ALL CALENDAR STUFF FROM HERE ON OUT
 
   //Creates calendar upon initialization by FXML Loader. Sets current day by local computer time.
-  private void initializeCalendar(){
+  private void initializeCalendar() {
     today = LocalDate.now();
     date = LocalDate.now();
     setYearMonthAndDay();
@@ -580,7 +922,8 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Method to move to previous month in calendar display. Utilized in button on calendar tab of program.
+   * Method to move to previous month in calendar display. Utilized in button on calendar tab of
+   * program.
    *
    * @param mouseEvent - unused.
    */
@@ -591,8 +934,8 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Generates labels for calendar display in tandem with which month is currently "selected" on the calendar tab.
-   * Labels for month and year are set above the calendar display.
+   * Generates labels for calendar display in tandem with which month is currently "selected" on the
+   * calendar tab. Labels for month and year are set above the calendar display.
    */
   private void setYearMonthAndDay() {
     currentYear = date.getYear();
@@ -605,10 +948,11 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Void method clears all children of the calendar display upon calendar initialization. It iterates through the days
-   * and months of a year while adding labels of games based on date to the appropriate day. These labels are stored in
-   * a hashmap in the gamesToHashMap method. Method finishes executing once the entire "Games" .txt file has been read
-   * and stored into the calendar display.
+   * Void method clears all children of the calendar display upon calendar initialization. It
+   * iterates through the days and months of a year while adding labels of games based on date to
+   * the appropriate day. These labels are stored in a hashmap in the gamesToHashMap method. Method
+   * finishes executing once the entire "Games" .txt file has been read and stored into the calendar
+   * display.
    */
   private void populateGridPane() {
     boolean executed = false;
@@ -631,7 +975,8 @@ public class LoggedInController implements Initializable {
           cell.setPrefSize(calendarView.getWidth(), calendarView.getPrefHeight());
           cell.setStyle("-fx-border-color: black; "
               + "-fx-border-radius: .2");
-          if (dayAsNumber == currentDay && currentMonth == today.getMonth()) {
+          if (dayAsNumber == currentDay && currentMonth == today.getMonth()
+              && currentYear == today.getYear()) {
             cell.setStyle("-fx-border-color: red; "
                 + "-fx-border-radius: .2");
           }
@@ -674,10 +1019,10 @@ public class LoggedInController implements Initializable {
   }
 
   /**
-   * Enters every game read in the "Games" .txt file and stores them into a hashmap. This hashmap is then used to
-   * populate the calendar display in the method populateGridPane.
+   * Enters every game read in the "Games" .txt file and stores them into a hashmap. This hashmap is
+   * then used to populate the calendar display in the method populateGridPane.
    *
-   * @exception IOException - file handling for reading games info.
+   * @throws IOException - file handling for reading games info.
    */
   private void gamesToHashMap() {
     try {

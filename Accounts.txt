@@ -1,66 +1,69 @@
-ecun0000 man0 pass
-Mana Ger
-Manager Team0
-ecun0000 Man1 pass
-Mona Jer
-Manager Team1
-ecun0000 Man2 pass
-Manuel Jur
-Manager Team2
-ecun0000 Thor pass
+ecun0000 Thor pass userID=0
 Thor Odinson
 Athlete Marvel-Comics
-ecun0000 Spiderman pass
+ecun0000 Spiderman pass userID=1
 Peter Parker
 Athlete Marvel-Comics
-ecun0000 IronMan pass
+ecun0000 IronMan pass userID=2
 Tony Stark
 Athlete Marvel-Comics
-ecun0000 CaptainAmerica pass
+ecun0000 CaptainAmerica pass userID=3
 Steve Rogers
 Athlete Marvel-Comics
-ecun0000 Hulk pass
+ecun0000 Hulk pass userID=4
 Bruce Banner
 Athlete Marvel-Comics
-ecun0000 Superman pass
+ecun0000 Superman pass userID=5
 Clark Kent
 Athlete DC-Comics
-ecun0000 Flash pass
+ecun0000 Flash pass userID=6
 Barry Allen
 Athlete DC-Comics
-ecun0000 KidFlash pass
+ecun0000 KidFlash pass userID=7
 Wally West
 Athlete DC-Comics
-ecun0000 Arrow pass
+ecun0000 Arrow pass userID=8
 Oliver Queen
 Athlete DC-Comics
-ecun0000 BlackCanary pass
+ecun0000 BlackCanary pass userID=9
 Laurel Lance
 Athlete DC-Comics
-ecun0000 WhiteCanary pass
+ecun0000 WhiteCanary pass userID=10
 Sara Lance
 Athlete DC-Comics
-ecun0000 Director pass
+ecun0000 Director pass userID=11
 Ava Sharp
 Athlete DC-Comics
-ecun0000 SuperGirl pass
+ecun0000 SuperGirl pass userID=12
 Kara Danvers
 Athlete DC-Comics
-ecun0000 Hawkeye pass
+ecun0000 Hawkeye pass userID=13
 Clint Barton
 Athlete Marvel-Comics
-ecun0000 dcmanager pass
+ecun0000 dcmanager pass userID=14
 Malcolm Wheeler-Nicholson
 Manager DC-Comics
-ecun0000 marvelmanager pass
+ecun0000 marvelmanager pass userID=15
 Martin Goodman
 Manager Marvel-Comics
-ecun0000 rainkd pass
+ecun0000 rainkd pass userID=16
 Kamp Duong
-Fan NoTeam
-ecun0000 ashboi1000 Pikachu
+Fan Marvel-Comics
+ecun0000 ashboi1000 Pikachu userID=17
 Ash Ketchum
 Athlete NoTeam
-ecun0000 RovertS Snave
+ecun0000 RovertS Snave userID=18
 Trevor Evans
 Fan NoTeam
+ecun0000 justAFan pass userID=19
+Biggest Fan
+Fan NoTeam
+ecun0000 freelance pass userID=20
+Stan Lee
+Athlete NoTeam
+ecun0000 michaelScarn ryan userID=21
+Michael Scott
+Athlete NoTeam
+ecun0000 nardDog pass userID=22
+Andy Bernard
+Manager DunderMifflin

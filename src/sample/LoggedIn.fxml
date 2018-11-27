@@ -2,11 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,12 +25,20 @@
                <content>
                   <AnchorPane fx:id="tabAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="577.0" prefWidth="715.0">
                      <children>
-                        <ImageView fitHeight="83.0" fitWidth="413.0" layoutX="203.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@News_Logo.png" />
-                           </image>
-                        </ImageView>
-                        <TextArea fx:id="newsTextArea" editable="false" layoutX="65.0" layoutY="126.0" prefHeight="398.0" prefWidth="605.0" />
+                        <Label id="welcome" layoutX="196.0" layoutY="231.0" text="Welcome to" />
+                        <Label id="logo" layoutX="196.0" layoutY="270.0" text="SPORTS BALL MASTER" />
+                        <AnchorPane fx:id="hideLogoScreen" prefHeight="573.0" prefWidth="733.0">
+                           <children>
+                              <ImageView fitHeight="83.0" fitWidth="413.0" layoutX="203.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@News_Logo.png" />
+                                 </image>
+                              </ImageView>
+                              <ListView fx:id="newsTextArea" layoutX="47.0" layoutY="154.0" prefHeight="279.0" prefWidth="639.0" />
+                              <Button fx:id="acceptInviteButton" disable="true" layoutX="184.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#acceptInviteButtonClicked" text="Accept Invite" />
+                              <Button fx:id="declineInviteButton" disable="true" layoutX="420.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#declineInviteButtonClicked" text="Decline Invite" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </content>
@@ -115,7 +123,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="profileButton" layoutX="439.0" layoutY="21.0" mnemonicParsing="false" text="Unfollow Team, Leave Team, Kick Athlete" />
+                        <Button fx:id="profileButton" layoutX="439.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#profileButtonPressed" text="Unfollow Team, Leave Team, Kick Athlete" />
                         <TableView fx:id="profileRosterTable" layoutX="437.0" layoutY="81.0" prefHeight="464.0" prefWidth="287.0">
                            <columns>
                               <TableColumn fx:id="profileRosterTableRoster" editable="false" minWidth="4.0" prefWidth="284.0" resizable="false" text="Team Roster" />
@@ -205,18 +213,18 @@
                            <columns>
                               <TableColumn fx:id="teamTableName" editable="false" prefWidth="129.0" resizable="false" text="Team Name" />
                               <TableColumn fx:id="teamTableWins" editable="false" prefWidth="68.5" resizable="false" text="Wins" />
-                              <TableColumn fx:id="teamTableStandings" editable="false" maxWidth="101.0" minWidth="0.0" prefWidth="101.0" resizable="false" text="Standing" />
+                              <TableColumn fx:id="teamTableStandings" editable="false" maxWidth="99.0" minWidth="0.0" prefWidth="99.0" resizable="false" text="Standing" />
                            </columns>
                         </TableView>
                         <TableView fx:id="teamRosterTable" layoutX="15.0" layoutY="332.0" prefHeight="215.0" prefWidth="298.0">
                            <columns>
-                              <TableColumn fx:id="teamRosterTableRoster" editable="false" maxWidth="298.0" prefWidth="298.0" resizable="false" text="Roster" />
+                              <TableColumn fx:id="teamRosterTableRoster" editable="false" maxWidth="295.0" prefWidth="295.0" resizable="false" text="Roster" />
                            </columns>
                         </TableView>
                         <Pane fx:id="paneTeamPieChart" layoutX="418.0" layoutY="347.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" />
                         <AnchorPane fx:id="infoAnchorPane" layoutX="366.0" layoutY="14.0" prefHeight="333.0" prefWidth="322.0">
                            <children>
-                              <Label fx:id="createAccountLabel1" layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
+                              <Label layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
                                  <font>
                                     <Font size="31.0" />
                                  </font>
@@ -250,8 +258,9 @@
                      <children>
                         <TableView fx:id="athleteTable" layoutX="14.0" layoutY="14.0" prefHeight="532.0" prefWidth="300.0">
                            <columns>
-                              <TableColumn fx:id="athleteTableName" editable="false" prefWidth="179.0" resizable="false" text="Athlete Name" />
-                              <TableColumn fx:id="athleteTableTeam" editable="false" prefWidth="119.0" resizable="false" text="Team" />
+                              <TableColumn fx:id="athleteTableName" editable="false" prefWidth="156.0" resizable="false" text="Athlete Name" />
+                              <TableColumn fx:id="athleteTableTeam" editable="false" prefWidth="143.0" resizable="false" text="Team" />
+                              <TableColumn fx:id="athleteTableUserID" editable="false" minWidth="0.0" prefWidth="0.0" sortable="false" text="User ID" visible="false" />
                            </columns>
                         </TableView>
                         <Pane fx:id="paneAthletePieChart" layoutX="398.0" layoutY="347.0" maxHeight="302.0" maxWidth="352.0" minHeight="195.0" minWidth="200.0" prefHeight="195.0" prefWidth="265.0" />
@@ -261,12 +270,12 @@
                               <Label layoutX="58.0" layoutY="194.0" styleClass="labelLabels" text="Wins" />
                               <Label layoutX="202.0" layoutY="194.0" styleClass="labelLabels" text="Losses" />
                               <Label layoutX="202.0" layoutY="108.0" styleClass="labelLabels" text="Team" />
-                              <Button fx:id="athleteButton" layoutX="58.0" layoutY="273.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="208.0" text="Invite Athlete to Team" />
+                              <Button fx:id="athleteButton" layoutX="58.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#athleteButtonPressed" prefHeight="41.0" prefWidth="208.0" text="Invite Athlete to Team" />
                               <Label fx:id="athleteAthleteName" layoutX="57.0" layoutY="144.0" styleClass="labelValues" text="---" />
                               <Label fx:id="athleteTeamName" layoutX="202.0" layoutY="144.0" styleClass="labelValues" text="---" />
                               <Label fx:id="athleteWins" layoutX="57.0" layoutY="239.0" styleClass="labelValues" text="---" />
                               <Label fx:id="athleteLosses" layoutX="202.0" layoutY="239.0" styleClass="labelValues" text="---" />
-                              <Label fx:id="createAccountLabel" layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
+                              <Label layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
                                  <font>
                                     <Font size="31.0" />
                                  </font>
