@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -149,7 +151,8 @@ public class CreateNewAccountController implements Initializable {
           // Adds new athlete to Athletes.txt file
           FileWriter athleteFW = new FileWriter("Athletes.txt", true);
           PrintWriter athletePW = new PrintWriter(athleteFW);
-          athletePW.println(account.getFirstName() + " " + account.getLastName());
+          athletePW.println(account.getFirstName() + " " + account.getLastName()
+          + " userID=" + MainController.userID);
           athletePW.println(account.getTeam() + " 0 0");
           athletePW.close();
           break;
@@ -160,7 +163,8 @@ public class CreateNewAccountController implements Initializable {
           FileWriter teamFW = new FileWriter("Teams.txt", true);
           PrintWriter teamPW = new PrintWriter(teamFW);
           teamPW.println(account.getTeam() + " 0 0");
-          teamPW.println(account.getFirstName() + " " + account.getLastName());
+          teamPW.println(account.getFirstName() + " " + account.getLastName()
+          + " userID=" + MainController.userID);
           String newTeamFile = account.getTeam() + ".txt";
           File file = new File(newTeamFile);
           file.createNewFile();
@@ -173,7 +177,8 @@ public class CreateNewAccountController implements Initializable {
 
       // This prints to Accounts.txt, ecun0000 = Error Checking User Name, used to check this line
       // for matching user names.
-      accountPW.println("ecun0000 " + account.getAccountName() + " " + account.getPassword());
+      accountPW.println("ecun0000 " + account.getAccountName() + " "
+          + account.getPassword() + " userID=" + MainController.userID);
       accountPW.println(account.getFirstName() + " " + account.getLastName());
       accountPW.println(account.getAccountType() + " " + account.getTeam());
 
@@ -181,8 +186,10 @@ public class CreateNewAccountController implements Initializable {
     } catch (IOException er) {
       System.out.println("ERROR");
     }
-    AlertBox.display("Account created", "Account Successfully Created. Click"
-        + " \'Ok\' to go sign in");
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Account Created");
+    alert.setHeaderText("You're now signed up!");
+    alert.showAndWait();
     Stage stage = Main.getPrimaryStage();
 
     Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));

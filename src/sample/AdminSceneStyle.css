@@ -32,6 +32,10 @@
   -fx-font-size: 12px;
 }
 
+.button:hover {
+  -fx-background-color: #7ebcea;
+}
+
 .button Text {
   -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.8), 0, 0.0, 0, 1);
 }

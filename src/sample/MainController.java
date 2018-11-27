@@ -4,8 +4,11 @@ package sample;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -13,33 +16,25 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class MainController {
+public class MainController implements Initializable {
 
   @FXML
   private TextField usernameEntered;
   @FXML
   private TextField passwordEntered;
   public static String currentUserName, currentUserAccountType, currentUserTeam;
-
-  @FXML
-  private AnchorPane mainAnchorPane;
-  @FXML
-  private AnchorPane topAnchorPane;
-  @FXML
-  private AnchorPane bottomAnchorPane;
-  @FXML
-  private AnchorPane midAnchorpane;
-  @FXML
-  private Label accountDetailLabel;
+  public static int userID = -1, currentUserID;
 
   /**
-   * Method to check login credentials. Stores textfield entries for Username and Password into String variables. A
-   * text file is then read through using a BufferedReader. Each separate entry is compared to the String variables
-   * until a match is found. Once a match is found, it updates the scene to the post log-in home scene. If no match is
-   * found, a pop-up alert box is triggered passing this message to the user currently accessing the program and clears
-   * the password textfield.
+   * Method to check login credentials. Stores textfield entries for Username and Password into
+   * String variables. A text file is then read through using a BufferedReader. Each separate entry
+   * is compared to the String variables until a match is found. Once a match is found, it updates
+   * the scene to the post log-in home scene. If no match is found, a pop-up alert box is triggered
+   * passing this message to the user currently accessing the program and clears the password
+   * textfield.
    *
-   * @exception IOException - handled by try/catch code block should the file not be found/inaccessible.
+   * @throws IOException - handled by try/catch code block should the file not be
+   * found/inaccessible.
    */
   public void logInButtonPressed() {
     String user = usernameEntered.getText();
@@ -72,6 +67,8 @@ public class MainController {
             String[] splitString = str.split("\\s+");
             this.currentUserAccountType = splitString[0];
             this.currentUserTeam = splitString[1];
+            String[] splitForID = checkForUserName[3].split("userID=");
+            this.currentUserID = Integer.parseInt(splitForID[1]);
             Stage stage = Main.getPrimaryStage();
             Parent root = FXMLLoader.load(getClass().getResource("LoggedIn.fxml"));
             stage.setScene(new Scene(root, 800, 600));
@@ -103,5 +100,28 @@ public class MainController {
     Parent root = FXMLLoader.load(getClass().getResource("CreateNewAccount.fxml"));
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
+  }
+
+  // Initialize method used to set userID to next corresponding
+  // ID for when a new account is created.
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    try {
+      FileReader fr = new FileReader("Accounts.txt");
+      BufferedReader br = new BufferedReader(fr);
+      String string;
+      while ((string = br.readLine()) != null) {
+        if (string.contains("userID=")) {
+          String[] split = string.split(" userID=");
+          userID = Integer.parseInt(split[1]);
+        }
+      }
+      br.close();
+      fr.close();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    userID++;
+    System.out.println(userID);
   }
 }
