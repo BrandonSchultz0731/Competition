@@ -40,10 +40,10 @@ Athlete DC-Comics
 ecun0000 Hawkeye pass userID=13
 Clint Barton
 Athlete Marvel-Comics
-ecun0000 dcmanager pass userID=14
+ecun0000 dcMan pass userID=14
 Malcolm Wheeler-Nicholson
 Manager DC-Comics
-ecun0000 marvelmanager pass userID=15
+ecun0000 marvelMan pass userID=15
 Martin Goodman
 Manager Marvel-Comics
 ecun0000 rainkd pass userID=16

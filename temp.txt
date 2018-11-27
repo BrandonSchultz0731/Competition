@@ -1,0 +1,6 @@
+[userID] [teamName]
+[message]
+userID=23 Marvel-Comics
+Martin Goodman would like you to join "Marvel-Comics". Please agree or decline.
+userID=14 DC-Comics
+Runner Boy declined your invitation to join team DC-Comics
