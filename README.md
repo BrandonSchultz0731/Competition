@@ -9,26 +9,33 @@ and managing intramural basketball programs.
 * Organization of teams led by a manger.
 * Keep track of player and team stats.
 
-## Using The Software
-* Create an account and select the appropriate type 
-	for your *Account Type*. If you already have an account, 
-  enter your credentials (i.e username, password) on the
-	*Login* screen.  
-* Upon logging in, the top of the program screen
-  will have tabs to help allow navigation of the program. 
-  Tabs include: Home, Profile, People, Teams, and Calendar.  
-* Past and upcoming games will be displayed on the calendar.
-  Clicking on a game will open up the day and time for that match,
-  as well as display the two teams competing. If a game that has
-  already finished is clicked on, it will show which team won and
-  which lost.
-* Clicking on a team under the *Teams* tab will open the profile
-  of that team. A team profile will display the team name, manager,
-  roster, and win/loss record.
-* The *People* tab will allow a user to view other user profiles. A
-  user with account type "Fan" will be able to follow an individual 
-  player and team. Their home page will display the record of who 
-  they follow.
+## Account Types and Functions
+* Create an account.
+
+* Fans:  
+  * Follow a specific team.
+  * View the profiles of all athletes and teams.
+  * View a calendar of all scheduled/past games.
+  
+* Athletes:  
+  * Request to join a team.
+  * Accept/decline an invite to a team from a manager.
+  * View own profile as well as other athletes' profiles.
+  * View all team profiles.
+  * View a calendar of all scheduled/past games.
+  
+* Managers:  
+  * Create a team (done during account creation).
+  * Invite an athlete to your team.
+  * View your own team profile as well as others.
+  * view all athlete profiles.
+  * View a calendar of all scheduled/past games.
+  
+* Admin: 
+  * Create games (teams, day).
+  * Edit game statistics (who won, who lost).
+  
+## Installation
 
 ## Credits
 * Nicolas Caceda: *Back-End*
