@@ -12,7 +12,7 @@
 <AnchorPane fx:id="mainAnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0"
   minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@CreateNewAccountStyle.css"
   xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="sample.CreateNewAccountController">
+  fx:controller="Competition.Controller.CreateNewAccountController">
   <children>
     <AnchorPane fx:id="createAccountAnchorPane" layoutX="201.0" layoutY="36.0" maxHeight="524.0"
       maxWidth="400.0" minWidth="400.0" prefHeight="524.0" prefWidth="400.0">

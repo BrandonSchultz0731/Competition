@@ -1,4 +1,4 @@
-package sample;
+package Competition.Model;
 
 public class Manager extends User{
   /**

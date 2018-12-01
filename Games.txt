@@ -1,18 +1,24 @@
-2018-11-22
-Marvel vs DC
-22-13
-2018-11-30
-LumberJacks vs. ForestGnomes
-0-0
-2018-12-1
-Dogs vs. Cats
-0-0
 2018-11-27
-Gators vs. Crocs
-00
-2018-12-13
-Robots vs. Wrestlers
-0-0
-2018-10-28
-Android vs. Apple
+Group1 vs. Presentation
 10-0
+2018-12-4
+Group1 vs. Group2-7
+100-6
+2018-12-7
+Group2 vs. Group3
+0-0
+2018-12-11
+Group3 vs. Group4
+0-0
+2018-12-13
+Group4 vs. Group5
+0-0
+2018-12-18
+Group5 vs. Group6
+0-0
+2018-12-22
+Group6 vs. Group7
+0-0
+2018-12-25
+Santa vs. TheWorld
+0-0

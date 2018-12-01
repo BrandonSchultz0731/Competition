@@ -1,6 +1,8 @@
-package sample;
+package Competition.Controller;
 
 
+import Competition.Model.AlertBox;
+import Competition.Model.Main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,9 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
@@ -43,7 +43,7 @@ public class MainController implements Initializable {
     if (user.equals("admin") && pass.equals("admin")) {
       Stage stage = Main.getPrimaryStage();
       try {
-        Parent root = FXMLLoader.load(getClass().getResource("AdminScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/AdminScene.fxml"));
         stage.setScene(new Scene(root, 800, 600));
       } catch (IOException ex) {
         ex.printStackTrace();
@@ -70,7 +70,7 @@ public class MainController implements Initializable {
             String[] splitForID = checkForUserName[3].split("userID=");
             this.currentUserID = Integer.parseInt(splitForID[1]);
             Stage stage = Main.getPrimaryStage();
-            Parent root = FXMLLoader.load(getClass().getResource("LoggedIn.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../View/LoggedIn.fxml"));
             stage.setScene(new Scene(root, 800, 600));
             stage.show();
           }
@@ -97,7 +97,7 @@ public class MainController implements Initializable {
   @FXML
   public void createAccountButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-    Parent root = FXMLLoader.load(getClass().getResource("CreateNewAccount.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("../View/CreateNewAccount.fxml"));
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }
@@ -117,11 +117,10 @@ public class MainController implements Initializable {
         }
       }
       br.close();
-      fr.close();
     } catch (IOException ex) {
       ex.printStackTrace();
     }
     userID++;
-    System.out.println(userID);
+    System.out.println("Next available user ID for newly created account is: " + userID);
   }
 }

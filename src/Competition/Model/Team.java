@@ -1,4 +1,4 @@
-package sample;
+package Competition.Model;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,6 @@ public class Team {
     this.name = name;
     this.wins = wins;
     this.losses = losses;
-    //this.manager =
   }
 
   /**

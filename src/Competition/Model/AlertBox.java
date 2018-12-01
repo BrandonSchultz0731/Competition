@@ -1,4 +1,4 @@
-package sample;
+package Competition.Model;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
