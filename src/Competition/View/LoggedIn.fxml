@@ -224,7 +224,7 @@
                         <Pane fx:id="paneTeamPieChart" layoutX="418.0" layoutY="347.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" />
                         <AnchorPane fx:id="infoAnchorPane" layoutX="366.0" layoutY="14.0" prefHeight="333.0" prefWidth="322.0">
                            <children>
-                              <Label layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="ATHLETE INFORMATION">
+                              <Label layoutX="82.0" layoutY="27.0" prefHeight="19.0" prefWidth="160.0" text="TEAM INFORMATION">
                                  <font>
                                     <Font size="31.0" />
                                  </font>

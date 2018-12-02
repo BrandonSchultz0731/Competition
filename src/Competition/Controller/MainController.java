@@ -79,6 +79,7 @@ public class MainController implements Initializable {
           AlertBox.display("No Account", "Could Not Find Account. Please"
               + " Try Again or Create Account");
           passwordEntered.clear();
+          passwordEntered.requestFocus();
         }
         br.close();
 
