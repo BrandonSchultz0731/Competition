@@ -1,6 +1,0 @@
-Banner, Bruce userID=4
-Barton, Clint userID=13
-Parker, Peter userID=1
-Rogers, Steve userID=3
-Stark, Tony userID=2
-Odinson, Thor userID=0

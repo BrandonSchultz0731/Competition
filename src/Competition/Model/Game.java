@@ -1,4 +1,4 @@
-package sample;
+package Competition.Model;
 
 import java.util.Date;
 

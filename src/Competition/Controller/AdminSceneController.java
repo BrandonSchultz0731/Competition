@@ -1,5 +1,6 @@
-package sample;
+package Competition.Controller;
 
+import Competition.Model.Main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,12 +16,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -46,6 +48,7 @@ public class AdminSceneController implements Initializable {
   private int indexOfSelected = -1;
   // String array used for splitting score string at "-" to get score values for each team.
   private String[] scores;
+  private Alert alert = new Alert(AlertType.ERROR);
 
   // Instructions to run when scene loaded
   @Override
@@ -126,6 +129,14 @@ public class AdminSceneController implements Initializable {
    * */
   @FXML
   public void createGameButtonPressed() {
+    if (team1TextField.getText().contains(" ") || team1TextField.getText().isEmpty()
+        || team2TextField.getText().contains(" ") || team2TextField.getText().isEmpty()) {
+      alert.setTitle("Input Error");
+      alert.setHeaderText("Text Fields Cannot Contain Spaces or be empty");
+      alert.setContentText("Please enter a valid team name into the input fields.");
+      alert.showAndWait();
+      return;
+    }
     try {
       FileWriter gameFW = new FileWriter("Games.txt", true);
       PrintWriter gamePW = new PrintWriter(gameFW);
@@ -155,6 +166,14 @@ public class AdminSceneController implements Initializable {
    * */
   @FXML
   public void submitButtonPressed() {
+    if (scoreField1.getText().contains(" ") || scoreField1.getText().isEmpty()
+        || scoreField2.getText().contains(" ") || scoreField2.getText().isEmpty()) {
+      alert.setTitle("Input Error");
+      alert.setHeaderText("Text Fields Cannot Contain Spaces or be empty");
+      alert.setContentText("Please enter a numeric value into the input fields.");
+      alert.showAndWait();
+      return;
+    }
     createdGamesList.getItems().add(indexOfSelected,
         scoreField1.getText() + "-" + scoreField2.getText());
     createdGamesList.getItems().remove((indexOfSelected + 1), (indexOfSelected + 2));
@@ -185,6 +204,7 @@ public class AdminSceneController implements Initializable {
         String score = br.readLine();
         createdGamesList.getItems().addAll(date, teams, score);
       }
+      br.close();
     } catch (IOException ex) {
       ex.printStackTrace();
       System.out.println("Unable to load file \"Games.txt\"");
@@ -194,7 +214,7 @@ public class AdminSceneController implements Initializable {
   // Method to call when the Back button is pressed, changes scene to the main scene.
   public void backButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-    Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("../View/main.fxml"));
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }

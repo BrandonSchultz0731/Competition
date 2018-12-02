@@ -1,7 +1,3 @@
-* {
-
-}
-
 /* background styling */
 .root {
   -fx-background-color: #FFFFFF;
@@ -15,7 +11,7 @@
   -fx-background-color: #D1D3D6;
 }
 
-#createAccountAnchorPane {
+.innerPanes {
   -fx-background-color: #FFFFFF;
 }
 
@@ -44,13 +40,19 @@
   -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.8), 0, 0.0, 0, 1);
 }
 
+.button:pressed{
+  -fx-background-color: #eaba4c;
+}
 /* label styling */
 .label {
   -fx-font-size: 12px;
   -fx-font-weight: bold;
-  -fx-font-family: "Times New Roman", Times, serif;;
+  -fx-font-family: "Times New Roman", Times, serif;
 }
-
+.innerLabels{
+  -fx-text-fill: #000;
+  -fx-font-size: 15px;
+}
 /* label of account detail styling */
 #createAccountLabel {
   -fx-font-size: 16px;

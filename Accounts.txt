@@ -1,69 +1,135 @@
-ecun0000 Thor pass userID=0
-Thor Odinson
-Athlete Marvel-Comics
-ecun0000 Spiderman pass userID=1
-Peter Parker
-Athlete Marvel-Comics
-ecun0000 IronMan pass userID=2
-Tony Stark
-Athlete Marvel-Comics
-ecun0000 CaptainAmerica pass userID=3
-Steve Rogers
-Athlete Marvel-Comics
-ecun0000 Hulk pass userID=4
-Bruce Banner
-Athlete Marvel-Comics
-ecun0000 Superman pass userID=5
-Clark Kent
-Athlete DC-Comics
-ecun0000 Flash pass userID=6
-Barry Allen
-Athlete DC-Comics
-ecun0000 KidFlash pass userID=7
-Wally West
-Athlete DC-Comics
-ecun0000 Arrow pass userID=8
-Oliver Queen
-Athlete DC-Comics
-ecun0000 BlackCanary pass userID=9
-Laurel Lance
-Athlete DC-Comics
-ecun0000 WhiteCanary pass userID=10
-Sara Lance
-Athlete DC-Comics
-ecun0000 Director pass userID=11
-Ava Sharp
-Athlete DC-Comics
-ecun0000 SuperGirl pass userID=12
-Kara Danvers
-Athlete DC-Comics
-ecun0000 Hawkeye pass userID=13
-Clint Barton
-Athlete Marvel-Comics
-ecun0000 dcMan pass userID=14
-Malcolm Wheeler-Nicholson
-Manager DC-Comics
-ecun0000 marvelMan pass userID=15
-Martin Goodman
-Manager Marvel-Comics
-ecun0000 rainkd pass userID=16
+ecun0000 bSchultz password userID=0
+Brandon Schultz
+Athlete Group1
+ecun0000 kDuong password userID=1
 Kamp Duong
-Fan Marvel-Comics
-ecun0000 ashboi1000 Pikachu userID=17
-Ash Ketchum
-Athlete NoTeam
-ecun0000 RovertS Snave userID=18
+Athlete Group1
+ecun0000 lMendez password userID=2
+Luis Mendez
+Athlete Group1
+ecun0000 nCaceda password userID=3
+Nicolas Caceda
+Athlete Group1
+ecun0000 tEvans password userID=4
 Trevor Evans
-Fan NoTeam
-ecun0000 justAFan pass userID=19
-Biggest Fan
-Fan NoTeam
-ecun0000 freelance pass userID=20
+Athlete Group1
+ecun0000 bPalomino password userID=5
+Brandon Palomino
+Athlete Group2
+ecun0000 dMorgan password userID=6
+Damian Morgan
+Athlete Group2
+ecun0000 eAndino password userID=7
+Eddie Andino
+Athlete Group2
+ecun0000 hPaxton password userID=8
+Harrison Paxton
+Athlete Group2
+ecun0000 mArmbruster password userID=9
+Marion Armbruster
+Athlete Group2
+ecun0000 bWithrow password userID=10
+Brian Withrow
+Athlete Group4
+ecun0000 cReyes password userID=11
+Carlos Reyes
+Athlete Group4
+ecun0000 jHood password userID=12
+James Hood
+Athlete Group3
+ecun0000 aHoward password userID=13
+Andrew Howard
+Athlete Group3
+ecun0000 aHorvath password userID=14
+Anthony Horvath
+Athlete Group3
+ecun0000 jZamora password userID=15
+Joshua Zamora
+Athlete Group3
+ecun0000 rMcGuire password userID=16
+Ryan McGuire
+Athlete Group3
+ecun0000 hDanielson password userID=17
+Hunter Danielson
+Athlete Group4
+ecun0000 mMarks password userID=18
+Martin Marks
+Athlete Group4
+ecun0000 tVergara password userID=19
+Tomas Vergara
+Athlete Group4
+ecun0000 aHorne password userID=20
+Austin Horne
+Athlete Group5
+ecun0000 bLarson password userID=21
+Brad Larson
+Athlete Group5
+ecun0000 gGraber password userID=22
+Garrett Graber
+Athlete Group5
+ecun0000 nMartina password userID=23
+Nicolo Martina
+Athlete Group5
+ecun0000 pPetit-Frere password userID=24
+Philemon Petit-Frere
+Athlete Group5
+ecun0000 aMohammed password userID=25
+Armand Mohammed
+Athlete Group6
+ecun0000 cPadgett password userID=26
+Christopher Padgett
+Athlete Group6
+ecun0000 jMedina password userID=27
+Jordin Medina
+Athlete Group6
+ecun0000 jAriza password userID=28
+Juan Ariza
+Athlete Group6
+ecun0000 kMcclenithan password userID=29
+Kevin Mcclenithan
+Athlete Group6
+ecun0000 kGutierrez password userID=30
+Kyara Gutierrez
+Athlete Group6
+ecun0000 aSanchez password userID=31
+Alejandro Sanchez-Padron
+Athlete Group7
+ecun0000 aTelson password userID=32
+Allen Telson
+Athlete Group7
+ecun0000 cBicknese password userID=33
+Christopher Bicknese
+Athlete Group7
+ecun0000 fPierre password userID=34
+Flornaldine Pierre
+Athlete Group7
+ecun0000 rDarrow password userID=35
+Robert Darrow
+Athlete Group7
+ecun0000 manager1 password userID=36
 Stan Lee
+Manager Group1
+ecun0000 manager2 password userID=37
+Clark Kent
+Manager Group2
+ecun0000 manager3 password userID=38
+Bruce Wayne
+Manager Group3
+ecun0000 manager4 password userID=39
+Tony Stark
+Manager Group4
+ecun0000 manager5 password userID=40
+Steve Rogers
+Manager Group5
+ecun0000 manager6 password userID=41
+Bruce Banner
+Manager Group6
+ecun0000 manager7 password userID=42
+Barry Allen
+Manager Group7
+ecun0000 ceiling password userID=43
+Dyson Phan
+Fan Group1
+ecun0000 newAthlete password userID=44
+Runner Boy
 Athlete NoTeam
-ecun0000 michaelScarn ryan userID=21
-Michael Scott
-Athlete NoTeam
-ecun0000 nardDog pass userID=22
-Andy Bernard
-Manager DunderMifflin

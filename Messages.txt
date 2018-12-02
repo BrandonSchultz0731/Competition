@@ -1,2 +1,6 @@
 [userID] [teamName]
 [message]
+userID=44 Group1
+Stan Lee would like you to join "Group1". Please agree or decline.
+userID=44 Group2
+Clark Kent would like you to join "Group2". Please agree or decline.

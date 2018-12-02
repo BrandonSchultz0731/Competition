@@ -1,8 +1,0 @@
-Allen, Barry userID=6
-Danvers, Kara userID=12
-Kent, Clark userID=5
-Lance, Laurel userID=9
-Lance, Sara userID=10
-Queen, Oliver userID=8
-Sharp, Ava userID=11
-West, Wally userID=7

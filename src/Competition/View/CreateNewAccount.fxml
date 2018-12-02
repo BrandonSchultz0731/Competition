@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@CreateNewAccountStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Competition.Controller.CreateNewAccountController">
+  <children>
+    <AnchorPane fx:id="createAccountAnchorPane" layoutX="201.0" layoutY="36.0" maxHeight="524.0" maxWidth="400.0" minWidth="400.0" prefHeight="524.0" prefWidth="400.0">
+      <children>
+        <AnchorPane fx:id="pane0" layoutY="50.0" prefHeight="479.0" prefWidth="400.0">
+          <children>
+            <ChoiceBox fx:id="accountTypeChoice" layoutX="111.0" layoutY="-5.0" onMouseEntered="#setAccountTypeChoice" prefHeight="36.0" prefWidth="234.0" />
+            <Label layoutX="27.0" layoutY="63.0" text="Username:" />
+            <Label layoutX="27.0" layoutY="124.0" text="Password:" />
+            <TextField fx:id="createUsername" layoutX="26.0" layoutY="77.0" prefHeight="37.0" prefWidth="319.0" promptText="Enter Username" />
+            <PasswordField fx:id="createPassword" layoutX="26.0" layoutY="138.0" prefHeight="37.0" prefWidth="319.0" promptText="Enter Password" />
+            <Label layoutX="27.0" layoutY="185.0" text="First Name:" />
+            <TextField fx:id="createFirstName" layoutX="25.0" layoutY="199.0" prefHeight="37.0" prefWidth="319.0" promptText="Enter First Name" />
+            <Label layoutX="26.0" layoutY="245.0" text="Last Name:" />
+            <TextField fx:id="createLastName" layoutX="26.0" layoutY="258.0" prefHeight="37.0" prefWidth="319.0" promptText="Enter Last Name" />
+            <Label fx:id="createTeamLabel" disable="true" layoutX="27.0" layoutY="305.0" text="Team Name:" visible="false" />
+            <TextField fx:id="createTeam" disable="true" layoutX="27.0" layoutY="317.0" prefHeight="37.0" prefWidth="319.0" visible="false" />
+            <Line endX="258.0" layoutX="86.0" layoutY="53.0" startX="-60.0" />
+            <Label layoutX="26.0" layoutY="7.0" text="Account Type:" />
+            <Line endX="62.0" endY="7.0" layoutX="152.0" layoutY="454.0" startX="62.0" startY="-85.0" />
+            <Label layoutX="225.0" layoutY="369.0" prefHeight="19.0" prefWidth="135.0" text="Already have an account?" />
+            <Label layoutX="228.0" layoutY="388.0" prefHeight="19.0" prefWidth="102.0" text="Click Back" />
+          </children>
+        </AnchorPane>
+        <Button fx:id="createButton" layoutX="26.0" layoutY="418.0" mnemonicParsing="false" onAction="#createButtonClicked" prefHeight="41.0" prefWidth="169.0" text="Agree and Continue" />
+        <Button fx:id="backButton" layoutX="25.0" layoutY="469.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="37.0" prefWidth="169.0" text="Back" />
+        <Label fx:id="createAccountLabel" layoutX="120.0" layoutY="14.0" prefHeight="19.0" prefWidth="160.0" text="CREATE ACCOUNT">
+          <font>
+            <Font size="31.0" />
+          </font>
+        </Label>
+      </children>
+    </AnchorPane>
+    <AnchorPane fx:id="topAnchorPane" prefHeight="27.0" prefWidth="800.0">
+      <children>
+        <Label alignment="CENTER" layoutX="325.0" layoutY="1.0" prefHeight="26.0" prefWidth="151.0" text="SPORTS BALL MASTER" textFill="WHITE">
+          <font>
+            <Font size="31.0" />
+          </font>
+        </Label>
+      </children>
+    </AnchorPane>
+    <AnchorPane fx:id="bottomAnchorPane" layoutY="573.0" prefHeight="19.0" prefWidth="800.0">
+      <children>
+        <Label layoutX="10.0" layoutY="1.0" prefHeight="26.0" prefWidth="287.0" text="Copyright © 2018 Official Team 0, All rights reserved." textFill="#6f6b6b" />
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>

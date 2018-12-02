@@ -1,6 +1,14 @@
-DC-Comics 37 73
-Malcolm Wheeler-Nicholson
-Marvel-Comics 50 23
-Martin Goodman
-DunderMifflin 1 0
-Andy Bernard userID=22
+Group1 10 0
+Stan Lee userID=36
+Group2 2 1
+Clark Kent userID=37
+Group3 5 1
+Bruce Wayne userID=38
+Group4 6 2
+Tony Stark userID=39
+Group5 3 1
+Steve Rogers userID=40
+Group6 4 3
+Bruce Banner userID=41
+Group7 5 2
+Barry Allen userID=42

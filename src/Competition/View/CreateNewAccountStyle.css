@@ -15,7 +15,7 @@
   -fx-background-color: #D1D3D6;
 }
 
-#midAnchorpane {
+#createAccountAnchorPane {
   -fx-background-color: #FFFFFF;
 }
 
@@ -44,6 +44,9 @@
   -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.8), 0, 0.0, 0, 1);
 }
 
+.button:pressed{
+  -fx-background-color: #eaba4c;
+}
 /* label styling */
 .label {
   -fx-font-size: 12px;
@@ -52,7 +55,7 @@
 }
 
 /* label of account detail styling */
-#accountDetailLabel {
+#createAccountLabel {
   -fx-font-size: 16px;
   -fx-font-weight: bold;
   -fx-font-family: "Times New Roman", Times, serif;;
@@ -62,5 +65,11 @@
 .text-field {
   -fx-background-color: #D1D3D6;
   -fx-padding: 10 25 10 25;
+}
+
+/* choice box styling */
+.choice-box {
+  -fx-background-color: #D1D3D6;
+  -fx-padding: 7 20 7 20;
 }
 

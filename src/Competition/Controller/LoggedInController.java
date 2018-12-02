@@ -1,7 +1,8 @@
-package sample;
+package Competition.Controller;
 
 import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
 
+import Competition.Model.Main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -71,7 +72,7 @@ public class LoggedInController implements Initializable {
   @FXML
   private TableView<TeamRecord> teamTeamTable;
   @FXML
-  private TableView<athleteRecord> athleteTable;
+  private TableView<AthleteRecord> athleteTable;
   @FXML
   private AnchorPane hiddenFromFans, hideLogoScreen;
   @FXML
@@ -103,7 +104,7 @@ public class LoggedInController implements Initializable {
   @FXML
   public void signOutButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-    Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("../View/main.fxml"));
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }
@@ -137,7 +138,7 @@ public class LoggedInController implements Initializable {
       hideLogoScreen.setVisible(false);
       hideLogoScreen.setDisable(true);
     }
-    if (MainController.currentUserAccountType.equals("Manager")){
+    if (MainController.currentUserAccountType.equals("Manager")) {
       acceptInviteButton.setVisible(false);
       declineInviteButton.setText("Dismiss Message");
     }
@@ -333,6 +334,7 @@ public class LoggedInController implements Initializable {
                     break;
                   }
                 }
+                br.close();
               } catch (IOException ex) {
                 ex.printStackTrace();
               }
@@ -371,14 +373,14 @@ public class LoggedInController implements Initializable {
               TablePosition oldValue, TablePosition newValue) {
             if (athleteTable.getSelectionModel().getSelectedCells() != null) {
               // Get selected row's name and team values
-              athleteRecord selectedAthlete = athleteTable.getSelectionModel().getSelectedItem();
+              AthleteRecord selectedAthlete = athleteTable.getSelectionModel().getSelectedItem();
               String strName = selectedAthlete.getName();
               String[] splitStrName = strName.split(",\\s+");
               selectedAthleteName = splitStrName[1] + " "
                   + splitStrName[0];
               selectedAthleteTeam = selectedAthlete.getTeam();
               selectedAthleteUserID = selectedAthlete.getuserID();
-              System.out.println("userID=" + selectedAthleteUserID);
+              //System.out.println("userID=" + selectedAthleteUserID);
               // Search Athletes.txt for matching name and team and set
               // respective labels in athlete tab with name, team, wins, and losses.
               try {
@@ -479,7 +481,7 @@ public class LoggedInController implements Initializable {
   private ObservableList getAthleteRecord() {
     String temp1;
     String temp2;
-    ObservableList<athleteRecord> records = FXCollections.observableArrayList();
+    ObservableList<AthleteRecord> records = FXCollections.observableArrayList();
     try {
       FileReader fr = new FileReader("Athletes.txt");
       BufferedReader br = new BufferedReader(fr);
@@ -493,7 +495,7 @@ public class LoggedInController implements Initializable {
         temp2 = br.readLine();
         //System.out.println(Integer.parseInt(splitForID[1]));
         String[] splitTeamWinLoss = temp2.split("\\s+");
-        athleteRecord newRecord = new athleteRecord(splitFirstLastID[0], splitFirstLastID[1],
+        AthleteRecord newRecord = new AthleteRecord(splitFirstLastID[0], splitFirstLastID[1],
             splitTeamWinLoss[0], Integer.parseInt(splitForID[1]));
         records.add(newRecord);
       }
@@ -535,7 +537,7 @@ public class LoggedInController implements Initializable {
     return records;
   }
 
-  public class TeamRecord {
+  public static class TeamRecord {
 
     private SimpleStringProperty name, standings;
     private int wins;
@@ -581,36 +583,36 @@ public class LoggedInController implements Initializable {
   }
 
   // Local class used to hold data of selected row in Athlete Table View.
-  public class athleteRecord {
+  public static class AthleteRecord {
 
     private SimpleStringProperty name;
     private SimpleStringProperty team;
     private int userID;
 
-    //athleteRecord constructor
+    //AthleteRecord constructor
     // Takes in String parameters firstName, lastName, and team to produce a fresh record of a new athlete.
-    public athleteRecord(String firstName, String lastName, String team, int userID) {
+    public AthleteRecord(String firstName, String lastName, String team, int userID) {
       this.name = new SimpleStringProperty(lastName + ", " + firstName);
       this.team = new SimpleStringProperty(team);
       this.userID = userID;
     }
 
-    //returns String variable name of athleteRecord object.
+    //returns String variable name of AthleteRecord object.
     public String getName() {
       return name.get();
     }
 
-    //sets String variable name of athleteRecord object with passed in String type parameter.
+    //sets String variable name of AthleteRecord object with passed in String type parameter.
     public void setName(String name) {
       this.name.set(name);
     }
 
-    //returns String variable team of athleteRecord object.
+    //returns String variable team of AthleteRecord object.
     public String getTeam() {
       return team.get();
     }
 
-    //sets String variable team of athleteRecord object with passed in String type parameter.
+    //sets String variable team of AthleteRecord object with passed in String type parameter.
     public void setTeam(String team) {
       this.team.set(team);
     }
@@ -624,7 +626,7 @@ public class LoggedInController implements Initializable {
     }
   }
 
-  public class RosterRecord {
+  public static class RosterRecord {
 
     private SimpleStringProperty name;
 
@@ -650,7 +652,7 @@ public class LoggedInController implements Initializable {
       String[] manager = messageSelected.split("\\s+");
       respondToManager("declined", (manager[0] + " " + manager[1]), objectOfMessage);
       removeMessage();
-    } else if (MainController.currentUserAccountType.equals("Manager")){
+    } else if (MainController.currentUserAccountType.equals("Manager")) {
       removeMessage();
     }
   }
@@ -658,7 +660,7 @@ public class LoggedInController implements Initializable {
   // Method called when user clicks Accept button.
   public void acceptInviteButtonClicked() {
     String teamFile = objectOfMessage + ".txt";
-    System.out.println(teamFile);
+    //System.out.println(teamFile);
     switch (MainController.currentUserAccountType) {
       case "Athlete":
         // If Athlete was already part of a team, remove user from that team.
@@ -718,8 +720,12 @@ public class LoggedInController implements Initializable {
     } catch (IOException ex) {
       ex.printStackTrace();
     }
-    int index = newsTextArea.getSelectionModel().getSelectedIndex();
-    newsTextArea.getItems().remove((index), (index + 1));
+    if (newsTextArea.getItems().size() > 1) {
+      int index = newsTextArea.getSelectionModel().getSelectedIndex();
+      newsTextArea.getItems().remove((index), (index + 1));
+    } else {
+      newsTextArea.getItems().clear();
+    }
   }
 
   private void respondToManager(String acceptDecline, String manager, String team) {
@@ -881,16 +887,80 @@ public class LoggedInController implements Initializable {
   }
 
   public void teamButtonPressed() {
-
+    // Fan to follow team
+    if (MainController.currentUserAccountType.equals("Fan")) {
+      String newTeamName = teamTeamTable.getSelectionModel().getSelectedItem().getName();
+      configureTeamInAccounts(MainController.currentUserTeam, newTeamName);
+      MainController.currentUserTeam = "NoTeam";
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Team Followed");
+      alert.setHeaderText("You're now following " + newTeamName + ".");
+      alert.setContentText("Please sign out and re-sign in to see changes.");
+      alert.showAndWait();
+    }
+    // Athlete to request to join
+    else if (MainController.currentUserAccountType.equals("Athlete")) {
+      FileWriter fw;
+      FileReader fr;
+      PrintWriter pw = null;
+      BufferedReader br = null;
+      TeamRecord selectedTeam = teamTeamTable.getSelectionModel().getSelectedItem();
+      String teamName = selectedTeam.getName();
+      String teamManagerID = "";
+      String[] splitLine = null;
+      try {
+        fw = new FileWriter("Messages.txt", true);
+        fr = new FileReader("Teams.txt");
+        pw = new PrintWriter(fw);
+        br = new BufferedReader(fr);
+        String line;
+        while (true) {
+          line = br.readLine();
+          if (line == null) {
+            break;
+          } else {
+            splitLine = line.split("\\s+");
+            if (splitLine[0].equals(teamName)){
+              line = br.readLine();
+              splitLine = line.split("\\s+");
+              teamManagerID = splitLine[2];
+              //System.out.println(teamManagerID);
+              break;
+            }
+          }
+        }
+        br.close();
+        pw.println(teamManagerID + " " + teamName);
+        pw.println("Athlete \""
+            + MainController.currentUserName + "\" shows interest in your team. Invite them if you like them to join.");
+        pw.close();
+        //pw.println("userID=" + selectedAthleteUserID + " " + MainController.currentUserTeam);
+        //pw.println(MainController.currentUserName + " would like you to join \" + MainController.currentUserTeam + "\". Please agree or decline.");
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
+    }
   }
 
   public void profileButtonPressed() {
-    if (MainController.currentUserAccountType.equals("Athlete")){
+    // Fan to un-follow team
+    if (MainController.currentUserAccountType.equals("Fan")) {
+      configureTeamInAccounts(MainController.currentUserTeam, "NoTeam");
+      MainController.currentUserTeam = "NoTeam";
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Team Unfollowed");
+      alert.setHeaderText("You're now not following any teams.");
+      alert.setContentText("Please sign out and re-sign in to see changes.");
+      alert.showAndWait();
+    }
+    // Athlete to leave their current team
+    else if (MainController.currentUserAccountType.equals("Athlete")) {
       if (!MainController.currentUserTeam.equals("NoTeam")) {
         removeAthleteFromCurrentTeam();
       }
       configureTeamInAccounts(MainController.currentUserTeam, "NoTeam");
       configureTeamInAthletes(MainController.currentUserTeam, "NoTeam");
+      MainController.currentUserTeam = "NoTeam";
       Alert alert = new Alert(AlertType.INFORMATION);
       alert.setTitle("Leave Team");
       alert.setHeaderText("You're now a free lancer!");
