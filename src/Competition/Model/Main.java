@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         setPrimaryStage(primaryStage);
         //primaryStage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("../View/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Competition/View/main.fxml"));
         primaryStage.setTitle("Competition: Sports Ball Master");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
