@@ -34,8 +34,6 @@ and managing intramural basketball programs.
 * Admin: 
   * Create games (teams, day).
   * Edit game statistics (who won, who lost).
-  
-## Installation
 
 ## Credits
 * Nicolas Caceda: *Back-End*
