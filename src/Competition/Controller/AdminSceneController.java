@@ -214,7 +214,7 @@ public class AdminSceneController implements Initializable {
   // Method to call when the Back button is pressed, changes scene to the main scene.
   public void backButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-    Parent root = FXMLLoader.load(getClass().getResource("../View/main.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/Competition/View/main.fxml"));
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }

@@ -43,7 +43,7 @@ public class MainController implements Initializable {
     if (user.equals("admin") && pass.equals("admin")) {
       Stage stage = Main.getPrimaryStage();
       try {
-        Parent root = FXMLLoader.load(getClass().getResource("../View/AdminScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Competition/View/AdminScene.fxml"));
         stage.setScene(new Scene(root, 800, 600));
       } catch (IOException ex) {
         ex.printStackTrace();
@@ -70,7 +70,7 @@ public class MainController implements Initializable {
             String[] splitForID = checkForUserName[3].split("userID=");
             this.currentUserID = Integer.parseInt(splitForID[1]);
             Stage stage = Main.getPrimaryStage();
-            Parent root = FXMLLoader.load(getClass().getResource("../View/LoggedIn.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Competition/View/LoggedIn.fxml"));
             stage.setScene(new Scene(root, 800, 600));
             stage.show();
           }
@@ -98,7 +98,7 @@ public class MainController implements Initializable {
   @FXML
   public void createAccountButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-    Parent root = FXMLLoader.load(getClass().getResource("../View/CreateNewAccount.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/Competition/View/CreateNewAccount.fxml"));
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }

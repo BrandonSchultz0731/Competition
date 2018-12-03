@@ -113,7 +113,7 @@ public class CreateNewAccountController implements Initializable {
    */
   public void backButtonPressed() throws IOException {
     Stage stage = Main.getPrimaryStage();
-    Parent root = FXMLLoader.load(getClass().getResource("../View/main.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/Competition/View/main.fxml"));
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
   }
@@ -256,7 +256,7 @@ public class CreateNewAccountController implements Initializable {
     alert.showAndWait();
     Stage stage = Main.getPrimaryStage();
 
-    Parent root = FXMLLoader.load(getClass().getResource("../View/main.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/Competition/View/main.fxml"));
 
     stage.setScene(new Scene(root, 800, 600));
     stage.show();
