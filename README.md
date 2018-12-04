@@ -9,6 +9,30 @@ and managing intramural basketball programs.
 * Organization of teams led by a manger.
 * Keep track of player and team stats.
 
+## Installation
+(Steps also found in User Manual)  
+  1) Installing the program
+
+     * If you have not already downloaded the program, please open a web browser and go to the Sports Ball Master webpage and click the download button to download the Sports Ball Master program. If already downloaded, you can skip to step 1.2 Starting the system.
+     * You should end up with a file defaultly found in your downloads folder unless you have specified otherwise.
+     * System requirements:
+       * Windows XP or higher
+       * Internet Connectivity (only for downloading the program, this program do not need internet connectivity to run)  
+
+  2) Starting the program
+
+     * Double click the jar file, Sports Ball Master.jar.
+     * This will start the program.
+
+  3) Stopping the program
+  
+     * At any time while the program is running, you can click ‘X’ at the top right of the window to close out of the program.
+
+  4) First Time Users
+
+     * First time users will have an empty database and will have to create all the athlete and manager accounts in order to start using the program as intended. 
+
+
 ## Account Types and Functions
 * Create an account.
 
