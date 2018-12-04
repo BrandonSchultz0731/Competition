@@ -1,0 +1,43 @@
+This is our sign-in screen.
+If you don't have an account, you can create one.
+
+You can create a fan, athlete, or manager type account.
+Lets creates an athlete account.
+We'll name him, Runner Boy.
+
+Now that our account is created, lets sign in.
+The home screen for athletes is the notifications tab.
+It is currently empty because we just made this account.
+
+This next tab is the profile tab.
+It displays the user's name, account type, and their team,
+and a roster would display to the right if they belong to a team
+
+next is the calendar tab.
+you can view past, present, and future scheduled games and their scores
+
+~~~the game for today, is gators vs crocs
+
+Moving on we have the team tab.
+Clicking on a team will display its details to the right
+and a win loss ratio as a pie chart
+as well a roster of everyone on the team
+
+In the athletes tab, you can view all the athletes in the league and their details
+Here is our friend Runner Boy, he doesnt have a team yet so lets invite him to one
+we'll sign in as the managers of dc and marvel and invite him to join
+
+Now when we sign in as Runner Boy, we'll get the notifications for the invites.
+we'll accept marvel's and decline dc's.
+
+Now if we sign back  in as the manager of marvel, you'll see he'll get the 
+notification that runner boy accepted his invitation.
+and now runner boy is on the team,
+here's the roster, and you can see marvel is his team now.
+
+Games are created by the admin who can also edit scores.
+Lets create a game for tomorrow for Apples vs bananas
+and lets edit the score for today's game to 20 and 21
+
+To check lets sign in as the dc manager, you can see the decline message from runner boy
+and if we look at  the calendar, the score for today is now updated.
